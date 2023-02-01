@@ -1,0 +1,20 @@
+{
+  "userCode": "ALL",
+  "document": {
+    "type": "TRAMITE",
+    "value": "{numberclaim}"
+  },
+  "expirationIndicator": null,
+  "idProduct": 1,
+  "process": null,
+  "typology": "ALL",
+  "reason": null,
+  "segment": null,
+  "serviceLevel": null,
+  "currency": null,
+  "amountMin": 100,
+  "amountMax": 260,
+  "flagSupervisor": null,
+  "flagAutonomy": null,
+  "responseMedium": null
+}

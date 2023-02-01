@@ -1,0 +1,13 @@
+{
+  "targetAreaCode": "{areacode}",
+  "targetAreaDescription": "{areadescription}",
+  "targetUserCode": "{usercode}",
+  "targetUserName": "{username}",
+  "masivesClaims": [
+    {
+      "processInstanceId": "{idInstance}",
+      "claimNumber": "{numberclaim}",
+      "bpmType": "REDHAT"
+    }
+  ]
+}

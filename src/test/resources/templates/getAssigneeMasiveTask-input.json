@@ -1,0 +1,20 @@
+{
+  "targetAreaCode": "{AreaCode}",
+  "targetAreaDescription": "{AreaDescription}",
+  "targetUserCode": "{UserCode}",
+  "targetUserName": "{UserName}",
+  "masivesClaims": [
+    {
+      "processInstanceId": "{idInstance}",
+      "claimNumber": "{claimNumber}",
+      "taskName": "{activityDescription}",
+      "claimStatus": "{claimStatusCode}",
+      "bpmType": "{bpmType}"
+    }
+  ],
+  "flagAllClaims": false,
+  "originUserCode": [
+    "{currentAreaUserCode}"
+  ],
+  "flagRemoveClaims": false
+}
