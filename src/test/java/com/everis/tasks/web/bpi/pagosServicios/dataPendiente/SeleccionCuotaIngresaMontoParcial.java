@@ -1,8 +1,8 @@
 package com.everis.tasks.web.bpi.pagosServicios.dataPendiente;
 
-import com.everis.questions.web.bpi.EstadoPagoQuestions;
-import com.everis.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
-import com.everis.userinterfaces.web.bpi.LoginPage;
+import com.everis.bpi.questions.web.bpi.EstadoPagoQuestions;
+import com.everis.bpi.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
+import com.everis.bpi.userinterface.web.bpi.PagoRealizadoPage;
 import lombok.SneakyThrows;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
@@ -13,7 +13,6 @@ import net.serenitybdd.screenplay.targets.Target;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import org.openqa.selenium.By;
 
-import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static org.hamcrest.Matchers.equalTo;
@@ -95,51 +94,51 @@ public class SeleccionCuotaIngresaMontoParcial implements Task {
                     Double.parseDouble(LoginStepDefinitions.pagosServiciosData.getmontosPagados()) *
                             Double.parseDouble(LoginStepDefinitions.pagosServiciosData.getCantdni()))));
 
-            System.out.println("el monto pagado tipo de cambio es: " +LoginStepDefinitions.pagosServiciosData.getmontoPagadoTipoCambio());
-            System.out.println("el monto tipo de cambio es: " +LoginStepDefinitions.pagosServiciosData.getmontoTipoCambio());
-            System.out.println("el monto pagado es: " +LoginStepDefinitions.pagosServiciosData.getmontosPagados());
-            System.out.println("el monto  es: " +LoginStepDefinitions.pagosServiciosData.getMonto());
+            System.out.println("el monto pagado tipo de cambio es: " + LoginStepDefinitions.pagosServiciosData.getmontoPagadoTipoCambio());
+            System.out.println("el monto tipo de cambio es: " + LoginStepDefinitions.pagosServiciosData.getmontoTipoCambio());
+            System.out.println("el monto pagado es: " + LoginStepDefinitions.pagosServiciosData.getmontosPagados());
+            System.out.println("el monto  es: " + LoginStepDefinitions.pagosServiciosData.getMonto());
 
         }
 
-        if(LoginStepDefinitions.pagosServiciosData.getmontosPagados().length()>6) {
+        if (LoginStepDefinitions.pagosServiciosData.getmontosPagados().length() > 6) {
 
-            LoginStepDefinitions.pagosServiciosData.setmontosPagados(LoginStepDefinitions.pagosServiciosData.getSimbolo()+" "+LoginStepDefinitions.pagosServiciosData.getmontosPagados().substring(0, LoginStepDefinitions.pagosServiciosData.getmontosPagados().length() - 6) + "," + LoginStepDefinitions.pagosServiciosData.getmontosPagados().substring(LoginStepDefinitions.pagosServiciosData.getmontosPagados().length() - 6));
+            LoginStepDefinitions.pagosServiciosData.setmontosPagados(LoginStepDefinitions.pagosServiciosData.getSimbolo() + " " + LoginStepDefinitions.pagosServiciosData.getmontosPagados().substring(0, LoginStepDefinitions.pagosServiciosData.getmontosPagados().length() - 6) + "," + LoginStepDefinitions.pagosServiciosData.getmontosPagados().substring(LoginStepDefinitions.pagosServiciosData.getmontosPagados().length() - 6));
 
             System.out.println("el monto pagado final en moneda es: " + LoginStepDefinitions.pagosServiciosData.getmontosPagados());
 
-        } else if (LoginStepDefinitions.pagosServiciosData.getmontosPagados().length()<=6) {
+        } else if (LoginStepDefinitions.pagosServiciosData.getmontosPagados().length() <= 6) {
 
-            LoginStepDefinitions.pagosServiciosData.setmontosPagados(LoginStepDefinitions.pagosServiciosData.getSimbolo()+" "+LoginStepDefinitions.pagosServiciosData.getmontosPagados());
+            LoginStepDefinitions.pagosServiciosData.setmontosPagados(LoginStepDefinitions.pagosServiciosData.getSimbolo() + " " + LoginStepDefinitions.pagosServiciosData.getmontosPagados());
 
             System.out.println("el monto pagado final en moneda es: " + LoginStepDefinitions.pagosServiciosData.getmontosPagados());
 
         }
 
-        if(LoginStepDefinitions.pagosServiciosData.getMonto().length()>6) {
+        if (LoginStepDefinitions.pagosServiciosData.getMonto().length() > 6) {
 
-            LoginStepDefinitions.pagosServiciosData.setMonto(LoginStepDefinitions.pagosServiciosData.getSimbolo()+" "+LoginStepDefinitions.pagosServiciosData.getMonto().substring(0, LoginStepDefinitions.pagosServiciosData.getMonto().length() - 6) + "," + LoginStepDefinitions.pagosServiciosData.getMonto().substring(LoginStepDefinitions.pagosServiciosData.getMonto().length() - 6));
+            LoginStepDefinitions.pagosServiciosData.setMonto(LoginStepDefinitions.pagosServiciosData.getSimbolo() + " " + LoginStepDefinitions.pagosServiciosData.getMonto().substring(0, LoginStepDefinitions.pagosServiciosData.getMonto().length() - 6) + "," + LoginStepDefinitions.pagosServiciosData.getMonto().substring(LoginStepDefinitions.pagosServiciosData.getMonto().length() - 6));
 
             System.out.println("el monto total en moneda es: " + LoginStepDefinitions.pagosServiciosData.getMonto());
 
-        } else if (LoginStepDefinitions.pagosServiciosData.getMonto().length()<=6) {
+        } else if (LoginStepDefinitions.pagosServiciosData.getMonto().length() <= 6) {
 
-            LoginStepDefinitions.pagosServiciosData.setMonto(LoginStepDefinitions.pagosServiciosData.getSimbolo()+" "+LoginStepDefinitions.pagosServiciosData.getMonto());
+            LoginStepDefinitions.pagosServiciosData.setMonto(LoginStepDefinitions.pagosServiciosData.getSimbolo() + " " + LoginStepDefinitions.pagosServiciosData.getMonto());
 
             System.out.println("el monto total en moneda es: " + LoginStepDefinitions.pagosServiciosData.getMonto());
 
         }
 
         actor.attemptsTo(
-                WaitUntil.the(LoginPage.INP_DESCRIPCION, isVisible()).forNoMoreThan(150).seconds(),
-                Enter.theValue(LoginStepDefinitions.pagosServiciosData.getDescripcion()).into(LoginPage.INP_DESCRIPCION));
+                WaitUntil.the(PagoRealizadoPage.INP_DESCRIPCION, isVisible()).forNoMoreThan(150).seconds(),
+                Enter.theValue(LoginStepDefinitions.pagosServiciosData.getDescripcion()).into(PagoRealizadoPage.INP_DESCRIPCION));
 
         theActorInTheSpotlight().should(seeThat(
                 EstadoPagoQuestions.CuotasProcesadas(), equalTo(LoginStepDefinitions.pagosServiciosData.getCuotasPagar())));
 
         actor.attemptsTo(
-                WaitUntil.the(LoginPage.BTN_CONINUE, isVisible()).forNoMoreThan(150).seconds(),
-                Click.on(LoginPage.BTN_CONINUE));
+                WaitUntil.the(PagoRealizadoPage.BTN_CONINUE, isVisible()).forNoMoreThan(150).seconds(),
+                Click.on(PagoRealizadoPage.BTN_CONINUE));
 
     }
 }

@@ -1,8 +1,9 @@
 package com.everis.tasks.web.bpi.pagosServicios.dataPendiente;
 
-import com.everis.questions.web.bpi.EstadoPagoQuestions;
-import com.everis.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
-import com.everis.userinterfaces.web.bpi.LoginPage;
+import com.everis.bpi.questions.web.bpi.EstadoPagoQuestions;
+import com.everis.bpi.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
+import com.everis.bpi.userinterface.web.bpi.LoginPage;
+import com.everis.bpi.userinterface.web.bpi.PagoRealizadoPage;
 import lombok.SneakyThrows;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
@@ -12,13 +13,11 @@ import net.serenitybdd.screenplay.targets.Target;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import org.openqa.selenium.By;
 
-import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertEquals;
 
 public class DetalleEstadoPagoPendienteRechazadoFC1 implements Task {
     private final String Usuario;
@@ -86,17 +85,17 @@ public class DetalleEstadoPagoPendienteRechazadoFC1 implements Task {
 
         if (LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle().equals("En proceso")) {
 
-            while (!LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle().substring(0,9).trim().equals("Rechazada")) {
+            while (!LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle().substring(0, 9).trim().equals("Rechazada")) {
 
-                System.out.println("detalle: " + LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle().substring(0,9));
-
-                theActorInTheSpotlight().attemptsTo(
-                        WaitUntil.the(LoginPage.REGRESAR_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(),
-                        Click.on(LoginPage.REGRESAR_DETALLE_ESTADO));
+                System.out.println("detalle: " + LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle().substring(0, 9));
 
                 theActorInTheSpotlight().attemptsTo(
-                        WaitUntil.the(LoginPage.REVISA_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(),
-                        Click.on(LoginPage.REVISA_DETALLE_ESTADO));
+                        WaitUntil.the(PagoRealizadoPage.REGRESAR_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(),
+                        Click.on(PagoRealizadoPage.REGRESAR_DETALLE_ESTADO));
+
+                theActorInTheSpotlight().attemptsTo(
+                        WaitUntil.the(PagoRealizadoPage.REVISA_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(),
+                        Click.on(PagoRealizadoPage.REVISA_DETALLE_ESTADO));
 
                 Target DETALLE_ESTADO_SOLICITUD2 = Target.the("Estado de Servicio - Detalle").located(By.xpath("(//div[@data-test='txtEstado'])"));
                 LoginStepDefinitions.pagosServiciosData.setEstadoSolicitudDetalle(String.valueOf(DETALLE_ESTADO_SOLICITUD2.resolveFor(actor).getText()));
@@ -105,7 +104,7 @@ public class DetalleEstadoPagoPendienteRechazadoFC1 implements Task {
         }
 
         theActorInTheSpotlight().should(seeThat(
-                EstadoPagoQuestions.EstadoServicioDetalleRechazada(), equalTo(LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle().substring(0,124))));
+                EstadoPagoQuestions.EstadoServicioDetalleRechazada(), equalTo(LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle().substring(0, 124))));
 
         System.out.println("detalle - estado 3: " + LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle());
 
@@ -120,7 +119,7 @@ public class DetalleEstadoPagoPendienteRechazadoFC1 implements Task {
 
         System.out.println("cantidad de fechas " + fechaHoraAux.length);
 
-        if(fechaHoraAux.length==4){
+        if (fechaHoraAux.length == 4) {
 
             theActorInTheSpotlight().should(seeThat(
                     EstadoPagoQuestions.AutorizadorSolicitudDetalle(), containsString(nombreUsuarioAux[0].trim() + " - " + fechaHoraAux[0].trim())));
@@ -131,7 +130,7 @@ public class DetalleEstadoPagoPendienteRechazadoFC1 implements Task {
             System.out.println("usuario1: " + nombreUsuarioAux[0].trim() + " - " + fechaHoraAux[0].trim());
             System.out.println("usuario1: " + nombreUsuarioAux[1].trim() + " - " + fechaHoraAux[2].trim());
 
-        } else if (fechaHoraAux.length==6) {
+        } else if (fechaHoraAux.length == 6) {
 
             theActorInTheSpotlight().should(seeThat(
                     EstadoPagoQuestions.AutorizadorSolicitudDetalle(), containsString(nombreUsuarioAux[0].trim() + " - " + fechaHoraAux[0].trim())));
@@ -157,7 +156,7 @@ public class DetalleEstadoPagoPendienteRechazadoFC1 implements Task {
 
         //DESCRIPCION
 
-        if(!LoginStepDefinitions.pagosServiciosData.getDescripcion().equals("")){
+        if (!LoginStepDefinitions.pagosServiciosData.getDescripcion().equals("")) {
 
             System.out.println("entre por que la descripcion esta llena");
             theActorInTheSpotlight().should(seeThat(
@@ -185,24 +184,24 @@ public class DetalleEstadoPagoPendienteRechazadoFC1 implements Task {
         theActorInTheSpotlight().should(seeThat(
                 EstadoPagoQuestions.PagoProcesadasDetalle(), equalTo("0")));
 
-        System.out.println("detalle - procesados: "+ EstadoPagoQuestions.PagoProcesadasDetalle());
+        System.out.println("detalle - procesados: " + EstadoPagoQuestions.PagoProcesadasDetalle());
 
         //RECHAZADOS
 
         theActorInTheSpotlight().should(seeThat(
                 EstadoPagoQuestions.PagoRechazadasDetalle(), equalTo(LoginStepDefinitions.pagosServiciosData.getCuotasPagar())));
 
-        System.out.println("detalle - rechazados: "+ LoginStepDefinitions.pagosServiciosData.getCuotasPagar());
+        System.out.println("detalle - rechazados: " + LoginStepDefinitions.pagosServiciosData.getCuotasPagar());
 
         //INFORMACION DE LAS CUOTAS-------------------------------------------------------------------------------------
 
         LoginStepDefinitions.pagosServiciosData.setmontoPagado("");
 
-        System.out.println("info - monto pagado: "+ LoginStepDefinitions.pagosServiciosData.getmontoPagado());
+        System.out.println("info - monto pagado: " + LoginStepDefinitions.pagosServiciosData.getmontoPagado());
 
-        int i= Integer.parseInt(LoginStepDefinitions.pagosServiciosData.getCantdni())+1;
+        int i = Integer.parseInt(LoginStepDefinitions.pagosServiciosData.getCantdni()) + 1;
 
-        while(!LoginStepDefinitions.pagosServiciosData.getmontosPagados().equals(LoginStepDefinitions.pagosServiciosData.getmontoPagado())) {
+        while (!LoginStepDefinitions.pagosServiciosData.getmontosPagados().equals(LoginStepDefinitions.pagosServiciosData.getmontoPagado())) {
 
             i--;
 
@@ -231,7 +230,7 @@ public class DetalleEstadoPagoPendienteRechazadoFC1 implements Task {
 
         //TOTAL SOLES O DOLARES
 
-        if(LoginStepDefinitions.pagosServiciosData.getSimbolo().equals("S/")) {
+        if (LoginStepDefinitions.pagosServiciosData.getSimbolo().equals("S/")) {
 
             Target TOTAL_SOLES = Target.the("Total Soles").located(By.xpath("(//span[@data-test='lblTotalPenValue'])[" + i + "]"));
             LoginStepDefinitions.pagosServiciosData.setmontoPagado(String.valueOf(TOTAL_SOLES.resolveFor(actor).getText()));
@@ -239,9 +238,9 @@ public class DetalleEstadoPagoPendienteRechazadoFC1 implements Task {
             assertEquals(
                     LoginStepDefinitions.pagosServiciosData.getmontoPagado(), LoginStepDefinitions.pagosServiciosData.getmontosPagados());
 
-            System.out.println("monto pagado: "+ LoginStepDefinitions.pagosServiciosData.getmontoPagado());
+            System.out.println("monto pagado: " + LoginStepDefinitions.pagosServiciosData.getmontoPagado());
 
-            System.out.println("montos pagados: "+ LoginStepDefinitions.pagosServiciosData.getmontosPagados());
+            System.out.println("montos pagados: " + LoginStepDefinitions.pagosServiciosData.getmontosPagados());
 
         } else if (LoginStepDefinitions.pagosServiciosData.getSimbolo().equals("$")) {
 
@@ -251,9 +250,9 @@ public class DetalleEstadoPagoPendienteRechazadoFC1 implements Task {
             assertEquals(
                     LoginStepDefinitions.pagosServiciosData.getmontoPagado(), LoginStepDefinitions.pagosServiciosData.getmontosPagados());
 
-            System.out.println("monto pagado: "+ LoginStepDefinitions.pagosServiciosData.getmontoPagado());
+            System.out.println("monto pagado: " + LoginStepDefinitions.pagosServiciosData.getmontoPagado());
 
-            System.out.println("montos pagados: "+ LoginStepDefinitions.pagosServiciosData.getmontosPagados());
+            System.out.println("montos pagados: " + LoginStepDefinitions.pagosServiciosData.getmontosPagados());
 
         }
 
@@ -262,8 +261,8 @@ public class DetalleEstadoPagoPendienteRechazadoFC1 implements Task {
         //REGRESAR
 
         actor.attemptsTo(
-                WaitUntil.the(LoginPage.REGRESAR_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(),
-                Click.on(LoginPage.REGRESAR_DETALLE_ESTADO));
+                WaitUntil.the(PagoRealizadoPage.REGRESAR_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(),
+                Click.on(PagoRealizadoPage.REGRESAR_DETALLE_ESTADO));
 
         System.out.println("regrese");
 

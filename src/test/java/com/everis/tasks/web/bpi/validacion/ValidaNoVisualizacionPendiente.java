@@ -1,7 +1,7 @@
 package com.everis.tasks.web.bpi.validacion;
 
-import com.everis.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
-import com.everis.userinterfaces.web.bpi.LoginPage;
+import com.everis.bpi.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
+import com.everis.bpi.userinterface.web.bpi.LoginPage;
 import lombok.SneakyThrows;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
@@ -39,39 +39,37 @@ public class ValidaNoVisualizacionPendiente implements Task {
         LoginStepDefinitions.pagosServiciosData.setcodigo("");
 
 
-
         Target CANTIDAD_AUTORIZACION = Target.the("Cantidad de Autorizaciones").located(By.xpath("//*[@class='mat-paginator-range-label']"));
         LoginStepDefinitions.pagosServiciosData.setcantAutorizacion(String.valueOf(CANTIDAD_AUTORIZACION.resolveFor(actor).getText()));
 
 
+        if (LoginStepDefinitions.pagosServiciosData.getcantAutorizacion().length() == 12) {
 
-        if(LoginStepDefinitions.pagosServiciosData.getcantAutorizacion().length()==12){
+            LoginStepDefinitions.pagosServiciosData.setcantAutorizacion(LoginStepDefinitions.pagosServiciosData.getcantAutorizacion().substring(LoginStepDefinitions.pagosServiciosData.getcantAutorizacion().length() - 2));
 
-            LoginStepDefinitions.pagosServiciosData.setcantAutorizacion(LoginStepDefinitions.pagosServiciosData.getcantAutorizacion().substring(LoginStepDefinitions.pagosServiciosData.getcantAutorizacion().length()-2));
-
-        }else{
-            LoginStepDefinitions.pagosServiciosData.setcantAutorizacion(LoginStepDefinitions.pagosServiciosData.getcantAutorizacion().substring(LoginStepDefinitions.pagosServiciosData.getcantAutorizacion().length()-1));
+        } else {
+            LoginStepDefinitions.pagosServiciosData.setcantAutorizacion(LoginStepDefinitions.pagosServiciosData.getcantAutorizacion().substring(LoginStepDefinitions.pagosServiciosData.getcantAutorizacion().length() - 1));
         }
 
-        System.out.println("numero solicitud : " +LoginStepDefinitions.pagosServiciosData.getcantAutorizacion() );
-        System.out.println("numero solicitud : " +LoginStepDefinitions.pagosServiciosData.getNroSolicitudProcess() );
+        System.out.println("numero solicitud : " + LoginStepDefinitions.pagosServiciosData.getcantAutorizacion());
+        System.out.println("numero solicitud : " + LoginStepDefinitions.pagosServiciosData.getNroSolicitudProcess());
 
-        int cont= Integer.parseInt(LoginStepDefinitions.pagosServiciosData.getcantAutorizacion());
+        int cont = Integer.parseInt(LoginStepDefinitions.pagosServiciosData.getcantAutorizacion());
 
-        while(!LoginStepDefinitions.pagosServiciosData.getcodigo().contains(LoginStepDefinitions.pagosServiciosData.getNroSolicitudProcess())){
+        while (!LoginStepDefinitions.pagosServiciosData.getcodigo().contains(LoginStepDefinitions.pagosServiciosData.getNroSolicitudProcess())) {
 
 
-            if(cont==0) {
+            if (cont == 0) {
 
                 LoginStepDefinitions.pagosServiciosData.setcodigo(LoginStepDefinitions.pagosServiciosData.getNroSolicitudProcess());
 
-            }else {
+            } else {
                 Target CODIGO = Target.the("Codigo").located(By.xpath("(//*[@data-test='lblRequestName'])[" + cont + "]"));
                 LoginStepDefinitions.pagosServiciosData.setcodigo(String.valueOf(CODIGO.resolveFor(actor).getText()));
             }
 
             cont--;
-            System.out.println("codigo : " +LoginStepDefinitions.pagosServiciosData.getcodigo() );
+            System.out.println("codigo : " + LoginStepDefinitions.pagosServiciosData.getcodigo());
 
         }
 

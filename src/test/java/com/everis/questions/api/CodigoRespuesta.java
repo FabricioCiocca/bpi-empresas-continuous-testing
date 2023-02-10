@@ -1,4 +1,5 @@
 package com.everis.questions.api;
+
 import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;

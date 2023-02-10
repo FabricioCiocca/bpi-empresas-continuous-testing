@@ -2,18 +2,17 @@ package com.everis.stepsdefinitions.web.bpi.validacion;
 
 import com.everis.questions.web.bpi.RecaudacionesQuestions;
 import com.everis.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
-import com.everis.tasks.web.bpi.cerrar.CerrarSesionPendiente;
-import com.everis.tasks.web.bpi.login.AutenticarBpi;
-import com.everis.tasks.web.bpi.validacion.ValidarRecaudaciones;
 import com.everis.tdm.Do;
 import com.everis.tdm.model.bpi.Empresa;
-import com.everis.userinterfaces.web.bpi.LoginPage;
+import com.everis.userinterfaces.web.bpi.PagoRealizadoPage;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
-
+import com.everis.tasks.web.bpi.cerrar.CerrarSesionPendiente;
+import com.everis.tasks.web.bpi.login.AutenticarBpi;
+import com.everis.tasks.web.bpi.validacion.ValidarRecaudaciones;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static org.hamcrest.Matchers.containsString;
@@ -34,7 +33,7 @@ public class ValidacionRecaudacionesStepDefinition {
         String docempresa = company.getDocEmpresa();
         String passwordEmpresa = company.getPasswordEmpresa();
         theActorInTheSpotlight().attemptsTo(AutenticarBpi.withData(docempresa, passwordEmpresa));
-      //  theActorInTheSpotlight().attemptsTo(new MenuBotonEntendido());
+        //  theActorInTheSpotlight().attemptsTo(new MenuBotonEntendido());
         theActorInTheSpotlight().attemptsTo(ValidarRecaudaciones.withData(Service, buscarcod));
         theActorInTheSpotlight().should(seeThat(RecaudacionesQuestions.empresaRecaudacion(), equalTo(LoginStepDefinitions.pagosServiciosData.getEmpresa())));
         theActorInTheSpotlight().should(seeThat(RecaudacionesQuestions.servicio(), equalTo(Service)));
@@ -42,7 +41,7 @@ public class ValidacionRecaudacionesStepDefinition {
         theActorInTheSpotlight().should(seeThat(RecaudacionesQuestions.fecha(), containsString(LoginStepDefinitions.pagosServiciosData.getFechaRecaudacion())));
         theActorInTheSpotlight().should(seeThat(RecaudacionesQuestions.numerooperacion(), equalTo(LoginStepDefinitions.pagosServiciosData.getNumeroOperacion())));
         theActorInTheSpotlight().should(seeThat(RecaudacionesQuestions.monto(), equalTo(LoginStepDefinitions.pagosServiciosData.getMonto())));
-        theActorInTheSpotlight().attemptsTo(Click.on(LoginPage.REGRESAR_DETALLE_ESTADO));
+        theActorInTheSpotlight().attemptsTo(Click.on(PagoRealizadoPage.REGRESAR_DETALLE_ESTADO));
     }
 
 

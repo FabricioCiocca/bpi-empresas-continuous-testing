@@ -1,6 +1,6 @@
 package com.everis.tasks.web.bpi.pagosServicios;
 
-import com.everis.userinterfaces.web.bpi.LoginPage;
+import com.everis.bpi.userinterface.web.bpi.PagoRealizadoPage;
 import lombok.SneakyThrows;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
@@ -33,12 +33,12 @@ public class IngresarCredencialesNegatividadPendientePago implements Task {
 
 
         actor.attemptsTo(
-                WaitUntil.the(LoginPage.BTN_CONINUE, isVisible()).forNoMoreThan(150).seconds(),
-                Click.on(LoginPage.BTN_CONINUE));
+                WaitUntil.the(PagoRealizadoPage.BTN_CONINUE, isVisible()).forNoMoreThan(150).seconds(),
+                Click.on(PagoRealizadoPage.BTN_CONINUE));
 
         actor.attemptsTo(
-                WaitUntil.the(LoginPage.INP_CONTRASENA, isVisible()).forNoMoreThan(150).seconds(),
-                Enter.theValue(contrasena).into(LoginPage.INP_CONTRASENA));
+                WaitUntil.the(PagoRealizadoPage.INP_CONTRASENA, isVisible()).forNoMoreThan(150).seconds(),
+                Enter.theValue(contrasena).into(PagoRealizadoPage.INP_CONTRASENA));
 
     }
 

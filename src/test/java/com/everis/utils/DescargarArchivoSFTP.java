@@ -8,17 +8,18 @@ import net.thucydides.core.util.EnvironmentVariables;
 /**
  * A program demonstrates how to upload files from local computer to a remote
  * FTP server using Apache Commons Net API.
+ *
  * @author www.codejava.net
  */
 public class DescargarArchivoSFTP {
 
-    public static void imCobrosMensualTxt(EnvironmentVariables environmentVariables){
+    public static void imCobrosMensualTxt(EnvironmentVariables environmentVariables) {
 
         String localFile = "/home/BIE_NEXBI/OUT/BIE/additional_charges/servicelevel/IMCobrosMensual.txt";
         String remoteFile = EnvironmentSpecificConfiguration.from(environmentVariables).getProperty("ruta.im");
         Session jschSession = null;
 
-        String respDescargaImCobrosMensual="";
+        String respDescargaImCobrosMensual = "";
         String username = "BIE_NEXBI";
         String password = "#Int3rb4nk#";
         String host = "ftpuat.grupoib.local";
@@ -49,9 +50,9 @@ public class DescargarArchivoSFTP {
         } catch (JSchException e) {
             // throw the exception
         }
-        try{
+        try {
             channelSftp.get(localFile, remoteFile);
-            respDescargaImCobrosMensual="Descarga Completa del Archivo IMCobrosMensual.txt";
+            respDescargaImCobrosMensual = "Descarga Completa del Archivo IMCobrosMensual.txt";
         } catch (SftpException e) {
             // throw the exception
         }
@@ -59,13 +60,13 @@ public class DescargarArchivoSFTP {
         Serenity.setSessionVariable("respDescargaImCobrosMensual").to(respDescargaImCobrosMensual);
     }
 
-    public static void stCobrosMensualTxt(EnvironmentVariables environmentVariables){
+    public static void stCobrosMensualTxt(EnvironmentVariables environmentVariables) {
 
         String localFile = "/home/BIE_NEXBI/OUT/BIE/additional_charges/servicelevel/STCobrosMensual.txt";
         String remoteFile = EnvironmentSpecificConfiguration.from(environmentVariables).getProperty("ruta.st");
         Session jschSession = null;
 
-        String respDescargaStCobrosMensual="";
+        String respDescargaStCobrosMensual = "";
         String username = "BIE_NEXBI";
         String password = "#Int3rb4nk#";
         String host = "ftpuat.grupoib.local";
@@ -96,9 +97,9 @@ public class DescargarArchivoSFTP {
         } catch (JSchException e) {
             // throw the exception
         }
-        try{
+        try {
             channelSftp.get(localFile, remoteFile);
-            respDescargaStCobrosMensual="Descarga Completa del Archivo STCobrosMensual.txt";
+            respDescargaStCobrosMensual = "Descarga Completa del Archivo STCobrosMensual.txt";
         } catch (SftpException e) {
             // throw the exception
         }
@@ -120,7 +121,7 @@ public class DescargarArchivoSFTP {
         return (ChannelSftp) jschSession.openChannel("sftp");
     }
 
-    public boolean downloadSftp( String localFile, String remoteFile) {
+    public boolean downloadSftp(String localFile, String remoteFile) {
         ChannelSftp channelSftp = null;
         try {
             channelSftp = setupJsch();
@@ -132,7 +133,7 @@ public class DescargarArchivoSFTP {
         } catch (JSchException e) {
             // throw the exception
         }
-        try{
+        try {
             channelSftp.get(localFile, remoteFile);
             System.out.println("Download Complete");
         } catch (SftpException e) {

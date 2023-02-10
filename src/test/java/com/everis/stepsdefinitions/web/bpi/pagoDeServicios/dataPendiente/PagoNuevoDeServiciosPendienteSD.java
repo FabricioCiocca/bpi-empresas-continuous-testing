@@ -1,8 +1,8 @@
 package com.everis.stepsdefinitions.web.bpi.pagoDeServicios.dataPendiente;
 
 
-import com.everis.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
-import com.everis.tasks.web.bpi.pagosServicios.dataPendiente.SeleccionCtaEmpresaServicioPendiente;
+import com.everis.bpi.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.dataPendiente.SeleccionCtaEmpresaServicioPendiente;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import net.serenitybdd.screenplay.actors.OnStage;

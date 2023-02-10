@@ -1,6 +1,6 @@
 package com.everis.tasks.web.bpi.pagosServicios;
 
-import com.everis.userinterfaces.web.bpi.LoginPage;
+import com.everis.bpi.userinterface.web.bpi.LoginPage;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;

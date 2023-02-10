@@ -18,7 +18,7 @@ Feature: Recaudaciones
   @happy_path @ESC2RECAUDACIONES
   Scenario Outline: Valida que se pueda realizar un pago total de servicio a firma conjunta, de Data Remota, de una (1) cuota, para un (1) codigo deudor, para la empresa Oslo (codigo deudor <= 800)
     Given que el usuario Especialista accede a la aplicacion BPI <ambiente> <firmante1>
-    When intenta realizar un pago de tipo Pagos - De servicios - A firma conjunta - Remota <tipoCuenta>, <cuentaOrigen>, <empresa>, <servicio>, <codigoDeudor>
+    When intenta realizar un pago de tipo Pagos - De servicios - A firma conjunta - Re
     Then el pago se realiza satisfactoriamente <descripcion>, <password>
     And se autoriza el pago a firma conjunta <firmante2>
     And se autoriza el pago a firma conjunta <firmante3>

@@ -1,12 +1,12 @@
 package com.everis.stepsdefinitions.web.bpi.bloqueo;
 
-import com.everis.models.bpi.PagosServiciosData;
-import com.everis.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
-import com.everis.tasks.web.bpi.bloqueo.MenuBloqueosEnviadasPorMiP;
-import com.everis.tasks.web.bpi.bloqueo.MenuBloqueosPendienteFirmaP;
-import com.everis.tasks.web.bpi.cerrar.CerrarSesionPendiente;
-import com.everis.tasks.web.bpi.login.AutenticarNuevoBpi;
-import com.everis.tasks.web.bpi.pagosServicios.MenuBotonEntendido;
+import com.everis.bpi.models.bpi.PagosServiciosData;
+import com.everis.bpi.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
+import com.everis.bpi.tasks.web.bpi.bloqueo.MenuBloqueosEnviadasPorMiP;
+import com.everis.bpi.tasks.web.bpi.bloqueo.MenuBloqueosPendienteFirmaP;
+import com.everis.bpi.tasks.web.bpi.cerrar.CerrarSesionPendiente;
+import com.everis.bpi.tasks.web.bpi.login.AutenticarNuevoBpi;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.MenuBotonEntendido;
 import com.everis.tdm.Do;
 import com.everis.tdm.model.bpi.Usuarios;
 import io.cucumber.java.Before;
@@ -70,7 +70,7 @@ public class BloqueoRemotaSD {
     }
 
     @And("^se introduce la contraseña para bloquear el pago a Firma Conjunta - Remota (.*); (.*)$")
-    public void seIntroduceLaContraseñaParaBloquearElPagoAFirmaConjuntaRemota(String user, String passwordErroneo)throws InterruptedException {
+    public void seIntroduceLaContraseñaParaBloquearElPagoAFirmaConjuntaRemota(String user, String passwordErroneo) throws InterruptedException {
 
         theActorInTheSpotlight().attemptsTo(
                 new CerrarSesionPendiente());
@@ -97,7 +97,7 @@ public class BloqueoRemotaSD {
     }
 
     @And("^introduce la contraseña para bloquear el pago a Firma Conjunta - Remota (.*)$")
-    public void introduceLaContraseñaParaBloquearElPagoAFirmaConjuntaRemota(String passwordErroneo)throws InterruptedException {
+    public void introduceLaContraseñaParaBloquearElPagoAFirmaConjuntaRemota(String passwordErroneo) throws InterruptedException {
 
         LoginStepDefinitions.pagosServiciosData.setPassword(passwordErroneo);
 

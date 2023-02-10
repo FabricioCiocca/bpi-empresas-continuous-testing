@@ -1,6 +1,6 @@
 package com.everis.questions.web.bpi;
 
-import com.everis.userinterfaces.web.bpi.LoginPage;
+import com.everis.bpi.userinterface.web.bpi.LoginPage;
 import net.serenitybdd.screenplay.Question;
 
 public class SaldoDisponibleQuestions {

@@ -1,12 +1,12 @@
 package com.everis.stepsdefinitions.web.bpi.pagoDeServicios.dataPendiente;
 
 
-import com.everis.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
-import com.everis.tasks.web.bpi.pagosServicios.IngresarCredencialesPago;
-import com.everis.tasks.web.bpi.pagosServicios.MenuBotonEntendido;
-import com.everis.tasks.web.bpi.pagosServicios.MenuPagoServicios;
-import com.everis.tasks.web.bpi.pagosServicios.SeleccionCtaEmpresaServicioCodDeudor;
-import com.everis.tasks.web.bpi.pagosServicios.dataPendiente.*;
+import com.everis.bpi.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.IngresarCredencialesPago;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.MenuBotonEntendido;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.MenuPagoServicios;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.SeleccionCtaEmpresaServicioCodDeudor;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.dataPendiente.*;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.actors.OnStage;
@@ -168,7 +168,7 @@ public class PagoDeServiciosPendienteSD {
     }
 
     @When("intenta introducir la contraseña para realizar un pago total de tipo Pagos - De servicios - Pendiente (.*); (.*); (.*); (.*); (.*); (.*); (.*)$")
-    public void intentaIntroducirLaContraseñaParaRealizarUnPagoTotalDeTipoPagosDeServiciosPendiente(String tipoCuenta, String cuenta, String empresa, String servicio, String codigoDeudor, String descripcion, String password)throws InterruptedException {
+    public void intentaIntroducirLaContraseñaParaRealizarUnPagoTotalDeTipoPagosDeServiciosPendiente(String tipoCuenta, String cuenta, String empresa, String servicio, String codigoDeudor, String descripcion, String password) throws InterruptedException {
 
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
@@ -210,7 +210,7 @@ public class PagoDeServiciosPendienteSD {
     }
 
     @When("intenta introducir el monto de pago para realizar un pago parcial de tipo Pagos - De servicios - Pendiente (.*); (.*); (.*); (.*); (.*); (.*); (.*)$")
-    public void intentaIntroducirElMontoDePagoParaRealizarUnPagoParcialDeTipoPagosDeServiciosPendiente(String tipoCuenta, String cuenta, String empresa, String servicio, String codigoDeudor, String monto, String descripcion)throws InterruptedException {
+    public void intentaIntroducirElMontoDePagoParaRealizarUnPagoParcialDeTipoPagosDeServiciosPendiente(String tipoCuenta, String cuenta, String empresa, String servicio, String codigoDeudor, String monto, String descripcion) throws InterruptedException {
 
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
@@ -249,7 +249,7 @@ public class PagoDeServiciosPendienteSD {
     }
 
     @When("intenta elegir las cuotas de pago para realizar un pago parcial de tipo Pagos - De servicios - Pendiente (.*); (.*); (.*); (.*); (.*); (.*); (.*)$")
-    public void intentaElegirLasCuotasDePagoParaRealizarUnPagoDeTipoPagosDeServiciosPendiente(String tipoCuenta, String cuenta, String empresa, String servicio, String codigoDeudor, String monto, String descripcion) throws InterruptedException{
+    public void intentaElegirLasCuotasDePagoParaRealizarUnPagoDeTipoPagosDeServiciosPendiente(String tipoCuenta, String cuenta, String empresa, String servicio, String codigoDeudor, String monto, String descripcion) throws InterruptedException {
 
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
@@ -288,7 +288,7 @@ public class PagoDeServiciosPendienteSD {
     }
 
     @When("intenta introducir la contraseña para realizar un pago parcial de tipo Pagos - De servicios - Pendiente (.*); (.*); (.*); (.*); (.*); (.*); (.*); (.*)$")
-    public void intentaIntroducirLaContraseñaParaRealizarUnPagoParcialDeTipoPagosDeServiciosPendiente(String tipoCuenta, String cuenta, String empresa, String servicio, String codigoDeudor, String monto, String descripcion, String password)throws InterruptedException {
+    public void intentaIntroducirLaContraseñaParaRealizarUnPagoParcialDeTipoPagosDeServiciosPendiente(String tipoCuenta, String cuenta, String empresa, String servicio, String codigoDeudor, String monto, String descripcion, String password) throws InterruptedException {
 
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
@@ -332,7 +332,7 @@ public class PagoDeServiciosPendienteSD {
     }
 
     @When("intenta efectuar un pago total de tipo Pagos - De servicios - Pendiente (.*); (.*); (.*); (.*); (.*); (.*)$")
-    public void intentaEfectuarUnPagoTotalDeTipoPagosDeServiciosPendiente(String tipoCuenta, String cuenta, String empresa, String servicio, String codigoDeudor, String descripcion) throws InterruptedException{
+    public void intentaEfectuarUnPagoTotalDeTipoPagosDeServiciosPendiente(String tipoCuenta, String cuenta, String empresa, String servicio, String codigoDeudor, String descripcion) throws InterruptedException {
 
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());

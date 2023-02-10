@@ -16,7 +16,7 @@ public class WaitEmulator extends EmulatorActions implements Interaction {
         this.miliseconds = miliseconds;
     }
 
-    public static Performable withMiliseconds(int miliseconds){
+    public static Performable withMiliseconds(int miliseconds) {
         return instrumented(WaitEmulator.class, miliseconds);
     }
 

@@ -1,6 +1,6 @@
 package com.everis.tasks.web.nexbi.query;
 
-import com.everis.userinterfaces.web.nexbi.QueryPage;
+import com.everis.bpi.userinterface.web.nexbi.QueryPage;
 import lombok.SneakyThrows;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;

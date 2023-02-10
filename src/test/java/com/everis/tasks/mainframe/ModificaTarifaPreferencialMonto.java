@@ -1,7 +1,7 @@
 package com.everis.tasks.mainframe;
 
-import com.everis.actions.mainframe.*;
-import com.everis.questions.mainframe.ValidacionCobros;
+import com.everis.bpi.actions.mainframe.*;
+import com.everis.bpi.questions.mainframe.ValidacionCobros;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;

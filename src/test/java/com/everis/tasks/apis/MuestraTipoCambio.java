@@ -1,6 +1,6 @@
 package com.everis.tasks.apis;
 
-import com.everis.utils.data.EndpointServicioWeb;
+import com.everis.bpi.utils.data.EndpointServicioWeb;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.rest.interactions.Get;
@@ -29,8 +29,8 @@ public class MuestraTipoCambio implements Task {
                                 .header("Authorization", "Basic dUJzZUJpZUFDb246SWJrdWJzYWNvbjE3")
                                 .header("x-ibm-client-id", "9a7fe400-0ec5-44d9-bbb6-c8a84dfd468e")
                                 .header("X-INT-Branch-Id", "898")
-                                .param("officeCode","100")
-                                .param("typePrice","13")
-                                .param("channelCode","TR")));
+                                .param("officeCode", "100")
+                                .param("typePrice", "13")
+                                .param("channelCode", "TR")));
     }
 }

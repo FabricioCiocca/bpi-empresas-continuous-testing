@@ -1,7 +1,8 @@
 package com.everis.tasks.web.bpi.validacion;
 
-import com.everis.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
-import com.everis.userinterfaces.web.bpi.LoginPage;
+import com.everis.bpi.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
+import com.everis.bpi.userinterface.web.bpi.LoginPage;
+import com.everis.bpi.userinterface.web.bpi.SaldosYMovimientosPage;
 import lombok.SneakyThrows;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
@@ -33,8 +34,8 @@ public class ValidarRecaudaciones implements Task {
     @SneakyThrows
     @Override
     public <T extends Actor> void performAs(T actor) {
-        actor.attemptsTo(WaitUntil.the(LoginPage.MENU_CONSULTAS, isVisible()).forNoMoreThan(50).seconds(),
-                Click.on(LoginPage.MENU_CONSULTAS));
+        actor.attemptsTo(WaitUntil.the(SaldosYMovimientosPage.MENU_CONSULTAS, isVisible()).forNoMoreThan(50).seconds(),
+                Click.on(SaldosYMovimientosPage.MENU_CONSULTAS));
         actor.attemptsTo(WaitUntil.the(LoginPage.RECAUDACIONES, isVisible()).forNoMoreThan(50).seconds(),
                 Click.on(LoginPage.RECAUDACIONES));
         actor.attemptsTo(WaitUntil.the(LoginPage.CHOOSE_SERVICE, isVisible()).forNoMoreThan(50).seconds(),
@@ -45,11 +46,11 @@ public class ValidarRecaudaciones implements Task {
         Serenity.getDriver().findElement(By.xpath("//mat-option[@role='option']//span[text()='" + buscarcod + "']")).click();
         if (buscarcod.equalsIgnoreCase("Código de deudor")) {
             actor.attemptsTo(WaitUntil.the(LoginPage.INP_BUSCAR_COD_DEUDOR, isVisible()).forNoMoreThan(50).seconds(),
-                 Click.on(LoginPage.INP_BUSCAR_COD_DEUDOR), Enter.theValue(LoginStepDefinitions.pagosServiciosData.getDniPagador()).into(LoginPage.INP_BUSCAR_COD_DEUDOR));
+                    Click.on(LoginPage.INP_BUSCAR_COD_DEUDOR), Enter.theValue(LoginStepDefinitions.pagosServiciosData.getDniPagador()).into(LoginPage.INP_BUSCAR_COD_DEUDOR));
             actor.attemptsTo(WaitUntil.the(LoginPage.BTN_SEARCH, isVisible()).forNoMoreThan(50).seconds(),
-                 Click.on(LoginPage.BTN_SEARCH));
+                    Click.on(LoginPage.BTN_SEARCH));
 
-        }else{
+        } else {
             actor.attemptsTo(WaitUntil.the(LoginPage.BTN_SEARCH, isVisible()).forNoMoreThan(50).seconds(), Click.on(LoginPage.BTN_SEARCH));
             JavascriptExecutor js = (JavascriptExecutor) Serenity.getDriver();
             js.executeScript("arguments[0].scrollIntoView();", Serenity.getDriver().findElement(By.xpath("//div[@data-test='lnkSeePay']//span[text()='Ver pagos']")));
@@ -64,7 +65,7 @@ public class ValidarRecaudaciones implements Task {
 
             if (cont > 8) {
                 JavascriptExecutor js = (JavascriptExecutor) Serenity.getDriver();
-                js.executeScript("arguments[0].scrollIntoView();", Serenity.getDriver().findElement(By.xpath("(//*[@class='ibk-table-row ng-star-inserted']["+9+"]//ibk-table-cell-content)[3]")));
+                js.executeScript("arguments[0].scrollIntoView();", Serenity.getDriver().findElement(By.xpath("(//*[@class='ibk-table-row ng-star-inserted'][" + 9 + "]//ibk-table-cell-content)[3]")));
             }
             Target CODIGO = Target.the("Codigo").located(By.xpath("(//*[@class='ibk-table-row ng-star-inserted'][" + cont + "]//ibk-table-cell-content)[3]"));
             LoginStepDefinitions.pagosServiciosData.setcodigo(String.valueOf(CODIGO.resolveFor(actor).getText()));

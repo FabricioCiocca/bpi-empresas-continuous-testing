@@ -1,9 +1,9 @@
 package com.everis.tasks.mainframe;
 
-import com.everis.actions.mainframe.Emulator;
-import com.everis.actions.mainframe.WaitEmulator;
-import com.everis.actions.mainframe.WriteLineEmulator;
-import com.everis.questions.mainframe.ValidacionCobros;
+import com.everis.bpi.actions.mainframe.Emulator;
+import com.everis.bpi.actions.mainframe.WaitEmulator;
+import com.everis.bpi.actions.mainframe.WriteLineEmulator;
+import com.everis.bpi.questions.mainframe.ValidacionCobros;
 import lombok.SneakyThrows;
 import mainframe.com.bdd.lib.EmulatorActions;
 import net.serenitybdd.core.Serenity;

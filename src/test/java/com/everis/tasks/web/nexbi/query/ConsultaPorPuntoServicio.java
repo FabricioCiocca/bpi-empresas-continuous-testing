@@ -1,6 +1,6 @@
 package com.everis.tasks.web.nexbi.query;
 
-import com.everis.userinterfaces.web.nexbi.QueryPage;
+import com.everis.bpi.userinterface.web.nexbi.QueryPage;
 import lombok.SneakyThrows;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
@@ -16,29 +16,29 @@ import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisi
 
 public class ConsultaPorPuntoServicio implements Task {
     public final String puntoServicio;
+    public final String codigoUnico;
 
-    public ConsultaPorPuntoServicio(String puntoServicio) {
+    public ConsultaPorPuntoServicio(String puntoServicio, String codigoUnico) {
         this.puntoServicio = puntoServicio;
+        this.codigoUnico = codigoUnico;
     }
 
-    public static Performable withData(String puntoServicio) {
-        return instrumented(ConsultaPorPuntoServicio.class, puntoServicio);
+    public static Performable withData(String puntoServicio, String codigoUnico) {
+        return instrumented(ConsultaPorPuntoServicio.class, puntoServicio, codigoUnico);
     }
 
     @SneakyThrows
     @Step("{0} envia datos")
     @Override
     public <T extends Actor> void performAs(T actor) {
+
         actor.attemptsTo(
-                WaitUntil.the(QueryPage.SELECT_ARROW, isVisible()).forNoMoreThan(20).seconds(),
-                Click.on(QueryPage.SELECT_ARROW),
-                WaitUntil.the(QueryPage.CHOOSE_SEARCH_PUNTO, isVisible()).forNoMoreThan(20).seconds(),
-                Click.on(QueryPage.CHOOSE_SEARCH_PUNTO),
                 WaitUntil.the(QueryPage.INP_SEARCH_COD, isVisible()).forNoMoreThan(20).seconds(),
                 Enter.theValue(puntoServicio).into(QueryPage.INP_SEARCH_COD),
                 WaitUntil.the(QueryPage.ICON_SEARCH, isVisible()).forNoMoreThan(20).seconds(),
                 Click.on(QueryPage.ICON_SEARCH));
 
-        Serenity.setSessionVariable("codigoUnico").to(puntoServicio);
+        Serenity.setSessionVariable("puntoServicio").to(puntoServicio);
+        Serenity.setSessionVariable("codigoUnico").to(codigoUnico);
     }
 }

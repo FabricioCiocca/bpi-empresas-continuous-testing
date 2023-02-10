@@ -1,7 +1,6 @@
 package com.everis.questions.web.bpi;
 
-
-import com.everis.userinterfaces.web.bpi.LoginPage;
+import com.everis.bpi.userinterface.web.bpi.LoginPage;
 import net.serenitybdd.screenplay.Question;
 
 public class EstadoPagoQuestions {
@@ -54,6 +53,7 @@ public class EstadoPagoQuestions {
     public static Question<String> DetalleMontoPagadoCuotas() {
         return actor -> LoginPage.DETALLE_MONTO_PAGADO_CUOTAS.resolveFor(actor).waitUntilVisible().getText();
     }
+
     public static Question<String> DetalleMontoPagadoCuotasPendiente() {
         return actor -> LoginPage.DETALLE_MONTO_PAGADO_CUOTAS_P.resolveFor(actor).waitUntilVisible().getText();//CRISTIAN
     }
@@ -65,6 +65,7 @@ public class EstadoPagoQuestions {
     public static Question<String> DetalleTotalSolesCuotas() {
         return actor -> LoginPage.DETALLE_TOTAL_SOLES_CUOTAS.resolveFor(actor).waitUntilVisible().getText();
     }
+
     public static Question<String> DetalleTotalDolaresCuotas() {
         return actor -> LoginPage.DETALLE_TOTAL_DOLARES_CUOTAS.resolveFor(actor).waitUntilVisible().getText();
     }
@@ -72,15 +73,19 @@ public class EstadoPagoQuestions {
     public static Question<String> DetalleTotalDolaresCuotasPendiente() {
         return actor -> LoginPage.DETALLE_TOTAL_DOLARES_CUOTAS_P.resolveFor(actor).waitUntilVisible().getText();//CRISTIAN
     }
+
     public static Question<String> EstadoServicioDetallePendiente() {
         return actor -> "Pendiente";
     }
+
     public static Question<String> EstadoServicioDetalleRechazada() {
         return actor -> "Rechazada - La cuenta no tiene los fondos suficientes para realizar la operación. Por favor, verifica y vuelve a intentarlo.";
     }
+
     public static Question<String> AutorizadorSolicitudDetalle2() {
         return actor -> LoginPage.DETALLE_AUTORIZADOR_SOLICITUD2.resolveFor(actor).waitUntilVisible().getText();
     }
+
     public static Question<String> AutorizadorSolicitudDetalle3() {
         return actor -> LoginPage.DETALLE_AUTORIZADOR_SOLICITUD3.resolveFor(actor).waitUntilVisible().getText();
     }

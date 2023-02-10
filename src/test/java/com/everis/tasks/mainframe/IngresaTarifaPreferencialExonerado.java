@@ -1,10 +1,10 @@
 package com.everis.tasks.mainframe;
 
-import com.everis.actions.mainframe.Emulator;
-import com.everis.actions.mainframe.KeyboardFunction;
-import com.everis.actions.mainframe.WaitEmulator;
-import com.everis.actions.mainframe.WriteEmulator;
-import com.everis.questions.mainframe.ValidacionCobros;
+import com.everis.bpi.actions.mainframe.Emulator;
+import com.everis.bpi.actions.mainframe.KeyboardFunction;
+import com.everis.bpi.actions.mainframe.WaitEmulator;
+import com.everis.bpi.actions.mainframe.WriteEmulator;
+import com.everis.bpi.questions.mainframe.ValidacionCobros;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;

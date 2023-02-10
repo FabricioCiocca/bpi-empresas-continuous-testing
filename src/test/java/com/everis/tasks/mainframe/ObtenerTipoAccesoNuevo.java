@@ -17,11 +17,11 @@ public class ObtenerTipoAccesoNuevo {
     public static void ConUsuarios(ArrayList<String> nombrePuntoServicioArrays, ArrayList<String> tipoAccesoArrays) throws InterruptedException {
 
         boolean isEnabled = Serenity.sessionVariableCalled("checkBoxTipoAcceso");
-        ArrayList<Integer> cantUsuarioActivoArrays = Serenity.sessionVariableCalled("cantUsuarioActivoArrays");
+        ArrayList<Integer> cantUsuarioActivoConfirmadoArrays = Serenity.sessionVariableCalled("cantUsuarioActivoConfirmadoArrays");
         int cantUsuarioStock = Serenity.sessionVariableCalled("cantUsuarioStock");
         int cantiUsuarioNuevo = Serenity.sessionVariableCalled("cantiUsuarioNuevo");
 
-        if (!isEnabled && cantUsuarioStock==cantUsuarioActivoArrays.get(nombrePuntoServicioArrays.size()-1)) {
+        if (!isEnabled && cantUsuarioStock == cantUsuarioActivoConfirmadoArrays.get(nombrePuntoServicioArrays.size() - 1)) {
             tipoAccesoArrays.add("Stock");
         } else if (isEnabled) {
             if (cantUsuarioStock == 0) {
@@ -31,8 +31,8 @@ public class ObtenerTipoAccesoNuevo {
             } else {
                 tipoAccesoArrays.add("Migrado");
             }
-        }else{
-            throw new PendingException("Error en los Usuarios del Punto de servicio Nro "+nombrePuntoServicioArrays.size());
+        } else {
+            throw new PendingException("Error en los Usuarios del Punto de servicio Nro " + nombrePuntoServicioArrays.size());
         }
         Serenity.setSessionVariable("tipoAccesoArrays").to(tipoAccesoArrays);
     }

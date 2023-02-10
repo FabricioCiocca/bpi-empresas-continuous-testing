@@ -1,9 +1,9 @@
 package com.everis.tasks.mainframe;
 
-import com.everis.actions.mainframe.Emulator;
-import com.everis.actions.mainframe.WaitEmulator;
-import com.everis.actions.mainframe.WriteEmulator;
-import com.everis.questions.mainframe.ValidacionCobros;
+import com.everis.bpi.actions.mainframe.Emulator;
+import com.everis.bpi.actions.mainframe.WaitEmulator;
+import com.everis.bpi.actions.mainframe.WriteEmulator;
+import com.everis.bpi.questions.mainframe.ValidacionCobros;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
@@ -20,8 +20,8 @@ public class ConsultaTarifaPreferencial implements Task {
         this.codigoUnico = codigoUnico;
     }
 
-    public static Performable withData(String concepto, String codigoUnico){
-        return instrumented(ConsultaTarifaPreferencial.class,concepto,codigoUnico);
+    public static Performable withData(String concepto, String codigoUnico) {
+        return instrumented(ConsultaTarifaPreferencial.class, concepto, codigoUnico);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ConsultaTarifaPreferencial implements Task {
 
         /*Codigo para mostrar paso a paso en Mainframe*/
         Serenity.recordReportData().withTitle("Mainframe Evidence")
-                .andContents(actor.asksFor(ValidacionCobros.GetStringByPosition(0,0,24,79)).substring(0,1942));
+                .andContents(actor.asksFor(ValidacionCobros.GetStringByPosition(0, 0, 24, 79)).substring(0, 1942));
 
         actor.attemptsTo(
                 Emulator.withPrints(Emulator.ActionsPrints.ENTER),
@@ -59,7 +59,7 @@ public class ConsultaTarifaPreferencial implements Task {
 
         /*Codigo para mostrar paso a paso en Mainframe*/
         Serenity.recordReportData().withTitle("Mainframe Evidence")
-                .andContents(actor.asksFor(ValidacionCobros.GetStringByPosition(0,0,24,79)).substring(0,1942));
+                .andContents(actor.asksFor(ValidacionCobros.GetStringByPosition(0, 0, 24, 79)).substring(0, 1942));
 
         actor.attemptsTo(
                 Emulator.withPrints(Emulator.ActionsPrints.ENTER),
@@ -67,9 +67,12 @@ public class ConsultaTarifaPreferencial implements Task {
 
         /*Codigo para mostrar paso a paso en Mainframe*/
         Serenity.recordReportData().withTitle("Mainframe Evidence")
-                .andContents(actor.asksFor(ValidacionCobros.GetStringByPosition(0,0,24,79)).substring(0,1942));
+                .andContents(actor.asksFor(ValidacionCobros.GetStringByPosition(0, 0, 24, 79)).substring(0, 1942));
 
-        String mensajeCliente = actor.asksFor(ValidacionCobros.GetStringByPosition(21,4,1,19)).substring(0,19).trim();
+        String mensajeCliente = actor.asksFor(ValidacionCobros.GetStringByPosition(21, 4, 1, 19)).substring(0, 19).trim();
         Serenity.setSessionVariable("mensajeCliente").to(mensajeCliente);
+
+        String lineaModificacion = actor.asksFor(ValidacionCobros.GetStringByPosition(19, 0, 1, 79)).substring(0, 79).trim();
+        Serenity.setSessionVariable("lineaModificacion").to(lineaModificacion);
     }
 }

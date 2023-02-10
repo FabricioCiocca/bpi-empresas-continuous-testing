@@ -1,8 +1,8 @@
 package com.everis.tasks.web.bpi.validacion;
 
-import com.everis.questions.web.bpi.SaldoDisponibleQuestions;
-import com.everis.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
-import com.everis.userinterfaces.web.bpi.LoginPage;
+import com.everis.bpi.questions.web.bpi.SaldoDisponibleQuestions;
+import com.everis.bpi.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
+import com.everis.bpi.userinterface.web.bpi.SaldosYMovimientosPage;
 import lombok.SneakyThrows;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
@@ -11,7 +11,6 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
-import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
@@ -35,6 +34,7 @@ public class ValidarSaldoDataMaestra implements Task {
         return instrumented(ValidarSaldoDataMaestra.class, monto, cuentaOrigen, tipoCuenta);
 
     }
+
     @SneakyThrows
     @Override
     public <T extends Actor> void performAs(T actor) {
@@ -43,10 +43,10 @@ public class ValidarSaldoDataMaestra implements Task {
         LoginStepDefinitions.pagosServiciosData.setItf(String.valueOf(itf));
         String saldoActualizado = saldoRestado(LoginStepDefinitions.pagosServiciosData.getSaldoInicial(), Double.valueOf(Double.parseDouble(LoginStepDefinitions.pagosServiciosData.getItf()) + valorMontoResta));
         LoginStepDefinitions.pagosServiciosData.setSaldoActualizado(saldoActualizado);
-        actor.attemptsTo(WaitUntil.the(LoginPage.MENU_CONSULTAS, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.MENU_CONSULTAS));
-        actor.attemptsTo(WaitUntil.the(LoginPage.MENU_SALDOS, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.MENU_SALDOS));
-        actor.attemptsTo(WaitUntil.the(LoginPage.INP_BUSCAR_CUENTA, isVisible()).forNoMoreThan(150).seconds(), Enter.theValue(cuentaOrigen).into(LoginPage.INP_BUSCAR_CUENTA));
-        actor.attemptsTo(WaitUntil.the(LoginPage.BTN_BUSCAR_CUENTA, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.BTN_BUSCAR_CUENTA));
+        actor.attemptsTo(WaitUntil.the(SaldosYMovimientosPage.MENU_CONSULTAS, isVisible()).forNoMoreThan(150).seconds(), Click.on(SaldosYMovimientosPage.MENU_CONSULTAS));
+        actor.attemptsTo(WaitUntil.the(SaldosYMovimientosPage.MENU_SALDOS, isVisible()).forNoMoreThan(150).seconds(), Click.on(SaldosYMovimientosPage.MENU_SALDOS));
+        actor.attemptsTo(WaitUntil.the(SaldosYMovimientosPage.INP_BUSCAR_CUENTA, isVisible()).forNoMoreThan(150).seconds(), Enter.theValue(cuentaOrigen).into(SaldosYMovimientosPage.INP_BUSCAR_CUENTA));
+        actor.attemptsTo(WaitUntil.the(SaldosYMovimientosPage.BTN_BUSCAR_CUENTA, isVisible()).forNoMoreThan(150).seconds(), Click.on(SaldosYMovimientosPage.BTN_BUSCAR_CUENTA));
         String[] tipoCuentaAux = tipoCuenta.split("\\s+");
         if (tipoCuentaAux[0].equals("Corriente")) {
             theActorInTheSpotlight().should(seeThat(SaldoDisponibleQuestions.saldoTipoCuenta(), equalTo("Cuenta " + tipoCuentaAux[0])));
@@ -62,7 +62,7 @@ public class ValidarSaldoDataMaestra implements Task {
         theActorInTheSpotlight().should(seeThat(SaldoDisponibleQuestions.saldoEmpresaTotal(), equalTo(LoginStepDefinitions.pagosServiciosData.getSaldoActualizado())));
         theActorInTheSpotlight().should(seeThat(SaldoDisponibleQuestions.saldoDisponibleLinea(), equalTo(LoginStepDefinitions.pagosServiciosData.getSaldoActualizado())));
         theActorInTheSpotlight().should(seeThat(SaldoDisponibleQuestions.saldoTotalFinal(), equalTo(LoginStepDefinitions.pagosServiciosData.getSaldoActualizado())));
-        actor.attemptsTo(WaitUntil.the(LoginPage.INFO_CUENTA_FILA, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.INFO_CUENTA_FILA));
+        actor.attemptsTo(WaitUntil.the(SaldosYMovimientosPage.INFO_CUENTA_FILA, isVisible()).forNoMoreThan(150).seconds(), Click.on(SaldosYMovimientosPage.INFO_CUENTA_FILA));
         theActorInTheSpotlight().should(seeThat(SaldoDisponibleQuestions.cuentaOrigen(), equalTo(cuentaOrigen)));
         if (tipoCuentaAux[0].equals("Corriente")) {
             theActorInTheSpotlight().should(seeThat(SaldoDisponibleQuestions.saldoTipoDeCuenta(), equalTo("Cuenta " + LoginStepDefinitions.pagosServiciosData.getTipoDeCuenta())));
@@ -92,7 +92,7 @@ public class ValidarSaldoDataMaestra implements Task {
                 amount = Double.parseDouble(String.valueOf(montoResta / tipoDeCambioCompra));
             }
             if (amount > 1000) {
-                for (int i = 1000; i<=amount;i+=1000){
+                for (int i = 1000; i <= amount; i += 1000) {
                     amount = Double.parseDouble(String.valueOf(amount + 0.05));
                 }
             }

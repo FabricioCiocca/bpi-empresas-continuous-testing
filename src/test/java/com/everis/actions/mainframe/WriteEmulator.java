@@ -16,7 +16,7 @@ public class WriteEmulator extends EmulatorActions implements Interaction {
         this.text = text;
     }
 
-    public static Performable theValue(String text){
+    public static Performable theValue(String text) {
         return instrumented(WriteEmulator.class, text);
     }
 

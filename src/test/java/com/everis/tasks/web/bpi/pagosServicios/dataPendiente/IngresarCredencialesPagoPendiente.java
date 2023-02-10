@@ -1,6 +1,6 @@
 package com.everis.tasks.web.bpi.pagosServicios.dataPendiente;
 
-import com.everis.userinterfaces.web.bpi.LoginPage;
+import com.everis.bpi.userinterface.web.bpi.PagoRealizadoPage;
 import lombok.SneakyThrows;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
@@ -32,16 +32,16 @@ public class IngresarCredencialesPagoPendiente implements Task {
     public <T extends Actor> void performAs(T actor) {
 
         actor.attemptsTo(
-                WaitUntil.the(LoginPage.INP_CONTRASENA, isVisible()).forNoMoreThan(150).seconds(),
-                Enter.theValue(contrasena).into(LoginPage.INP_CONTRASENA));
+                WaitUntil.the(PagoRealizadoPage.INP_CONTRASENA, isVisible()).forNoMoreThan(150).seconds(),
+                Enter.theValue(contrasena).into(PagoRealizadoPage.INP_CONTRASENA));
 
         actor.attemptsTo(
-                WaitUntil.the(LoginPage.INP_TOKEN, isVisible()).forNoMoreThan(150).seconds(),
-                Enter.theValue(token).into(LoginPage.INP_TOKEN));
+                WaitUntil.the(PagoRealizadoPage.INP_TOKEN, isVisible()).forNoMoreThan(150).seconds(),
+                Enter.theValue(token).into(PagoRealizadoPage.INP_TOKEN));
 
         actor.attemptsTo(
-                WaitUntil.the(LoginPage.BTN_FINALIZAR, isVisible()).forNoMoreThan(150).seconds(),
-                Click.on(LoginPage.BTN_FINALIZAR));
+                WaitUntil.the(PagoRealizadoPage.BTN_FINALIZAR, isVisible()).forNoMoreThan(150).seconds(),
+                Click.on(PagoRealizadoPage.BTN_FINALIZAR));
 
 
     }

@@ -1,8 +1,8 @@
 package com.everis.tasks.web.bpi.pagosServicios.sindata;
 
-import com.everis.questions.web.bpi.EstadoPagoQuestions;
-import com.everis.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
-import com.everis.userinterfaces.web.bpi.LoginPage;
+import com.everis.bpi.questions.web.bpi.EstadoPagoQuestions;
+import com.everis.bpi.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
+import com.everis.bpi.userinterface.web.bpi.PagoRealizadoPage;
 import lombok.SneakyThrows;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
@@ -12,7 +12,6 @@ import net.serenitybdd.screenplay.targets.Target;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import org.openqa.selenium.By;
 
-import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
@@ -29,6 +28,7 @@ public class DetalleEstadoPagoSinDataFC implements Task {
         this.tipoCuenta = tipoCuenta;
         this.cuentaOrigen = cuentaOrigen;
     }
+
     @SneakyThrows
     @Override
     public <T extends Actor> void performAs(T actor) {
@@ -41,12 +41,12 @@ public class DetalleEstadoPagoSinDataFC implements Task {
         LoginStepDefinitions.pagosServiciosData.setNombreusuario(dniUsuario);
         LoginStepDefinitions.pagosServiciosData.setDatosCargoDetalle(tipoCuenta + " " + cuentaOrigen);
         String[] fechaHoraAux = LoginStepDefinitions.pagosServiciosData.getFechaHora().split("-"); //DIVIDIMOS HORA
-        actor.attemptsTo(WaitUntil.the(LoginPage.REVISA_DETALLE_ESTADO, isVisible()).forNoMoreThan(4).seconds(), Click.on(LoginPage.REVISA_DETALLE_ESTADO));
+        actor.attemptsTo(WaitUntil.the(PagoRealizadoPage.REVISA_DETALLE_ESTADO, isVisible()).forNoMoreThan(4).seconds(), Click.on(PagoRealizadoPage.REVISA_DETALLE_ESTADO));
         Target DETALLE_ESTADO_SOLICITUD = Target.the("Estado de Servicio - Detalle").located(By.xpath("(//div[@data-test='txtEstado'])"));
         LoginStepDefinitions.pagosServiciosData.setEstadoSolicitudDetalle(String.valueOf(DETALLE_ESTADO_SOLICITUD.resolveFor(actor).getText()));
         if (LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle().equals("En proceso")) {
-            theActorInTheSpotlight().attemptsTo(WaitUntil.the(LoginPage.REGRESAR_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.REGRESAR_DETALLE_ESTADO));
-            theActorInTheSpotlight().attemptsTo(WaitUntil.the(LoginPage.REVISA_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.REVISA_DETALLE_ESTADO));
+            theActorInTheSpotlight().attemptsTo(WaitUntil.the(PagoRealizadoPage.REGRESAR_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(), Click.on(PagoRealizadoPage.REGRESAR_DETALLE_ESTADO));
+            theActorInTheSpotlight().attemptsTo(WaitUntil.the(PagoRealizadoPage.REVISA_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(), Click.on(PagoRealizadoPage.REVISA_DETALLE_ESTADO));
             Target DETALLE_ESTADO_SOLICITUD2 = Target.the("Estado de Servicio - Detalle").located(By.xpath("(//div[@data-test='txtEstado'])"));
             LoginStepDefinitions.pagosServiciosData.setEstadoSolicitudDetalle(String.valueOf(DETALLE_ESTADO_SOLICITUD2.resolveFor(actor).getText()));
             System.out.println("confirmacion - Estado 2: " + LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle());
@@ -89,8 +89,9 @@ public class DetalleEstadoPagoSinDataFC implements Task {
             LoginStepDefinitions.pagosServiciosData.setmontoPagado(String.valueOf(TOTAL_DOLARES.resolveFor(actor).getText()));
             LoginStepDefinitions.pagosServiciosData.getmontoPagado().equals(LoginStepDefinitions.pagosServiciosData.getmontosPagados());
         }
-        actor.attemptsTo(WaitUntil.the(LoginPage.REGRESAR_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.REGRESAR_DETALLE_ESTADO));
+        actor.attemptsTo(WaitUntil.the(PagoRealizadoPage.REGRESAR_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(), Click.on(PagoRealizadoPage.REGRESAR_DETALLE_ESTADO));
     }
+
     public static Performable withData(String dniUsuario, String cuentaOrigen, String tipoCuenta) {
         return instrumented(DetalleEstadoPagoSinDataFC.class, dniUsuario, cuentaOrigen, tipoCuenta);
     }

@@ -14,9 +14,11 @@ public class WriteLineEmulator extends EmulatorActions implements Interaction {
     public WriteLineEmulator(String text) {
         this.text = text;
     }
-    public static Performable theValue(String text){
-        return instrumented(WriteLineEmulator.class,text);
+
+    public static Performable theValue(String text) {
+        return instrumented(WriteLineEmulator.class, text);
     }
+
     @Step("{0} write")
     @Override
     public <T extends Actor> void performAs(T actor) {

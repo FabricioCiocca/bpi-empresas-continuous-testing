@@ -1,6 +1,6 @@
 package com.everis.tasks.web.bpi.login;
 
-import com.everis.userinterfaces.web.bpi.LoginPage;
+import com.everis.bpi.userinterface.web.bpi.LoginPage;
 import lombok.SneakyThrows;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
@@ -44,6 +44,7 @@ public class AutenticarNuevoBpi implements Task {
                 Click.on(LoginPage.BTN_INICIAR_SESION)
         );
     }
+
     public static Performable withData(String dni, String password) {
         return instrumented(AutenticarNuevoBpi.class, dni, password);
     }

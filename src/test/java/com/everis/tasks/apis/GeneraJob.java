@@ -1,6 +1,6 @@
 package com.everis.tasks.apis;
 
-import com.everis.utils.data.EndpointServicioWeb;
+import com.everis.bpi.utils.data.EndpointServicioWeb;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.rest.interactions.Get;

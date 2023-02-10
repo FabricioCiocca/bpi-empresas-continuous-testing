@@ -17,8 +17,8 @@ public class KeyboardFunction extends EmulatorActions implements Interaction {
     }
 
 
-    public static Performable theValue(int key){
-        return instrumented(KeyboardFunction.class,key);
+    public static Performable theValue(int key) {
+        return instrumented(KeyboardFunction.class, key);
     }
 
     @Step("{0} write")

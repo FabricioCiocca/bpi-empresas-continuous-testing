@@ -1,6 +1,6 @@
 package com.everis.questions.web.bpi;
 
-import com.everis.userinterfaces.web.bpi.LoginPage;
+import com.everis.bpi.userinterface.web.bpi.LoginPage;
 import net.serenitybdd.screenplay.Question;
 
 
@@ -13,9 +13,11 @@ public class NegatividadQuestions {
     public static Question<String> ServicioYaAgregado() {
         return actor -> LoginPage.SERVICIO_AGREGADO.resolveFor(actor).waitUntilVisible().getText();
     }
+
     public static Question<String> ParametrosSeguridad() {
         return actor -> LoginPage.PARAMETROS_SEGURIDAD.resolveFor(actor).waitUntilVisible().getText();
     }
+
     public static Question<String> NoSeEncontraronCuotas() {
         return actor -> LoginPage.NO_CUOTAS.resolveFor(actor).waitUntilVisible().getText();
     }
@@ -23,6 +25,7 @@ public class NegatividadQuestions {
     public static Question<String> DebesIngresarUnMontoValido() {
         return actor -> LoginPage.MONTO_INVALIDO.resolveFor(actor).waitUntilVisible().getText();
     }
+
     public static Question<String> MontoSuperaLimite() {
         return actor -> LoginPage.MONTO_INVALIDO_SUPERADO.resolveFor(actor).waitUntilVisible().getText();
     }

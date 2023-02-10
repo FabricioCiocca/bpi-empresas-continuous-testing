@@ -12,7 +12,7 @@ public enum EndpointServicioWeb {
         this.path = path;
     }
 
-    public String getPath(){
+    public String getPath() {
         return path;
     }
 }

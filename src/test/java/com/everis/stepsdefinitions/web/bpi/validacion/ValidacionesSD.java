@@ -1,9 +1,10 @@
 package com.everis.stepsdefinitions.web.bpi.validacion;
 
-import com.everis.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
-import com.everis.tasks.web.bpi.validacion.ValidarMovimientoPendiente;
-import com.everis.tasks.web.bpi.validacion.ValidarNuevoSaldoPendiente;
-import com.everis.tasks.web.bpi.validacion.ValidarSaldoPendiente;
+
+import com.everis.bpi.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
+import com.everis.bpi.tasks.web.bpi.validacion.ValidarMovimientoPendiente;
+import com.everis.bpi.tasks.web.bpi.validacion.ValidarNuevoSaldoPendiente;
+import com.everis.bpi.tasks.web.bpi.validacion.ValidarSaldoPendiente;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import net.serenitybdd.screenplay.actors.OnStage;

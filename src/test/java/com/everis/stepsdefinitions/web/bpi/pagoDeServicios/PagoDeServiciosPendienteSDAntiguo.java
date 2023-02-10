@@ -1,13 +1,14 @@
 package com.everis.stepsdefinitions.web.bpi.pagoDeServicios;
 
-import com.everis.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
-import com.everis.tasks.web.bpi.pagosServicios.IngresarCredencialesPago;
-import com.everis.tasks.web.bpi.pagosServicios.MenuPagoServicios;
-import com.everis.tasks.web.bpi.pagosServicios.SeleccionCtaEmpresaServicioCodDeudor;
-import com.everis.tasks.web.bpi.pagosServicios.dataPendiente.DetalleEstadoPagoPendienteFC;
-import com.everis.tasks.web.bpi.pagosServicios.dataPendiente.DetalleEstadoPagoPendienteGF;
-import com.everis.tasks.web.bpi.pagosServicios.dataPendiente.DetalleEstadoPagoPendienteSF;
-import com.everis.tasks.web.bpi.pagosServicios.dataPendiente.SeleccionCuotaIngresaMontoPendienteAntiguo;
+
+import com.everis.bpi.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.IngresarCredencialesPago;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.MenuPagoServicios;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.SeleccionCtaEmpresaServicioCodDeudor;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.dataPendiente.DetalleEstadoPagoPendienteFC;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.dataPendiente.DetalleEstadoPagoPendienteGF;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.dataPendiente.DetalleEstadoPagoPendienteSF;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.dataPendiente.SeleccionCuotaIngresaMontoPendienteAntiguo;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -22,9 +23,10 @@ public class PagoDeServiciosPendienteSDAntiguo {
     public void setTheStage() {
         OnStage.setTheStage(new OnlineCast());
     }
+
     @When("^intenta realizar un pago (.*) de tipo Pagos - De servicios (.*), (.*), (.*), (.*), (.*)")
     public void realizaPagoServicioPendiente(String tipoPago, String tipoCuenta, String cuenta, String empresa, String servicio, String dniPagador) throws InterruptedException {
-       // theActorInTheSpotlight().attemptsTo(new MenuBotonEntendido());
+        // theActorInTheSpotlight().attemptsTo(new MenuBotonEntendido());
         theActorInTheSpotlight().attemptsTo(
                 new MenuPagoServicios());
 
@@ -62,13 +64,13 @@ public class PagoDeServiciosPendienteSDAntiguo {
 
         double montoOriginal;
 
-        if(Double.parseDouble(LoginStepDefinitions.pagosServiciosData.getmontoTipoCambio())>0){
+        if (Double.parseDouble(LoginStepDefinitions.pagosServiciosData.getmontoTipoCambio()) > 0) {
 
             montoOriginal = Double.parseDouble(LoginStepDefinitions.pagosServiciosData.getmontoTipoCambio());
 
-        }else {
+        } else {
 
-            montoOriginal = Double.parseDouble(LoginStepDefinitions.pagosServiciosData.getMonto().replace(LoginStepDefinitions.pagosServiciosData.getSimbolo()+" ", "").replace(",", ""));
+            montoOriginal = Double.parseDouble(LoginStepDefinitions.pagosServiciosData.getMonto().replace(LoginStepDefinitions.pagosServiciosData.getSimbolo() + " ", "").replace(",", ""));
 
         }
 
@@ -79,7 +81,7 @@ public class PagoDeServiciosPendienteSDAntiguo {
 
         // ELIGE QUE DETALLE SALDRA SEGUN LA FIRMA
 
-        if(montoOriginal <= Double.parseDouble(LoginStepDefinitions.pagosServiciosData.getMontoSolaFirma())) {
+        if (montoOriginal <= Double.parseDouble(LoginStepDefinitions.pagosServiciosData.getMontoSolaFirma())) {
 
             theActorInTheSpotlight().attemptsTo(
                     DetalleEstadoPagoPendienteSF.withData(LoginStepDefinitions.pagosServiciosData.getUsuario(), LoginStepDefinitions.pagosServiciosData.getTipoDeCuenta(), LoginStepDefinitions.pagosServiciosData.getCuentaOrigen()));
@@ -89,7 +91,7 @@ public class PagoDeServiciosPendienteSDAntiguo {
             theActorInTheSpotlight().attemptsTo(
                     DetalleEstadoPagoPendienteFC.withData(LoginStepDefinitions.pagosServiciosData.getUsuario(), LoginStepDefinitions.pagosServiciosData.getTipoDeCuenta(), LoginStepDefinitions.pagosServiciosData.getCuentaOrigen()));
 
-        }else{
+        } else {
 
             theActorInTheSpotlight().attemptsTo(
                     DetalleEstadoPagoPendienteGF.withData(LoginStepDefinitions.pagosServiciosData.getUsuario(), LoginStepDefinitions.pagosServiciosData.getTipoDeCuenta(), LoginStepDefinitions.pagosServiciosData.getCuentaOrigen()));

@@ -1,11 +1,11 @@
 package com.everis.stepsdefinitions.web.bpi.autorizacion;
 
-import com.everis.models.bpi.PagosServiciosData;
-import com.everis.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
-import com.everis.tasks.web.bpi.autorizar.MenuAutorizacionesPendienteFirmaP;
-import com.everis.tasks.web.bpi.cerrar.CerrarSesionPendiente;
-import com.everis.tasks.web.bpi.login.AutenticarNuevoBpi;
-import com.everis.tasks.web.bpi.pagosServicios.MenuBotonEntendido;
+import com.everis.bpi.models.bpi.PagosServiciosData;
+import com.everis.bpi.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
+import com.everis.bpi.tasks.web.bpi.autorizar.MenuAutorizacionesPendienteFirmaP;
+import com.everis.bpi.tasks.web.bpi.cerrar.CerrarSesionPendiente;
+import com.everis.bpi.tasks.web.bpi.login.AutenticarNuevoBpi;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.MenuBotonEntendido;
 import com.everis.tdm.Do;
 import com.everis.tdm.model.bpi.Usuarios;
 import io.cucumber.java.Before;
@@ -58,14 +58,14 @@ public class AutorizacionRemotaSD {
 
         pagosServiciosData.setAmbiente(ambiente);
 
-        LoginStepDefinitions.pagosServiciosData.setUsuario(LoginStepDefinitions.pagosServiciosData.getUsuario()+" - "+user);
+        LoginStepDefinitions.pagosServiciosData.setUsuario(LoginStepDefinitions.pagosServiciosData.getUsuario() + " - " + user);
 
-        LoginStepDefinitions.pagosServiciosData.setFechaHora2(LoginStepDefinitions.pagosServiciosData.getFechaHora2()+" - "+LoginStepDefinitions.pagosServiciosData.getFechaHora());
+        LoginStepDefinitions.pagosServiciosData.setFechaHora2(LoginStepDefinitions.pagosServiciosData.getFechaHora2() + " - " + LoginStepDefinitions.pagosServiciosData.getFechaHora());
 
     }
 
     @And("^se introduce la contraseña para autorizar el pago a Firma Conjunta - Remota (.*); (.*)$")
-    public void seIntroduceLaContraseñaParaAutorizarElPagoAFirmaConjuntaRemota(String user, String passwordErroneo)throws InterruptedException {
+    public void seIntroduceLaContraseñaParaAutorizarElPagoAFirmaConjuntaRemota(String user, String passwordErroneo) throws InterruptedException {
 
         theActorInTheSpotlight().attemptsTo(
                 new CerrarSesionPendiente());

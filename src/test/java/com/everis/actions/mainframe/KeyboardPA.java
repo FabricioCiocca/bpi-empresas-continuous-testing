@@ -14,8 +14,9 @@ public class KeyboardPA extends EmulatorActions implements Interaction {
     public KeyboardPA(int key) {
         this.key = key;
     }
-    public static Performable theValue(int key){
-        return instrumented(KeyboardPA.class,key);
+
+    public static Performable theValue(int key) {
+        return instrumented(KeyboardPA.class, key);
     }
 
     @Step("{0} write")

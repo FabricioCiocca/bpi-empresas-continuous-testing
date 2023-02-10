@@ -1,8 +1,8 @@
 package com.everis.tasks.web.bpi.pagosServicios.sindata;
 
-import com.everis.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
-import com.everis.tasks.web.bpi.validacion.ValidarMovimientoPendiente;
-import com.everis.userinterfaces.web.bpi.LoginPage;
+import com.everis.bpi.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
+import com.everis.bpi.tasks.web.bpi.validacion.ValidarMovimientoPendiente;
+import com.everis.bpi.userinterface.web.bpi.SaldosYMovimientosPage;
 import lombok.SneakyThrows;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
@@ -32,11 +32,11 @@ public class ValidarMovimientosFC implements Task {
     @SneakyThrows
     @Override
     public <T extends Actor> void performAs(T actor) {
-        actor.attemptsTo(WaitUntil.the(LoginPage.MENU_CONSULTAS, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.MENU_CONSULTAS));
-        actor.attemptsTo(WaitUntil.the(LoginPage.MENU_MOVIMIENTOS, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.MENU_MOVIMIENTOS));
-        actor.attemptsTo(WaitUntil.the(LoginPage.CMB_ELEGIR_CUENTA, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.CMB_ELEGIR_CUENTA));
+        actor.attemptsTo(WaitUntil.the(SaldosYMovimientosPage.MENU_CONSULTAS, isVisible()).forNoMoreThan(150).seconds(), Click.on(SaldosYMovimientosPage.MENU_CONSULTAS));
+        actor.attemptsTo(WaitUntil.the(SaldosYMovimientosPage.MENU_MOVIMIENTOS, isVisible()).forNoMoreThan(150).seconds(), Click.on(SaldosYMovimientosPage.MENU_MOVIMIENTOS));
+        actor.attemptsTo(WaitUntil.the(SaldosYMovimientosPage.CMB_ELEGIR_CUENTA, isVisible()).forNoMoreThan(150).seconds(), Click.on(SaldosYMovimientosPage.CMB_ELEGIR_CUENTA));
         Serenity.getDriver().findElement(By.xpath("//div[contains(text(),'" + LoginStepDefinitions.pagosServiciosData.getCuentaOrigen() + "')]")).click();
-        actor.attemptsTo(WaitUntil.the(LoginPage.BTN_BUSCAR_MOVIMIENTOS, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.BTN_BUSCAR_MOVIMIENTOS));
+        actor.attemptsTo(WaitUntil.the(SaldosYMovimientosPage.BTN_BUSCAR_MOVIMIENTOS, isVisible()).forNoMoreThan(150).seconds(), Click.on(SaldosYMovimientosPage.BTN_BUSCAR_MOVIMIENTOS));
         String[] saldoInicial = LoginStepDefinitions.pagosServiciosData.getSaldoInicial().trim().split(" ");
         if (Double.parseDouble(LoginStepDefinitions.pagosServiciosData.getmontoTipoCambio()) > 0) {
             if (LoginStepDefinitions.pagosServiciosData.getmontoPagadoTipoCambio().length() > 6) {

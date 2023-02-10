@@ -1,15 +1,16 @@
 package com.everis.stepsdefinitions.web.bpi.pagoDeServicios.sinData;
 
-import com.everis.models.bpi.PagosServiciosData;
-import com.everis.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
-import com.everis.tasks.web.bpi.autorizar.MenuAutorizacionesPendienteFirmaP;
-import com.everis.tasks.web.bpi.cerrar.CerrarSesionPendiente;
-import com.everis.tasks.web.bpi.login.AutenticarBpi;
-import com.everis.tasks.web.bpi.pagosServicios.IngresarCredencialesPago;
-import com.everis.tasks.web.bpi.pagosServicios.MenuBotonEntendido;
-import com.everis.tasks.web.bpi.pagosServicios.MenuPagoServicios;
-import com.everis.tasks.web.bpi.pagosServicios.SeleccionCtaEmpresaServicioCodDeudor;
-import com.everis.tasks.web.bpi.pagosServicios.sindata.*;
+
+import com.everis.bpi.models.bpi.PagosServiciosData;
+import com.everis.bpi.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
+import com.everis.bpi.tasks.web.bpi.autorizar.MenuAutorizacionesPendienteFirmaP;
+import com.everis.bpi.tasks.web.bpi.cerrar.CerrarSesionPendiente;
+import com.everis.bpi.tasks.web.bpi.login.AutenticarBpi;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.IngresarCredencialesPago;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.MenuBotonEntendido;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.MenuPagoServicios;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.SeleccionCtaEmpresaServicioCodDeudor;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.sindata.*;
 import com.everis.tdm.Do;
 import com.everis.tdm.model.bpi.Usuarios;
 import io.cucumber.java.Before;
@@ -67,9 +68,6 @@ public class SinDataFirmaConjuntaStepDefinitions {
         } else {
             theActorInTheSpotlight().attemptsTo(DetalleEstadoPagoSinDataGF.withData(LoginStepDefinitions.pagosServiciosData.getUsuario(), LoginStepDefinitions.pagosServiciosData.getTipoDeCuenta(), LoginStepDefinitions.pagosServiciosData.getCuentaOrigen()));
         }
-
-
-
 
 
     }

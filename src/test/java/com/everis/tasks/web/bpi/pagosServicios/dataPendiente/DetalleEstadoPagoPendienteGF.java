@@ -1,8 +1,8 @@
 package com.everis.tasks.web.bpi.pagosServicios.dataPendiente;
 
-import com.everis.questions.web.bpi.EstadoPagoQuestions;
-import com.everis.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
-import com.everis.userinterfaces.web.bpi.LoginPage;
+import com.everis.bpi.questions.web.bpi.EstadoPagoQuestions;
+import com.everis.bpi.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
+import com.everis.bpi.userinterface.web.bpi.PagoRealizadoPage;
 import lombok.SneakyThrows;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
@@ -12,13 +12,11 @@ import net.serenitybdd.screenplay.targets.Target;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import org.openqa.selenium.By;
 
-import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertEquals;
 
 public class DetalleEstadoPagoPendienteGF implements Task {
     private final String dniUsuario;
@@ -58,15 +56,15 @@ public class DetalleEstadoPagoPendienteGF implements Task {
         Target MONTO_PAGO_PROCESS = Target.the("Monto").located(By.xpath("(//*[@data-test='lblAmountValue'])"));
         LoginStepDefinitions.pagosServiciosData.setMontoProcess(String.valueOf(MONTO_PAGO_PROCESS.resolveFor(actor).getText()));
 
-        System.out.println("confirmacion - nomero de solicitud: "+ LoginStepDefinitions.pagosServiciosData.getNroSolicitudProcess());
+        System.out.println("confirmacion - nomero de solicitud: " + LoginStepDefinitions.pagosServiciosData.getNroSolicitudProcess());
 
-        System.out.println("confirmacion - Fecha y hora de envío: "+ LoginStepDefinitions.pagosServiciosData.getFechaHora());
+        System.out.println("confirmacion - Fecha y hora de envío: " + LoginStepDefinitions.pagosServiciosData.getFechaHora());
 
-        System.out.println("confirmacion - Monto: "+ LoginStepDefinitions.pagosServiciosData.getMontoProcess());
+        System.out.println("confirmacion - Monto: " + LoginStepDefinitions.pagosServiciosData.getMontoProcess());
 
         actor.attemptsTo(
-                WaitUntil.the(LoginPage.REVISA_DETALLE_ESTADO, isVisible()).forNoMoreThan(4).seconds(),
-                Click.on(LoginPage.REVISA_DETALLE_ESTADO));
+                WaitUntil.the(PagoRealizadoPage.REVISA_DETALLE_ESTADO, isVisible()).forNoMoreThan(4).seconds(),
+                Click.on(PagoRealizadoPage.REVISA_DETALLE_ESTADO));
 
         //DETALLE-------------------------------------------------------------------------------------------------------
 
@@ -77,19 +75,19 @@ public class DetalleEstadoPagoPendienteGF implements Task {
         Target DETALLE_ESTADO_SOLICITUD = Target.the("Estado de Servicio - Detalle").located(By.xpath("(//div[@data-test='txtEstado'])"));
         LoginStepDefinitions.pagosServiciosData.setEstadoSolicitudDetalle(String.valueOf(DETALLE_ESTADO_SOLICITUD.resolveFor(actor).getText()));
 
-        System.out.println("detalle - estado 1: "+ LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle());
+        System.out.println("detalle - estado 1: " + LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle());
 
         if (LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle().equals("En proceso")) {
 
             while (!LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle().trim().equals("Pendiente")) {
 
                 theActorInTheSpotlight().attemptsTo(
-                        WaitUntil.the(LoginPage.REGRESAR_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(),
-                        Click.on(LoginPage.REGRESAR_DETALLE_ESTADO));
+                        WaitUntil.the(PagoRealizadoPage.REGRESAR_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(),
+                        Click.on(PagoRealizadoPage.REGRESAR_DETALLE_ESTADO));
 
                 theActorInTheSpotlight().attemptsTo(
-                        WaitUntil.the(LoginPage.REVISA_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(),
-                        Click.on(LoginPage.REVISA_DETALLE_ESTADO));
+                        WaitUntil.the(PagoRealizadoPage.REVISA_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(),
+                        Click.on(PagoRealizadoPage.REVISA_DETALLE_ESTADO));
 
                 Target DETALLE_ESTADO_SOLICITUD2 = Target.the("Estado de Servicio - Detalle").located(By.xpath("(//div[@data-test='txtEstado'])"));
                 LoginStepDefinitions.pagosServiciosData.setEstadoSolicitudDetalle(String.valueOf(DETALLE_ESTADO_SOLICITUD2.resolveFor(actor).getText()));
@@ -100,14 +98,14 @@ public class DetalleEstadoPagoPendienteGF implements Task {
         theActorInTheSpotlight().should(seeThat(
                 EstadoPagoQuestions.EstadoServicioDetallePendiente(), equalTo(LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle())));
 
-        System.out.println("detalle - estado 3: "+ LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle());
+        System.out.println("detalle - estado 3: " + LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle());
 
         //CREACION
 
         theActorInTheSpotlight().should(seeThat(
                 EstadoPagoQuestions.CreaciónSolititudDetalle(), containsString(LoginStepDefinitions.pagosServiciosData.getNombreusuario() + " - " + fechaHoraAux[0].trim())));
 
-        System.out.println("detalle - creacion: "+ LoginStepDefinitions.pagosServiciosData.getNombreusuario() + " - " + fechaHoraAux[0].trim());
+        System.out.println("detalle - creacion: " + LoginStepDefinitions.pagosServiciosData.getNombreusuario() + " - " + fechaHoraAux[0].trim());
 
         //AUTORIZADORES
 
@@ -121,54 +119,54 @@ public class DetalleEstadoPagoPendienteGF implements Task {
         theActorInTheSpotlight().should(seeThat(
                 EstadoPagoQuestions.NumeroSolicitudDetalle(), equalTo(LoginStepDefinitions.pagosServiciosData.getNroSolicitudProcess())));
 
-        System.out.println("detalle - numero solicitud: "+ LoginStepDefinitions.pagosServiciosData.getNroSolicitudProcess());
+        System.out.println("detalle - numero solicitud: " + LoginStepDefinitions.pagosServiciosData.getNroSolicitudProcess());
 
         //DESCRIPCION
 
-        if(!LoginStepDefinitions.pagosServiciosData.getDescripcion().equals("")){
+        if (!LoginStepDefinitions.pagosServiciosData.getDescripcion().equals("")) {
 
             System.out.println("entre por que la descripcion esta llena");
             theActorInTheSpotlight().should(seeThat(
                     EstadoPagoQuestions.DetalleDescripcion(), equalTo(LoginStepDefinitions.pagosServiciosData.getDescripcion())));
         }
 
-        System.out.println("detalle - descripcion: "+ LoginStepDefinitions.pagosServiciosData.getDescripcion());
+        System.out.println("detalle - descripcion: " + LoginStepDefinitions.pagosServiciosData.getDescripcion());
 
         //DATOS CARGO
 
         theActorInTheSpotlight().should(seeThat(
                 EstadoPagoQuestions.DatosCargoDetalle(), containsString(LoginStepDefinitions.pagosServiciosData.getDatosCargoDetalle())));
 
-        System.out.println("detalle - datos cargo: "+ LoginStepDefinitions.pagosServiciosData.getDatosCargoDetalle());
+        System.out.println("detalle - datos cargo: " + LoginStepDefinitions.pagosServiciosData.getDatosCargoDetalle());
 
         //MONTO
 
         theActorInTheSpotlight().should(seeThat(
                 EstadoPagoQuestions.MontoDetalle(), equalTo(LoginStepDefinitions.pagosServiciosData.getMontoProcess())));
 
-        System.out.println("detalle - monto: "+ LoginStepDefinitions.pagosServiciosData.getMontoProcess());
+        System.out.println("detalle - monto: " + LoginStepDefinitions.pagosServiciosData.getMontoProcess());
 
         //PROCESADOS
 
         theActorInTheSpotlight().should(seeThat(
                 EstadoPagoQuestions.PagoProcesadasDetalle(), equalTo("-")));
 
-        System.out.println("detalle - procesados: "+ LoginStepDefinitions.pagosServiciosData.getCuotasPagar());
+        System.out.println("detalle - procesados: " + LoginStepDefinitions.pagosServiciosData.getCuotasPagar());
 
         //RECHAZADOS
 
         theActorInTheSpotlight().should(seeThat(
                 EstadoPagoQuestions.PagoRechazadasDetalle(), equalTo("-")));
 
-        System.out.println("detalle - rechazados: "+ EstadoPagoQuestions.PagoRechazadasDetalle());
+        System.out.println("detalle - rechazados: " + EstadoPagoQuestions.PagoRechazadasDetalle());
 
         //INFORMACION DE LAS CUOTAS-------------------------------------------------------------------------------------
 
-        System.out.println("MONTO PAGADO: "+ LoginStepDefinitions.pagosServiciosData.getmontoPagado());
+        System.out.println("MONTO PAGADO: " + LoginStepDefinitions.pagosServiciosData.getmontoPagado());
 
-        int i= Integer.parseInt(LoginStepDefinitions.pagosServiciosData.getCantdni())+1;//30
+        int i = Integer.parseInt(LoginStepDefinitions.pagosServiciosData.getCantdni()) + 1;//30
 
-        while(!LoginStepDefinitions.pagosServiciosData.getmontosPagados().equals(LoginStepDefinitions.pagosServiciosData.getmontoPagado())) {
+        while (!LoginStepDefinitions.pagosServiciosData.getmontosPagados().equals(LoginStepDefinitions.pagosServiciosData.getmontoPagado())) {
 
             i--;
 
@@ -197,7 +195,7 @@ public class DetalleEstadoPagoPendienteGF implements Task {
 
         //TOTAL SOLES O DOLARES
 
-        if(LoginStepDefinitions.pagosServiciosData.getSimbolo().equals("S/")) {
+        if (LoginStepDefinitions.pagosServiciosData.getSimbolo().equals("S/")) {
 
             Target TOTAL_SOLES = Target.the("Total Soles").located(By.xpath("(//span[@data-test='lblTotalPenValue'])[" + i + "]"));
             LoginStepDefinitions.pagosServiciosData.setmontoPagado(String.valueOf(TOTAL_SOLES.resolveFor(actor).getText()));
@@ -205,9 +203,9 @@ public class DetalleEstadoPagoPendienteGF implements Task {
             assertEquals(
                     LoginStepDefinitions.pagosServiciosData.getmontoPagado(), LoginStepDefinitions.pagosServiciosData.getmontosPagados());
 
-            System.out.println("monto pagado: "+ LoginStepDefinitions.pagosServiciosData.getmontoPagado());
+            System.out.println("monto pagado: " + LoginStepDefinitions.pagosServiciosData.getmontoPagado());
 
-            System.out.println("montos pagados: "+ LoginStepDefinitions.pagosServiciosData.getmontosPagados());
+            System.out.println("montos pagados: " + LoginStepDefinitions.pagosServiciosData.getmontosPagados());
 
         } else if (LoginStepDefinitions.pagosServiciosData.getSimbolo().equals("$")) {
 
@@ -217,9 +215,9 @@ public class DetalleEstadoPagoPendienteGF implements Task {
             assertEquals(
                     LoginStepDefinitions.pagosServiciosData.getmontoPagado(), LoginStepDefinitions.pagosServiciosData.getmontosPagados());
 
-            System.out.println("monto pagado: "+ LoginStepDefinitions.pagosServiciosData.getmontoPagado());
+            System.out.println("monto pagado: " + LoginStepDefinitions.pagosServiciosData.getmontoPagado());
 
-            System.out.println("montos pagados: "+ LoginStepDefinitions.pagosServiciosData.getmontosPagados());
+            System.out.println("montos pagados: " + LoginStepDefinitions.pagosServiciosData.getmontosPagados());
 
         }
 
@@ -228,10 +226,10 @@ public class DetalleEstadoPagoPendienteGF implements Task {
         //REGRESAR*
 
         actor.attemptsTo(
-                WaitUntil.the(LoginPage.REGRESAR_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(),
-                Click.on(LoginPage.REGRESAR_DETALLE_ESTADO));
+                WaitUntil.the(PagoRealizadoPage.REGRESAR_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(),
+                Click.on(PagoRealizadoPage.REGRESAR_DETALLE_ESTADO));
 
-        System.out.println("REGRESAR*: "+ "REGRESE");
+        System.out.println("REGRESAR*: " + "REGRESE");
 
         LoginStepDefinitions.pagosServiciosData.setFechaHora2(LoginStepDefinitions.pagosServiciosData.getFechaHora());
 

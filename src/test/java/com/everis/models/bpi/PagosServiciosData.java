@@ -79,6 +79,7 @@ public class PagosServiciosData {
     }
 
     private String CredencialOk;
+
     public String getCompany() {
         return Company;
     }
@@ -363,89 +364,111 @@ public class PagosServiciosData {
     }
 
     private String montosPagados;
+
     public String getmontosPagados() {
         return montosPagados;
     }
+
     public void setmontosPagados(String montosPagados) {
         this.montosPagados = montosPagados;
     }
 
     private String montoPagado;
+
     public String getmontoPagado() {
         return montoPagado;
     }
+
     public void setmontoPagado(String montosPagado) {
         this.montoPagado = montosPagado;
     }
 
     private String codigo;
+
     public String getcodigo() {
         return codigo;
     }
+
     public void setcodigo(String codigo) {
         this.codigo = codigo;
     }
 
     private String TipoDePago;
+
     public String getTipoDePago() {
         return TipoDePago;
     }
+
     public void setTipoDePago(String TipoDePago) {
         this.TipoDePago = TipoDePago;
     }
 
     private String montoTipoCambio;
+
     public String getmontoTipoCambio() {
         return montoTipoCambio;
     }
+
     public void setmontoTipoCambio(String montoTipoCambio) {
         this.montoTipoCambio = montoTipoCambio;
     }
 
     private String montoPagadoTipoCambio;
+
     public String getmontoPagadoTipoCambio() {
         return montoPagadoTipoCambio;
     }
+
     public void setmontoPagadoTipoCambio(String montoPagadoTipoCambio) {
         this.montoPagadoTipoCambio = montoPagadoTipoCambio;
     }
 
     private String saldoFinal;
+
     public String getsaldoFinal() {
         return saldoFinal;
     }
+
     public void setsaldoFinal(String saldoFinal) {
         this.saldoFinal = saldoFinal;
     }
 
     private String modoDePago;
+
     public String getmodoDePago() {
         return modoDePago;
     }
+
     public void setmodoDePago(String modoDePago) {
         this.modoDePago = modoDePago;
     }
 
     private String importeM;
+
     public String getimporteM() {
         return importeM;
     }
+
     public void setimporteM(String importeM) {
         this.importeM = importeM;
     }
 
     private String descricionM;
+
     public String getdescricionM() {
         return descricionM;
     }
+
     public void setdescricionM(String descricionM) {
         this.descricionM = descricionM;
     }
 
     private String movimientoM;
+
     public String getmovimientoM() {
         return movimientoM;
     }
+
     public void setmovimientoM(String movimientoM) {
         this.movimientoM = movimientoM;
     }
@@ -471,30 +494,37 @@ public class PagosServiciosData {
     public String getfechaOperacionM() {
         return fechaOperacionM;
     }
+
     public void setfechaOperacionM(String fechaOperacionM) {
         this.fechaOperacionM = fechaOperacionM;
     }
 
     private String cantAutorizacion;
+
     public String getcantAutorizacion() {
         return cantAutorizacion;
     }
+
     public void setcantAutorizacion(String cantAutorizacion) {
         this.cantAutorizacion = cantAutorizacion;
     }
 
     private String FechaHora2;
+
     public String getFechaHora2() {
         return FechaHora2;
     }
+
     public void setFechaHora2(String FechaHora2) {
         this.FechaHora2 = FechaHora2;
     }
 
     private String credencialIncorrecto;
+
     public String getcredencialIncorrecto() {
         return credencialIncorrecto;
     }
+
     public void setcredencialIncorrecto(String credencialIncorrecto) {
         this.credencialIncorrecto = credencialIncorrecto;
     }

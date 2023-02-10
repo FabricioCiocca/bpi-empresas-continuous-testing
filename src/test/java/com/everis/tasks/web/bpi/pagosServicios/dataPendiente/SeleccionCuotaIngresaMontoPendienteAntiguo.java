@@ -1,8 +1,8 @@
 package com.everis.tasks.web.bpi.pagosServicios.dataPendiente;
 
-import com.everis.questions.web.bpi.EstadoPagoQuestions;
-import com.everis.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
-import com.everis.userinterfaces.web.bpi.LoginPage;
+import com.everis.bpi.questions.web.bpi.EstadoPagoQuestions;
+import com.everis.bpi.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
+import com.everis.bpi.userinterface.web.bpi.PagoRealizadoPage;
 import lombok.SneakyThrows;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
@@ -13,7 +13,6 @@ import net.serenitybdd.screenplay.targets.Target;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import org.openqa.selenium.By;
 
-import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static org.hamcrest.Matchers.equalTo;
@@ -188,10 +187,10 @@ public class SeleccionCuotaIngresaMontoPendienteAntiguo implements Task {
 
         }
 
-        actor.attemptsTo(WaitUntil.the(LoginPage.INP_DESCRIPCION, isVisible()).forNoMoreThan(150).seconds(), Enter.theValue(LoginStepDefinitions.pagosServiciosData.getDescripcion()).into(LoginPage.INP_DESCRIPCION));
+        actor.attemptsTo(WaitUntil.the(PagoRealizadoPage.INP_DESCRIPCION, isVisible()).forNoMoreThan(150).seconds(), Enter.theValue(LoginStepDefinitions.pagosServiciosData.getDescripcion()).into(PagoRealizadoPage.INP_DESCRIPCION));
 
         theActorInTheSpotlight().should(seeThat(EstadoPagoQuestions.CuotasProcesadas(), equalTo(LoginStepDefinitions.pagosServiciosData.getCuotasPagar())));
-        actor.attemptsTo(WaitUntil.the(LoginPage.BTN_CONINUE, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.BTN_CONINUE));
+        actor.attemptsTo(WaitUntil.the(PagoRealizadoPage.BTN_CONINUE, isVisible()).forNoMoreThan(150).seconds(), Click.on(PagoRealizadoPage.BTN_CONINUE));
 
     }
 }

@@ -1,7 +1,7 @@
 package com.everis.tasks.web.nexbi.query;
 
-import com.everis.questions.web.nexbi.NexbiQuestions;
-import com.everis.userinterfaces.web.nexbi.QueryPage;
+import com.everis.bpi.questions.web.nexbi.NexbiQuestions;
+import com.everis.bpi.userinterface.web.nexbi.QueryPage;
 import lombok.SneakyThrows;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
@@ -17,21 +17,23 @@ import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisi
 public class ObtenerMsjSinUsuario implements Task {
     public final int i;
     public final String[] tipoAccesoArrays;
+    public final int[] cantUsuarioActivoConfirmadoArrays;
     public final int[] cantUsuarioActivoArrays;
 
 
+    public ObtenerMsjSinUsuario(int i, String[] tipoAccesoArrays, int[] cantUsuarioActivoConfirmadoArrays, int[] cantUsuarioActivoArrays) {
 
-
-    public ObtenerMsjSinUsuario(int i, String[] tipoAccesoArrays, int[] cantUsuarioActivoArrays) {
         this.i = i;
         this.tipoAccesoArrays = tipoAccesoArrays;
+        this.cantUsuarioActivoConfirmadoArrays = cantUsuarioActivoConfirmadoArrays;
         this.cantUsuarioActivoArrays = cantUsuarioActivoArrays;
 
     }
 
-    public static Performable withData(int i, String[] tipoAccesoArrays, int[] cantUsuarioActivoArrays){
-        return instrumented(ObtenerMsjSinUsuario.class,i,tipoAccesoArrays,cantUsuarioActivoArrays);
+    public static Performable withData(int i, String[] tipoAccesoArrays, int[] cantUsuarioActivoConfirmadoArrays, int[] cantUsuarioActivoArrays) {
+        return instrumented(ObtenerMsjSinUsuario.class, i, tipoAccesoArrays, cantUsuarioActivoConfirmadoArrays, cantUsuarioActivoArrays);
     }
+
 
     @SneakyThrows
     @Override
@@ -45,18 +47,18 @@ public class ObtenerMsjSinUsuario implements Task {
 
         boolean isEnabled = Serenity.sessionVariableCalled("checkBoxTipoAcceso");
         if (!isEnabled) {
-            tipoAccesoArrays[i-1]= "Stock";
+            tipoAccesoArrays[i - 1] = "Stock";
         } else if (isEnabled) {
-            tipoAccesoArrays[i-1]= "Nuevo";
+            tipoAccesoArrays[i - 1] = "Nuevo";
         }
 
         actor.attemptsTo(
                 WaitUntil.the(QueryPage.SELECT_ICON_ISV, isVisible()).forNoMoreThan(20).seconds(),
                 Click.on(QueryPage.SELECT_ICON_ISV));
-        cantUsuarioActivoArrays[i-1]=0;
+        cantUsuarioActivoConfirmadoArrays[i - 1] = 0;
 
         Serenity.setSessionVariable("mensajeUsuarios").to(mensajeUsuarios);
         Serenity.setSessionVariable("tipoAccesoArrays").to(tipoAccesoArrays);
-        Serenity.setSessionVariable("cantUsuarioActivoArrays").to(cantUsuarioActivoArrays);
+        Serenity.setSessionVariable("cantUsuarioActivoConfirmadoArrays").to(cantUsuarioActivoConfirmadoArrays);
     }
 }

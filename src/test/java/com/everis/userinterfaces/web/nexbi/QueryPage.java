@@ -19,6 +19,10 @@ public class QueryPage {
     public static final Target BTN_ACTIVO = Target.the("Boton Activo").located(By.xpath("(//*[@class='mat-button-toggle-label-content'])[2]"));
     public static final Target SELEC_ALL = Target.the("Seleccionar Todo").located(By.xpath("//*[@data-test='chkSelectAll']"));
     public static final Target CANT_USUARIOS = Target.the("Seleccionar Todo").located(By.xpath("//*[@class='c-black px-2']"));
+    public static final Target TOTAL_USUARIOS = Target.the("Seleccionar Todo los Usuarios").located(By.xpath("//*[@id='selectAll']"));
+    public static final Target NUMERO_PAGINA = Target.the("Numero de Pagina de Usuarios").located(By.xpath("//*[@class='mat-paginator-range-label']"));
+    public static final Target SIGUIENTE_PAGINA = Target.the("Siguiente Pagina").located(By.xpath("(//mat-paginator//span[@class='mat-button-wrapper'])[2]"));
+    public static final Target SUBIR_PAGINA = Target.the("Subir Pagina").located(By.xpath("//*[@data-test='btnBackTop']"));
     public static final Target SIN_USUARIO = Target.the("No tiene Usuario").located(By.xpath("//h2[contains(text(),'Aún no se ha creado ningún usuario para este punto')]"));
     public static final Target BTN_SEARCH = Target.the("Boton Buscar").locatedBy("(//ibk-icon[@icon='search'])[{0}]");
     public static final Target BTN_SEARCH1 = Target.the("Boton Buscar").located(By.xpath("(//ibk-icon[@icon='search'])[2]"));
@@ -39,5 +43,7 @@ public class QueryPage {
     public static final Target INPUT_NOMBRE_USUARIO = Target.the("Ingresar Nombre de Usuario").located(By.xpath("//*[@data-placeholder='Nombre de usuario']"));
     public static final Target ULTIMO_PUNTO_SERVICIO = Target.the("Ultimo punto de servicios").located(By.xpath("(//*[@class='ibk-table-row ng-star-inserted'])[12]"));
     public static final Target NIVEL_SERVICIO_USUARIO = Target.the("Nivel de Servicio del Usuario").located(By.xpath("//*[@class='w-15']"));
+
+    public static final Target NOMBRE_USUARIO = Target.the("Numero de la Operación Recaudación").located(By.xpath("//*[@data-test='txtName']"));
 
 }

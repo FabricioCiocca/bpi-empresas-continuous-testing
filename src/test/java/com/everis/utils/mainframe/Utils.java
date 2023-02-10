@@ -10,10 +10,9 @@ import java.nio.charset.StandardCharsets;
 public class Utils {
 
     public static String getTemplate(String templatePath) {
-        try{
+        try {
             return IOUtils.toString(new ClassPathResource(templatePath).getInputStream(), StandardCharsets.UTF_8);
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

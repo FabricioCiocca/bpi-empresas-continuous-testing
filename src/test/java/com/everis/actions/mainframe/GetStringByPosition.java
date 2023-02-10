@@ -18,13 +18,14 @@ public class GetStringByPosition extends EmulatorActions implements Interaction 
         this.ctdFilas = ctdFilas;
         this.ctdColumnas = ctdColumnas;
     }
-    public static String theValue(int iFila, int iColumna, int ctdFilas, int ctdColumnas){
-        return String.valueOf(instrumented(GetStringByPosition.class,iFila, iColumna, ctdFilas, ctdColumnas));
+
+    public static String theValue(int iFila, int iColumna, int ctdFilas, int ctdColumnas) {
+        return String.valueOf(instrumented(GetStringByPosition.class, iFila, iColumna, ctdFilas, ctdColumnas));
     }
 
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-         getInstancia().obtenerCadenaPorPosicion(iFila, iColumna, ctdFilas, ctdColumnas);
+        getInstancia().obtenerCadenaPorPosicion(iFila, iColumna, ctdFilas, ctdColumnas);
     }
 }

@@ -1,8 +1,8 @@
 package com.everis.tasks.web.bpi.validacion;
 
-import com.everis.questions.web.bpi.MovimientosDisponibleQuestions;
-import com.everis.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
-import com.everis.userinterfaces.web.bpi.LoginPage;
+import com.everis.bpi.questions.web.bpi.MovimientosDisponibleQuestions;
+import com.everis.bpi.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
+import com.everis.bpi.userinterface.web.bpi.SaldosYMovimientosPage;
 import lombok.SneakyThrows;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
@@ -14,7 +14,6 @@ import org.openqa.selenium.By;
 
 import java.text.DecimalFormat;
 
-import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
@@ -31,11 +30,11 @@ public class ValidarMovimiento implements Task {
     @SneakyThrows
     @Override
     public <T extends Actor> void performAs(T actor) {
-        actor.attemptsTo(WaitUntil.the(LoginPage.MENU_CONSULTAS, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.MENU_CONSULTAS));
-        actor.attemptsTo(WaitUntil.the(LoginPage.MENU_MOVIMIENTOS, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.MENU_MOVIMIENTOS));
-        actor.attemptsTo(WaitUntil.the(LoginPage.CMB_ELEGIR_CUENTA, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.CMB_ELEGIR_CUENTA));
+        actor.attemptsTo(WaitUntil.the(SaldosYMovimientosPage.MENU_CONSULTAS, isVisible()).forNoMoreThan(150).seconds(), Click.on(SaldosYMovimientosPage.MENU_CONSULTAS));
+        actor.attemptsTo(WaitUntil.the(SaldosYMovimientosPage.MENU_MOVIMIENTOS, isVisible()).forNoMoreThan(150).seconds(), Click.on(SaldosYMovimientosPage.MENU_MOVIMIENTOS));
+        actor.attemptsTo(WaitUntil.the(SaldosYMovimientosPage.CMB_ELEGIR_CUENTA, isVisible()).forNoMoreThan(150).seconds(), Click.on(SaldosYMovimientosPage.CMB_ELEGIR_CUENTA));
         Serenity.getDriver().findElement(By.xpath("//div[contains(text(),'" + LoginStepDefinitions.pagosServiciosData.getCuentaOrigen() + "')]")).click();
-        actor.attemptsTo(WaitUntil.the(LoginPage.BTN_BUSCAR_MOVIMIENTOS, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.BTN_BUSCAR_MOVIMIENTOS));
+        actor.attemptsTo(WaitUntil.the(SaldosYMovimientosPage.BTN_BUSCAR_MOVIMIENTOS, isVisible()).forNoMoreThan(150).seconds(), Click.on(SaldosYMovimientosPage.BTN_BUSCAR_MOVIMIENTOS));
         String[] fechaHoraAux = LoginStepDefinitions.pagosServiciosData.getFechaHora().split("-");
         theActorInTheSpotlight().should(seeThat(MovimientosDisponibleQuestions.fechaOperacion(), equalTo(fechaHoraAux[0].trim())));
 
@@ -51,21 +50,21 @@ public class ValidarMovimiento implements Task {
         if (tipoCuenta[0].equals("Corriente")) {
             theActorInTheSpotlight().should(seeThat(MovimientosDisponibleQuestions.movimiento(), equalTo("PAGO DE SERVICIOS")));
         } else {
-            if(LoginStepDefinitions.pagosServiciosData.getEmpresa().length() > 13 ){
-                theActorInTheSpotlight().should(seeThat(MovimientosDisponibleQuestions.descripcion(), containsString(stripAccents(LoginStepDefinitions.pagosServiciosData.getEmpresa().substring(0,13)))));
+            if (LoginStepDefinitions.pagosServiciosData.getEmpresa().length() > 13) {
+                theActorInTheSpotlight().should(seeThat(MovimientosDisponibleQuestions.descripcion(), containsString(stripAccents(LoginStepDefinitions.pagosServiciosData.getEmpresa().substring(0, 13)))));
             }
-            if(MovimientosDisponibleQuestions.movimiento().toString().trim().equals("-")){
+            if (MovimientosDisponibleQuestions.movimiento().toString().trim().equals("-")) {
                 theActorInTheSpotlight().should(seeThat(MovimientosDisponibleQuestions.movimiento(), containsString(stripAccents("-"))));
 
-            }else {
+            } else {
                 theActorInTheSpotlight().should(seeThat(MovimientosDisponibleQuestions.movimiento(), containsString(stripAccents(LoginStepDefinitions.pagosServiciosData.getEmpresa()))));
             }
         }
 
 
-        if(LoginStepDefinitions.pagosServiciosData.getEmpresa().length() > 13 ){
-            theActorInTheSpotlight().should(seeThat(MovimientosDisponibleQuestions.descripcion(), containsString(stripAccents(LoginStepDefinitions.pagosServiciosData.getEmpresa().substring(0,13)))));
-        }else{
+        if (LoginStepDefinitions.pagosServiciosData.getEmpresa().length() > 13) {
+            theActorInTheSpotlight().should(seeThat(MovimientosDisponibleQuestions.descripcion(), containsString(stripAccents(LoginStepDefinitions.pagosServiciosData.getEmpresa().substring(0, 13)))));
+        } else {
             theActorInTheSpotlight().should(seeThat(MovimientosDisponibleQuestions.descripcion(), containsString(stripAccents(LoginStepDefinitions.pagosServiciosData.getEmpresa()))));
         }
 
@@ -83,12 +82,12 @@ public class ValidarMovimiento implements Task {
             String decim2 = new DecimalFormat("0.00").format(montofinalizado);
             if (decim2.length() > 5) {
                 decim2 = decim2.substring(0, decim2.length() - 6) + "," + decim2.substring(decim2.length() - 6);
-            }else if (decim2.length() > 7) {
+            } else if (decim2.length() > 7) {
                 decim2 = decim2.substring(0, decim2.length() - 7) + "," + decim2.substring(decim2.length() - 7);
             }
-            if (  tipoCuenta[1].equals("Dólares") && LoginStepDefinitions.pagosServiciosData.getSimbolo().equals("S/")) {
+            if (tipoCuenta[1].equals("Dólares") && LoginStepDefinitions.pagosServiciosData.getSimbolo().equals("S/")) {
                 theActorInTheSpotlight().should(seeThat(MovimientosDisponibleQuestions.importe(), equalTo("$ " + "-" + decim2)));
-            }else if ( tipoCuenta[1].equals("Soles") && LoginStepDefinitions.pagosServiciosData.getSimbolo().startsWith("$") ) {
+            } else if (tipoCuenta[1].equals("Soles") && LoginStepDefinitions.pagosServiciosData.getSimbolo().startsWith("$")) {
                 theActorInTheSpotlight().should(seeThat(MovimientosDisponibleQuestions.importe(), equalTo("S/ " + "-" + decim2)));
             } else {
                 theActorInTheSpotlight().should(seeThat(MovimientosDisponibleQuestions.importe(), equalTo(LoginStepDefinitions.pagosServiciosData.getSimbolo() + " -" + decim2)));

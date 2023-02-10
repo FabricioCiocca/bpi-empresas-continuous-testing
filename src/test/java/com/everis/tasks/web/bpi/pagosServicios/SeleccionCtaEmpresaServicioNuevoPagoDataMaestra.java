@@ -1,7 +1,7 @@
 package com.everis.tasks.web.bpi.pagosServicios;
 
-import com.everis.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
-import com.everis.userinterfaces.web.bpi.LoginPage;
+import com.everis.bpi.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
+import com.everis.bpi.userinterface.web.bpi.RealizaPagoPage;
 import lombok.SneakyThrows;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
@@ -20,13 +20,13 @@ public class SeleccionCtaEmpresaServicioNuevoPagoDataMaestra implements Task {
     @SneakyThrows
     @Override
     public <T extends Actor> void performAs(T actor) {
-        actor.attemptsTo(WaitUntil.the(LoginPage.INP_CHOOSE_ACCOUNT, isClickable()).forNoMoreThan(150).seconds(), Click.on(LoginPage.INP_CHOOSE_ACCOUNT));
+        actor.attemptsTo(WaitUntil.the(RealizaPagoPage.INP_CHOOSE_ACCOUNT, isClickable()).forNoMoreThan(150).seconds(), Click.on(RealizaPagoPage.INP_CHOOSE_ACCOUNT));
         Serenity.getDriver().findElement(By.xpath("//div[contains(text(),'" + LoginStepDefinitions.pagosServiciosData.getCuentaOrigen() + "')]")).click();
-        actor.attemptsTo(WaitUntil.the(LoginPage.INP_TYPE_COMPANY, isVisible()).forNoMoreThan(150).seconds(), Enter.theValue(LoginStepDefinitions.pagosServiciosData.getEmpresa2DataMaestra()).into(LoginPage.INP_TYPE_COMPANY));
-        actor.attemptsTo(WaitUntil.the(LoginPage.INP_CHOOSE_COMPANY, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.INP_CHOOSE_COMPANY));
-        actor.attemptsTo(WaitUntil.the(LoginPage.CMB_CHOOSE_SERVICE, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.CMB_CHOOSE_SERVICE));
+        actor.attemptsTo(WaitUntil.the(RealizaPagoPage.INP_TYPE_COMPANY, isVisible()).forNoMoreThan(150).seconds(), Enter.theValue(LoginStepDefinitions.pagosServiciosData.getEmpresa2DataMaestra()).into(RealizaPagoPage.INP_TYPE_COMPANY));
+        actor.attemptsTo(WaitUntil.the(RealizaPagoPage.INP_CHOOSE_COMPANY, isVisible()).forNoMoreThan(150).seconds(), Click.on(RealizaPagoPage.INP_CHOOSE_COMPANY));
+        actor.attemptsTo(WaitUntil.the(RealizaPagoPage.CMB_CHOOSE_SERVICE, isVisible()).forNoMoreThan(150).seconds(), Click.on(RealizaPagoPage.CMB_CHOOSE_SERVICE));
         Serenity.getDriver().findElement(By.xpath("//span[contains(text(),'" + LoginStepDefinitions.pagosServiciosData.getServicio2DataMaestra() + "') and @class='mat-option-text']")).click();
-        actor.attemptsTo(WaitUntil.the(LoginPage.INP_CODDEUDOR, isVisible()).forNoMoreThan(150).seconds(), Enter.theValue(LoginStepDefinitions.pagosServiciosData.getDniPagador()).into(LoginPage.INP_CODDEUDOR));
+        actor.attemptsTo(WaitUntil.the(RealizaPagoPage.INP_CODDEUDOR, isVisible()).forNoMoreThan(150).seconds(), Enter.theValue(LoginStepDefinitions.pagosServiciosData.getDniPagador()).into(RealizaPagoPage.INP_CODDEUDOR));
     }
 
 }

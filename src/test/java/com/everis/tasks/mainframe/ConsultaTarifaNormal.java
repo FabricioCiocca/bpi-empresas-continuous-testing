@@ -1,9 +1,9 @@
 package com.everis.tasks.mainframe;
 
-import com.everis.actions.mainframe.Emulator;
-import com.everis.actions.mainframe.WaitEmulator;
-import com.everis.actions.mainframe.WriteEmulator;
-import com.everis.questions.mainframe.ValidacionCobros;
+import com.everis.bpi.actions.mainframe.Emulator;
+import com.everis.bpi.actions.mainframe.WaitEmulator;
+import com.everis.bpi.actions.mainframe.WriteEmulator;
+import com.everis.bpi.questions.mainframe.ValidacionCobros;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
@@ -18,8 +18,8 @@ public class ConsultaTarifaNormal implements Task {
         this.concepto = concepto;
     }
 
-    public static Performable withData(String concepto){
-        return instrumented(ConsultaTarifaNormal.class,concepto);
+    public static Performable withData(String concepto) {
+        return instrumented(ConsultaTarifaNormal.class, concepto);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class ConsultaTarifaNormal implements Task {
 
         /*Codigo para mostrar paso a paso en Mainframe*/
         Serenity.recordReportData().withTitle("Mainframe Evidence")
-                .andContents(actor.asksFor(ValidacionCobros.GetStringByPosition(0,0,24,79)).substring(0,1942));
+                .andContents(actor.asksFor(ValidacionCobros.GetStringByPosition(0, 0, 24, 79)).substring(0, 1942));
 
         actor.attemptsTo(
                 Emulator.withPrints(Emulator.ActionsPrints.ENTER),
@@ -56,7 +56,7 @@ public class ConsultaTarifaNormal implements Task {
 
         /*Codigo para mostrar paso a paso en Mainframe*/
         Serenity.recordReportData().withTitle("Mainframe Evidence")
-                .andContents(actor.asksFor(ValidacionCobros.GetStringByPosition(0,0,24,79)).substring(0,1942));
+                .andContents(actor.asksFor(ValidacionCobros.GetStringByPosition(0, 0, 24, 79)).substring(0, 1942));
 
         actor.attemptsTo(
                 Emulator.withPrints(Emulator.ActionsPrints.ENTER),
@@ -64,6 +64,6 @@ public class ConsultaTarifaNormal implements Task {
 
         /*Codigo para mostrar paso a paso en Mainframe*/
         Serenity.recordReportData().withTitle("Mainframe Evidence")
-                .andContents(actor.asksFor(ValidacionCobros.GetStringByPosition(0,0,24,79)).substring(0,1942));
+                .andContents(actor.asksFor(ValidacionCobros.GetStringByPosition(0, 0, 24, 79)).substring(0, 1942));
     }
 }

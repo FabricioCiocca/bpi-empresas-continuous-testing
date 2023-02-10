@@ -1,17 +1,17 @@
 package com.everis.stepsdefinitions.web.bpi.pagoDeServicios;
 
-import com.everis.models.bpi.PagosServiciosData;
-import com.everis.questions.web.bpi.NegatividadQuestions;
-import com.everis.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
-import com.everis.tasks.web.bpi.pagosServicios.dataPendiente.DetalleEstadoPagoPendienteRechazadoFC1;
-import com.everis.tasks.web.bpi.pagosServicios.dataPendiente.DetalleEstadoPagoPendienteRechazadoGF1;
-import com.everis.tasks.web.bpi.pagosServicios.dataPendiente.DetalleEstadoPagoPendienteRechazadoSF1;
+
+import com.everis.bpi.models.bpi.PagosServiciosData;
+import com.everis.bpi.questions.web.bpi.NegatividadQuestions;
+import com.everis.bpi.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.dataPendiente.DetalleEstadoPagoPendienteRechazadoFC1;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.dataPendiente.DetalleEstadoPagoPendienteRechazadoGF1;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.dataPendiente.DetalleEstadoPagoPendienteRechazadoSF1;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 
-import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -56,14 +56,14 @@ public class NegativoSD {
     public void seMuestraElMensajeDeErrorLimite() {
 
         theActorInTheSpotlight().should(seeThat(
-                NegatividadQuestions.LimiteServicio(),equalTo("LÍMITE DE SERVICIOS")));
+                NegatividadQuestions.LimiteServicio(), equalTo("LÍMITE DE SERVICIOS")));
 
     }
 
     @Then("se muestra el mensaje de error 'Servicio ya Agregado'")
     public void seMuestraElMensajeDeErrorServicioYaAgregado() {
         theActorInTheSpotlight().should(seeThat(
-                NegatividadQuestions.ServicioYaAgregado(),equalTo("SERVICIO YA AGREGADO")));
+                NegatividadQuestions.ServicioYaAgregado(), equalTo("SERVICIO YA AGREGADO")));
 
     }
 
@@ -71,7 +71,7 @@ public class NegativoSD {
     public void seMuestraElMensajeDeErrorNoCumpleConLosParámetrosDeSeguridad() {
 
         theActorInTheSpotlight().should(seeThat(
-                NegatividadQuestions.ParametrosSeguridad(),equalTo("No cumple con los parámetros de seguridad")));
+                NegatividadQuestions.ParametrosSeguridad(), equalTo("No cumple con los parámetros de seguridad")));
 
     }
 
@@ -79,7 +79,7 @@ public class NegativoSD {
     public void seMuestraElMensajeDeErrorNoSeEncontraronCuotas() {
 
         theActorInTheSpotlight().should(seeThat(
-                NegatividadQuestions.NoSeEncontraronCuotas(),equalTo("NO SE ENCONTRARON CUOTAS")));
+                NegatividadQuestions.NoSeEncontraronCuotas(), equalTo("NO SE ENCONTRARON CUOTAS")));
 
     }
 
@@ -87,7 +87,7 @@ public class NegativoSD {
     public void seMuestraElMensajeDeErrorDebesIngresarUnMontoValido() {
 
         theActorInTheSpotlight().should(seeThat(
-                NegatividadQuestions.DebesIngresarUnMontoValido(),equalTo("Debes ingresar un monto válido")));
+                NegatividadQuestions.DebesIngresarUnMontoValido(), equalTo("Debes ingresar un monto válido")));
 
     }
 
@@ -95,7 +95,7 @@ public class NegativoSD {
     public void seMuestraElMensajeDeErrorDebesSeleccionarAlMenosUnaCuotaParaPoderRealizarElPagoCorrespondiente() {
 
         theActorInTheSpotlight().should(seeThat(
-                NegatividadQuestions.DebesSelecciomarCuota(),equalTo("Debes seleccionar al menos una cuota para poder realizar el pago correspondiente.")));
+                NegatividadQuestions.DebesSelecciomarCuota(), equalTo("Debes seleccionar al menos una cuota para poder realizar el pago correspondiente.")));
 
     }
 
@@ -103,7 +103,7 @@ public class NegativoSD {
     public void seMuestraElMensajeDeErrorMONTOINGRESADOSUPERALIMITES() {
 
         theActorInTheSpotlight().should(seeThat(
-                NegatividadQuestions.MontoIngresadoSuperaLimites(),equalTo("MONTO INGRESADO SUPERA LÍMITES")));
+                NegatividadQuestions.MontoIngresadoSuperaLimites(), equalTo("MONTO INGRESADO SUPERA LÍMITES")));
 
     }
 }

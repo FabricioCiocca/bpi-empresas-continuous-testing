@@ -1,9 +1,10 @@
 package com.everis.stepsdefinitions.web.bpi.validacion;
 
-import com.everis.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
-import com.everis.tasks.web.bpi.pagosServicios.dataPendiente.DetalleEstadoPagoPendienteFC;
-import com.everis.tasks.web.bpi.pagosServicios.dataPendiente.DetalleEstadoPagoPendienteGF;
-import com.everis.tasks.web.bpi.pagosServicios.dataPendiente.DetalleEstadoPagoPendienteSF;
+
+import com.everis.bpi.stepsdefinitions.web.bpi.login.LoginStepDefinitions;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.dataPendiente.DetalleEstadoPagoPendienteFC;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.dataPendiente.DetalleEstadoPagoPendienteGF;
+import com.everis.bpi.tasks.web.bpi.pagosServicios.dataPendiente.DetalleEstadoPagoPendienteSF;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
 import net.serenitybdd.screenplay.actors.OnStage;

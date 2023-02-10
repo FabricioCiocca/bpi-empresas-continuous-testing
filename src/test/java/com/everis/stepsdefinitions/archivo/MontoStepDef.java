@@ -1,8 +1,8 @@
 package com.everis.stepsdefinitions.archivo;
 
-
 import com.everis.questions.mainframe.ValidacionCobros;
-import com.everis.tasks.mainframe.CalculaMonto2;
+import com.everis.tasks.mainframe.CalculaMonto;
+import com.everis.tasks.mainframe.EliminarLinea;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -31,63 +31,48 @@ public class MontoStepDef {
 
         ArrayList<String> nivelServicioArrays = Serenity.sessionVariableCalled("nivelServicioArrays");
         ArrayList<String> monedaCuentaArrays = Serenity.sessionVariableCalled("monedaCuentaArrays");
-        ArrayList<Integer> cantUsuarioActivoArrays = Serenity.sessionVariableCalled("cantUsuarioActivoArrays");
-        double montoTarifaUsuario = Double.parseDouble(Serenity.sessionVariableCalled("montoTarifaNivel40"));
+        ArrayList<Integer> cantUsuarioActivoConfirmadoArrays = Serenity.sessionVariableCalled("cantUsuarioActivoConfirmadoArrays");
+        String[] montoTarifaNivelArray = Serenity.sessionVariableCalled("montoTarifaNivelArray");
+        String[] nivelConceptoArray = Serenity.sessionVariableCalled("nivelConceptoArray");
         double tipoCambioDolares = Double.parseDouble(Serenity.sessionVariableCalled("tipoCambioDolares"));
 
         String[] montoCobrarArrays = new String[nivelServicioArrays.size()];
 
         for (int i = 0; i < nivelServicioArrays.size(); i++) {
-
-            double montoTarifaNivel = 0;
-            if (nivelServicioArrays.get(i).trim().equals("Negocio")) {
-                montoTarifaNivel = Double.parseDouble(Serenity.sessionVariableCalled("montoTarifaNivel20"));
-            } else if (nivelServicioArrays.get(i).trim().equals("Empresa")) {
-                montoTarifaNivel = Double.parseDouble(Serenity.sessionVariableCalled("montoTarifaNivel21"));
-            } else if (nivelServicioArrays.get(i).trim().equals("Corporativo")) {
-                montoTarifaNivel = Double.parseDouble(Serenity.sessionVariableCalled("montoTarifaNivel22"));
-            }
-
-            if(cantUsuarioActivoArrays.get(i)==0){
-                CalculaMonto2.SinUser(i, montoCobrarArrays);
-            } else if (cantUsuarioActivoArrays.get(i) < 4) {
-                CalculaMonto2.TipoCambio(i, monedaCuentaArrays, tipoCambioDolares, montoTarifaNivel, montoCobrarArrays);
-            } else {
-                CalculaMonto2.TipoCambio2(i, monedaCuentaArrays, cantUsuarioActivoArrays, montoTarifaUsuario, tipoCambioDolares, montoTarifaNivel, montoCobrarArrays);
+            for (int j = 0; j < nivelConceptoArray.length - 1; j++) {
+                if (nivelServicioArrays.get(i).equals(nivelConceptoArray[j])) {
+                    if (cantUsuarioActivoConfirmadoArrays.get(i) == null) {
+                        CalculaMonto.SinUsuario(i, montoCobrarArrays);
+                    } else if (cantUsuarioActivoConfirmadoArrays.get(i) == 0) {
+                        CalculaMonto.SinUsuario(i, montoCobrarArrays);
+                    } else if (cantUsuarioActivoConfirmadoArrays.get(i) < 4) {
+                        CalculaMonto.TipoCambio(i, monedaCuentaArrays, tipoCambioDolares, Double.parseDouble(montoTarifaNivelArray[j]), montoCobrarArrays);
+                    } else {
+                        CalculaMonto.TipoCambio2(i, monedaCuentaArrays, cantUsuarioActivoConfirmadoArrays, Double.parseDouble(montoTarifaNivelArray[3]), tipoCambioDolares, Double.parseDouble(montoTarifaNivelArray[j]), montoCobrarArrays);
+                    }
+                }
             }
         }
     }
 
     @Then("^valido monto en el txt$")
     public void validoMontoEnElTxt() throws IOException {
+
         ArrayList<String> cuentaCargoArrays = Serenity.sessionVariableCalled("cuentaCargoArrays");
-        ArrayList<Integer> cantUsuarioActivoArrays = Serenity.sessionVariableCalled("cantUsuarioActivoArrays");
+        ArrayList<Integer> cantUsuarioActivoConfirmadoArrays = Serenity.sessionVariableCalled("cantUsuarioActivoConfirmadoArrays");
         String[] montoCobrarArrays = Serenity.sessionVariableCalled("montoCobrarArrays");
 
         ArrayList<String> informacion = new ArrayList<>();
-        String[] coherenciaCuentaMonto = new String[cuentaCargoArrays.size()];
-        String[] incoherenciasCuentaMonto = new String[cuentaCargoArrays.size()];
+        ArrayList<String> coherenciaCuentaMonto = new ArrayList<>();
+        ArrayList<String> incoherenciasCuentaMonto = new ArrayList<>();
 
         for (int i = cuentaCargoArrays.size(); i > 0; i--) {
-            theActorInTheSpotlight().should(
-                    seeThat(ValidacionCobros.valideText(i, environmentVariables, cuentaCargoArrays, cantUsuarioActivoArrays, montoCobrarArrays, coherenciaCuentaMonto, incoherenciasCuentaMonto, informacion), equalTo(true)));
+            EliminarLinea.Txt(i, environmentVariables, cuentaCargoArrays, cantUsuarioActivoConfirmadoArrays, montoCobrarArrays, coherenciaCuentaMonto);
         }
-    }
-
-
-    @Then("valido que el monto no exista en el txt")
-    public void validoQueElMontoNoExistaEnElTxt() throws IOException {
-        ArrayList<String> cuentaCargoArrays = Serenity.sessionVariableCalled("cuentaCargoArrays");
-        ArrayList<Integer> cantUsuarioActivoArrays = Serenity.sessionVariableCalled("cantUsuarioActivoArrays");
-        String[] montoCobrarArrays = Serenity.sessionVariableCalled("montoCobrarArrays");
-
-        ArrayList<String> informacion = new ArrayList<>();
-        String[] coherenciaCuentaMonto = new String[cuentaCargoArrays.size()];
-        String[] incoherenciasCuentaMonto = new String[cuentaCargoArrays.size()];
 
         for (int i = cuentaCargoArrays.size(); i > 0; i--) {
             theActorInTheSpotlight().should(
-                    seeThat(ValidacionCobros.valideText(i, environmentVariables, cuentaCargoArrays, cantUsuarioActivoArrays, montoCobrarArrays, coherenciaCuentaMonto, incoherenciasCuentaMonto, informacion), equalTo(true)));
+                    seeThat(ValidacionCobros.DetectorIncoherencias(i, environmentVariables, cuentaCargoArrays, incoherenciasCuentaMonto, informacion), equalTo(true)));
         }
     }
 }
