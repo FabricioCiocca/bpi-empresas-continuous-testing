@@ -30,8 +30,6 @@ public class ConsultaPorCodigo implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-
-        Thread.sleep(3000);
         actor.attemptsTo(
                 WaitUntil.the(QueryPage.SELECT_ARROW, isVisible()).forNoMoreThan(20).seconds(),
                 Click.on(QueryPage.SELECT_ARROW),

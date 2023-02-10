@@ -16,7 +16,6 @@ public class ObtenerTipoAccesoNuevo {
 
     public static void ConUsuarios(ArrayList<String> nombrePuntoServicioArrays, ArrayList<String> tipoAccesoArrays) throws InterruptedException {
 
-        Thread.sleep(1500);
         boolean isEnabled = Serenity.sessionVariableCalled("checkBoxTipoAcceso");
         ArrayList<Integer> cantUsuarioActivoArrays = Serenity.sessionVariableCalled("cantUsuarioActivoArrays");
         int cantUsuarioStock = Serenity.sessionVariableCalled("cantUsuarioStock");
@@ -40,7 +39,6 @@ public class ObtenerTipoAccesoNuevo {
 
     public static void SinUsuarios(ArrayList<String> tipoAccesoArrays) throws InterruptedException {
 
-        Thread.sleep(1500);
         boolean isEnabled = Serenity.sessionVariableCalled("checkBoxTipoAcceso");
         if (!isEnabled) {
             tipoAccesoArrays.add("Stock");

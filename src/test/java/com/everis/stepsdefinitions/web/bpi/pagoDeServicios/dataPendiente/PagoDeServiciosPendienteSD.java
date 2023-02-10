@@ -30,8 +30,6 @@ public class PagoDeServiciosPendienteSD {
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
 
-        Thread.sleep(1000);
-
         theActorInTheSpotlight().attemptsTo(
                 new MenuPagoServicios());
 
@@ -71,8 +69,6 @@ public class PagoDeServiciosPendienteSD {
 
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
-
-        Thread.sleep(1000);
 
         theActorInTheSpotlight().attemptsTo(
                 new MenuPagoServicios());
@@ -116,8 +112,6 @@ public class PagoDeServiciosPendienteSD {
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
 
-        Thread.sleep(1000);
-
         theActorInTheSpotlight().attemptsTo(
                 new MenuPagoServicios());
 
@@ -160,8 +154,6 @@ public class PagoDeServiciosPendienteSD {
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
 
-        Thread.sleep(1000);
-
         theActorInTheSpotlight().attemptsTo(
                 new MenuPagoServicios());
 
@@ -180,8 +172,6 @@ public class PagoDeServiciosPendienteSD {
 
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
-
-        Thread.sleep(1000);
 
         theActorInTheSpotlight().attemptsTo(
                 new MenuPagoServicios());
@@ -225,8 +215,6 @@ public class PagoDeServiciosPendienteSD {
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
 
-        Thread.sleep(1000);
-
         theActorInTheSpotlight().attemptsTo(
                 new MenuPagoServicios());
 
@@ -266,8 +254,6 @@ public class PagoDeServiciosPendienteSD {
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
 
-        Thread.sleep(1000);
-
         theActorInTheSpotlight().attemptsTo(
                 new MenuPagoServicios());
 
@@ -306,8 +292,6 @@ public class PagoDeServiciosPendienteSD {
 
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
-
-        Thread.sleep(1000);
 
         theActorInTheSpotlight().attemptsTo(
                 new MenuPagoServicios());
@@ -352,8 +336,6 @@ public class PagoDeServiciosPendienteSD {
 
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
-
-        Thread.sleep(1000);
 
         theActorInTheSpotlight().attemptsTo(
                 new MenuPagoServicios());

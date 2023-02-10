@@ -25,8 +25,6 @@ public class SeleccionCuotaIngresaMontoParcialSinCuotas implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        Thread.sleep(1500);
-
         String[] dniPagadorArray = LoginStepDefinitions.pagosServiciosData.getDniPagador().split("-");
 
         LoginStepDefinitions.pagosServiciosData.setCuotasPagar(String.valueOf(dniPagadorArray.length));

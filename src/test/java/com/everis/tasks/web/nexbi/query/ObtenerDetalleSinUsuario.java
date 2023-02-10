@@ -31,7 +31,6 @@ public class ObtenerDetalleSinUsuario implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        Thread.sleep(10000);
         actor.attemptsTo(
                 WaitUntil.the(QueryPage.MENU_USUARIOS, isVisible()).forNoMoreThan(30).seconds(),
                 Click.on(QueryPage.MENU_USUARIOS));

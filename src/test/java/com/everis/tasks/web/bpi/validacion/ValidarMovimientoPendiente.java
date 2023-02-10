@@ -34,14 +34,10 @@ public class ValidarMovimientoPendiente implements Task {
 
         //CONSULTAS ----------------------------------------------------------------------------------------------------------------------------------
 
-        Thread.sleep(3000);
-
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.MENU_CONSULTAS, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.MENU_CONSULTAS));
 
         //MOVIMIENTOS ------------------------------------------------------
-
-        Thread.sleep(5000);
 
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.MENU_MOVIMIENTOS, isVisible()).forNoMoreThan(150).seconds(),
@@ -49,21 +45,15 @@ public class ValidarMovimientoPendiente implements Task {
 
         //BUSCAR CUENTA
 
-        Thread.sleep(5000);
-
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.CMB_ELEGIR_CUENTA, isVisible()).forNoMoreThan(150).seconds(),
                 Click.on(LoginPage.CMB_ELEGIR_CUENTA));
 
         //ELEGIR CUENTA
 
-        Thread.sleep(2000);
-
         Serenity.getDriver().findElement(By.xpath("//div[contains(text(),'" + LoginStepDefinitions.pagosServiciosData.getCuentaOrigen() + "')]")).click();
 
         //BOTON BUSCAR
-
-        Thread.sleep(2000);
 
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.BTN_BUSCAR_MOVIMIENTOS, isVisible()).forNoMoreThan(150).seconds(),

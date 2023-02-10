@@ -43,13 +43,9 @@ public class ValidarSaldoDataMaestra implements Task {
         LoginStepDefinitions.pagosServiciosData.setItf(String.valueOf(itf));
         String saldoActualizado = saldoRestado(LoginStepDefinitions.pagosServiciosData.getSaldoInicial(), Double.valueOf(Double.parseDouble(LoginStepDefinitions.pagosServiciosData.getItf()) + valorMontoResta));
         LoginStepDefinitions.pagosServiciosData.setSaldoActualizado(saldoActualizado);
-        Thread.sleep(2000);
         actor.attemptsTo(WaitUntil.the(LoginPage.MENU_CONSULTAS, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.MENU_CONSULTAS));
-        Thread.sleep(2500);
         actor.attemptsTo(WaitUntil.the(LoginPage.MENU_SALDOS, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.MENU_SALDOS));
-        Thread.sleep(2500);
         actor.attemptsTo(WaitUntil.the(LoginPage.INP_BUSCAR_CUENTA, isVisible()).forNoMoreThan(150).seconds(), Enter.theValue(cuentaOrigen).into(LoginPage.INP_BUSCAR_CUENTA));
-        Thread.sleep(2000);
         actor.attemptsTo(WaitUntil.the(LoginPage.BTN_BUSCAR_CUENTA, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.BTN_BUSCAR_CUENTA));
         String[] tipoCuentaAux = tipoCuenta.split("\\s+");
         if (tipoCuentaAux[0].equals("Corriente")) {
@@ -62,12 +58,10 @@ public class ValidarSaldoDataMaestra implements Task {
         } else {
             theActorInTheSpotlight().should(seeThat(SaldoDisponibleQuestions.saldoTipoMoneda(), equalTo("$")));
         }
-        Thread.sleep(2000);
         theActorInTheSpotlight().should(seeThat(SaldoDisponibleQuestions.saldoNumeroCuenta(), containsString(cuentaOrigen)));
         theActorInTheSpotlight().should(seeThat(SaldoDisponibleQuestions.saldoEmpresaTotal(), equalTo(LoginStepDefinitions.pagosServiciosData.getSaldoActualizado())));
         theActorInTheSpotlight().should(seeThat(SaldoDisponibleQuestions.saldoDisponibleLinea(), equalTo(LoginStepDefinitions.pagosServiciosData.getSaldoActualizado())));
         theActorInTheSpotlight().should(seeThat(SaldoDisponibleQuestions.saldoTotalFinal(), equalTo(LoginStepDefinitions.pagosServiciosData.getSaldoActualizado())));
-        Thread.sleep(2000);
         actor.attemptsTo(WaitUntil.the(LoginPage.INFO_CUENTA_FILA, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.INFO_CUENTA_FILA));
         theActorInTheSpotlight().should(seeThat(SaldoDisponibleQuestions.cuentaOrigen(), equalTo(cuentaOrigen)));
         if (tipoCuentaAux[0].equals("Corriente")) {

@@ -23,7 +23,6 @@ public class PagoDeServiciosDataMaestra {
     @When("^intenta realizar un pago de tipo Pagos - De servicios - A sola firma - data Maestra (.*), (.*), (.*), (.*), (.*)")
     public void realizaPagoServicioDataMaestraASolaFirma(String tipoCuenta, String cuenta, String empresa, String servicio, String dniPagador) throws InterruptedException {
         theActorInTheSpotlight().attemptsTo(new MenuBotonEntendido());
-        Thread.sleep(1000);
         theActorInTheSpotlight().attemptsTo(new MenuPagoServicios());
         String[] dniPagadorArray = dniPagador.split("-");
         for (int i = 0; i < dniPagadorArray.length; i++) {
@@ -40,7 +39,6 @@ public class PagoDeServiciosDataMaestra {
     @And("^validarrr los Saldos y Movimientos (.*), (.*), (.*), (.*)$")
     public void validarrrLosSaldosYMovimientos(String monto, String cuentaOrigen, String tipoCuenta, String empresa) throws InterruptedException {
         theActorInTheSpotlight().attemptsTo(ValidarSaldoDataMaestra.withData(monto, cuentaOrigen, tipoCuenta));
-        Thread.sleep(1000);
         theActorInTheSpotlight().attemptsTo(ValidarMovimiento.withData(monto, empresa));
         LoginStepDefinitions.pagosServiciosData.setTipoDeCuenta(tipoCuenta);
     }
@@ -55,7 +53,6 @@ public class PagoDeServiciosDataMaestra {
     @And("valida los Saldos y Movimientos")
     public void validaLosSaldosYMovimientos() throws InterruptedException {
         theActorInTheSpotlight().attemptsTo(ValidarSaldoDataMaestra.withData(LoginStepDefinitions.pagosServiciosData.getMonto(), LoginStepDefinitions.pagosServiciosData.getCuentaOrigen(), LoginStepDefinitions.pagosServiciosData.getTipoDeCuenta()));
-        Thread.sleep(1000);
         theActorInTheSpotlight().attemptsTo(ValidarMovimientoDataMaestra.withData(LoginStepDefinitions.pagosServiciosData.getMonto(), LoginStepDefinitions.pagosServiciosData.getEmpresa()));
     }
 

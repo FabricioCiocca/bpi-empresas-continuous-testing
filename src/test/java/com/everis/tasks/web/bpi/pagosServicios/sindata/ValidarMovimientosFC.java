@@ -32,15 +32,10 @@ public class ValidarMovimientosFC implements Task {
     @SneakyThrows
     @Override
     public <T extends Actor> void performAs(T actor) {
-        Thread.sleep(2000);
         actor.attemptsTo(WaitUntil.the(LoginPage.MENU_CONSULTAS, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.MENU_CONSULTAS));
-        Thread.sleep(3000);
         actor.attemptsTo(WaitUntil.the(LoginPage.MENU_MOVIMIENTOS, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.MENU_MOVIMIENTOS));
-        Thread.sleep(2000);
         actor.attemptsTo(WaitUntil.the(LoginPage.CMB_ELEGIR_CUENTA, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.CMB_ELEGIR_CUENTA));
-        Thread.sleep(2000);
         Serenity.getDriver().findElement(By.xpath("//div[contains(text(),'" + LoginStepDefinitions.pagosServiciosData.getCuentaOrigen() + "')]")).click();
-        Thread.sleep(2000);
         actor.attemptsTo(WaitUntil.the(LoginPage.BTN_BUSCAR_MOVIMIENTOS, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.BTN_BUSCAR_MOVIMIENTOS));
         String[] saldoInicial = LoginStepDefinitions.pagosServiciosData.getSaldoInicial().trim().split(" ");
         if (Double.parseDouble(LoginStepDefinitions.pagosServiciosData.getmontoTipoCambio()) > 0) {

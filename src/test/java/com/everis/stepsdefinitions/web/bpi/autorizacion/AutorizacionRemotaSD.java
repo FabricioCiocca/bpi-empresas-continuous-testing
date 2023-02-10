@@ -30,8 +30,6 @@ public class AutorizacionRemotaSD {
     @And("^se autoriza el pago a Firma Conjunta - Remota (.*)$")
     public void SeAutorizaElPagoAFirmaConjuntaRemota(String user) throws InterruptedException, FindFailed {
 
-        Thread.sleep(3000);
-
         theActorInTheSpotlight().attemptsTo(
                 new CerrarSesionPendiente());
 
@@ -42,8 +40,6 @@ public class AutorizacionRemotaSD {
         String docusuario = usuario.getDocUser();
 
         String password = usuario.getPassword();
-
-        Thread.sleep(3000);
 
         theActorInTheSpotlight().attemptsTo(
                 AutenticarNuevoBpi.withData(docusuario, password));
@@ -71,8 +67,6 @@ public class AutorizacionRemotaSD {
     @And("^se introduce la contraseña para autorizar el pago a Firma Conjunta - Remota (.*); (.*)$")
     public void seIntroduceLaContraseñaParaAutorizarElPagoAFirmaConjuntaRemota(String user, String passwordErroneo)throws InterruptedException {
 
-        Thread.sleep(3000);
-
         theActorInTheSpotlight().attemptsTo(
                 new CerrarSesionPendiente());
 
@@ -83,8 +77,6 @@ public class AutorizacionRemotaSD {
         String docusuario = usuario.getDocUser();
 
         String password = usuario.getPassword();
-
-        Thread.sleep(3000);
 
         theActorInTheSpotlight().attemptsTo(
                 AutenticarNuevoBpi.withData(docusuario, password));

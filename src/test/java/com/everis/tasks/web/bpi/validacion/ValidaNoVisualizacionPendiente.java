@@ -22,29 +22,19 @@ public class ValidaNoVisualizacionPendiente implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        Thread.sleep(3000);
-
         actor.attemptsTo(
                 (WaitUntil.the(LoginPage.MENU_AUTORIZACIONES, isVisible()).forNoMoreThan(150).seconds()),
                 Click.on(LoginPage.MENU_AUTORIZACIONES));
-
-        Thread.sleep(2000);
 
         actor.attemptsTo(
                 (WaitUntil.the(LoginPage.INP_TIPO_SOLICITUD, isVisible()).forNoMoreThan(150).seconds()),
                 Click.on(LoginPage.INP_TIPO_SOLICITUD));
 
-        Thread.sleep(2000);
-
         Serenity.getDriver().findElement(By.xpath("//span[contains(text(),'Pago de servicios')]")).click();
-
-        Thread.sleep(2000);
 
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.BTN_PENDIENTE_FIRMA, isVisible()).forNoMoreThan(150).seconds(),
                 Click.on(LoginPage.BTN_PENDIENTE_FIRMA));
-
-        Thread.sleep(2000);
 
         LoginStepDefinitions.pagosServiciosData.setcodigo("");
 

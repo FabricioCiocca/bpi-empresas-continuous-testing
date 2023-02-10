@@ -35,9 +35,7 @@ public class SinDataFirmaConjuntaStepDefinitions {
     @SneakyThrows
     @When("^intenta realizar un pago de estado pendiente (.*), (.*), (.*),(.*),(.*)$")
     public void intentaRealizarUnPagoDeEstadoPendienteTipoCuentaCuentaOrigenEmpresaServicioCodigoDeudor(String tipoCuenta, String cuenta, String empresa, String servicio, String dniPagador) {
-        Thread.sleep(2000);
         theActorInTheSpotlight().attemptsTo(new MenuBotonEntendido());
-        Thread.sleep(2000);
         theActorInTheSpotlight().attemptsTo(new MenuPagoServicios());
         String[] dniPagadorArray = dniPagador.split("-");
         for (int i = 0; i < dniPagadorArray.length; i++) {
@@ -78,14 +76,12 @@ public class SinDataFirmaConjuntaStepDefinitions {
 
     @And("^se autoriza el pago a Firma Conjunta - Sin data (.*)$")
     public void seAutorizaElPagoAFirmaConjuntaSinDataFirmante(String user) throws InterruptedException {
-        Thread.sleep(3000);
         theActorInTheSpotlight().attemptsTo(
                 new CerrarSesionPendiente());
         String ambiente = LoginStepDefinitions.pagosServiciosData.getAmbiente();
         Usuarios usuario = Do.getUsuarioPorNombre(user, ambiente);
         String docusuario = usuario.getDocUser();
         String password = usuario.getPassword();
-        Thread.sleep(3000);
         theActorInTheSpotlight().attemptsTo(
                 AutenticarBpi.withData(docusuario, password)
         );
@@ -105,7 +101,6 @@ public class SinDataFirmaConjuntaStepDefinitions {
     public void validamosElSaldoYMovimiento() {
         theActorInTheSpotlight().attemptsTo(
                 ValidarSaldoFC.withData(LoginStepDefinitions.pagosServiciosData.getMonto(), LoginStepDefinitions.pagosServiciosData.getCuentaOrigen(), LoginStepDefinitions.pagosServiciosData.getTipoDeCuenta()));
-        Thread.sleep(1000);
         theActorInTheSpotlight().attemptsTo(
                 ValidarMovimientosFC.withData(LoginStepDefinitions.pagosServiciosData.getMonto(), LoginStepDefinitions.pagosServiciosData.getEmpresa()));
     }

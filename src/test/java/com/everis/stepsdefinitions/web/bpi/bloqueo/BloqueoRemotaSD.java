@@ -31,8 +31,6 @@ public class BloqueoRemotaSD {
     @And("^se bloquea el pago a firma conjunta - Remota (.*)$")
     public void SeBloqueaElPagoAFirmaConjuntaRemota(String user) throws InterruptedException, FindFailed {
 
-        Thread.sleep(3000);
-
         theActorInTheSpotlight().attemptsTo(
                 new CerrarSesionPendiente());
 
@@ -43,8 +41,6 @@ public class BloqueoRemotaSD {
         String docusuario = usuario.getDocUser();
 
         String password = usuario.getPassword();
-
-        Thread.sleep(3000);
 
         theActorInTheSpotlight().attemptsTo(
                 AutenticarNuevoBpi.withData(docusuario, password));
@@ -68,8 +64,6 @@ public class BloqueoRemotaSD {
     @And("^bloquea el pago a fima conjunta - Remota")
     public void BloqueaElPagoAFirmaConjuntaRemota() throws InterruptedException, FindFailed {
 
-        Thread.sleep(3000);
-
         theActorInTheSpotlight().attemptsTo(
                 new MenuBloqueosEnviadasPorMiP());
 
@@ -77,8 +71,6 @@ public class BloqueoRemotaSD {
 
     @And("^se introduce la contraseña para bloquear el pago a Firma Conjunta - Remota (.*); (.*)$")
     public void seIntroduceLaContraseñaParaBloquearElPagoAFirmaConjuntaRemota(String user, String passwordErroneo)throws InterruptedException {
-
-        Thread.sleep(3000);
 
         theActorInTheSpotlight().attemptsTo(
                 new CerrarSesionPendiente());
@@ -90,8 +82,6 @@ public class BloqueoRemotaSD {
         String docusuario = usuario.getDocUser();
 
         String password = usuario.getPassword();
-
-        Thread.sleep(3000);
 
         theActorInTheSpotlight().attemptsTo(
                 AutenticarNuevoBpi.withData(docusuario, password));

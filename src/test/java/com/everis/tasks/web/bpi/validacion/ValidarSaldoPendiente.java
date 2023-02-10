@@ -39,8 +39,6 @@ public class ValidarSaldoPendiente implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        Thread.sleep(2000);
-
         System.out.println("el saldo inicial es: " + LoginStepDefinitions.pagosServiciosData.getSaldoInicial());
 
         String[] saldoInicial = LoginStepDefinitions.pagosServiciosData.getSaldoInicial().trim().split(" ");
@@ -54,15 +52,11 @@ public class ValidarSaldoPendiente implements Task {
 
         //MENU CONSULTAS------------------------------------------------------------------------------------------------
 
-        Thread.sleep(2000);
-
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.MENU_CONSULTAS, isVisible()).forNoMoreThan(150).seconds(),
                 Click.on(LoginPage.MENU_CONSULTAS));
 
         //SALDOS -------------------------------------------------------------------------------------------------------
-
-        Thread.sleep(6000);
 
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.MENU_SALDOS, isVisible()).forNoMoreThan(150).seconds(),
@@ -70,15 +64,11 @@ public class ValidarSaldoPendiente implements Task {
 
         //INGRESAR CUENTA
 
-        Thread.sleep(2500);
-
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.INP_BUSCAR_CUENTA, isVisible()).forNoMoreThan(150).seconds(),
                 Enter.theValue(cuentaOrigen).into(LoginPage.INP_BUSCAR_CUENTA));
 
         //BUSCAR CUENTA
-
-        Thread.sleep(2000);
 
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.BTN_BUSCAR_CUENTA, isVisible()).forNoMoreThan(150).seconds(),
@@ -121,8 +111,6 @@ public class ValidarSaldoPendiente implements Task {
 
         //NUMERO DE CUENTA - TABLA
 
-        Thread.sleep(2000);
-
         theActorInTheSpotlight().should(seeThat(
                 SaldoDisponibleQuestions.saldoNumeroCuenta(), containsString(cuentaOrigen)));
 
@@ -142,8 +130,6 @@ public class ValidarSaldoPendiente implements Task {
         }
 
         //DETALLE DE LA FILA SALDOS ------------------------------------------------------------------------------------
-
-        Thread.sleep(2000);
 
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.INFO_CUENTA_FILA, isVisible()).forNoMoreThan(150).seconds(),

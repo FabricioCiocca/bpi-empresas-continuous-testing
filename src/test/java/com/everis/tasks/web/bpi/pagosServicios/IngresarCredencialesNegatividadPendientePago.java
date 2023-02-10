@@ -36,8 +36,6 @@ public class IngresarCredencialesNegatividadPendientePago implements Task {
                 WaitUntil.the(LoginPage.BTN_CONINUE, isVisible()).forNoMoreThan(150).seconds(),
                 Click.on(LoginPage.BTN_CONINUE));
 
-        Thread.sleep(2000);
-
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.INP_CONTRASENA, isVisible()).forNoMoreThan(150).seconds(),
                 Enter.theValue(contrasena).into(LoginPage.INP_CONTRASENA));

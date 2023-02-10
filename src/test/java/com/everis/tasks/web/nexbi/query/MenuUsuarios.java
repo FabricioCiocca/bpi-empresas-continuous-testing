@@ -30,8 +30,6 @@ public class MenuUsuarios implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        Thread.sleep(6000);
-
         actor.attemptsTo(
                 WaitUntil.the(QueryPage.MENU_USUARIOS, isVisible()).forNoMoreThan(30).seconds(),
                 Click.on(QueryPage.MENU_USUARIOS),
@@ -79,7 +77,6 @@ public class MenuUsuarios implements Task {
                     System.out.println("------------------------------------------------");
                 }
 
-                Thread.sleep(1500);
                 boolean isEnabled = Serenity.sessionVariableCalled("checkBox");
 
                 if (!isEnabled) {
@@ -109,7 +106,6 @@ public class MenuUsuarios implements Task {
         }else {
             System.out.println("El tipo de acceso :  Migrado");
         }
-        Thread.sleep(10000);
         actor.attemptsTo(
                 WaitUntil.the(QueryPage.SELECT_ICON_ISV, isVisible()).forNoMoreThan(20).seconds(),
                 Click.on(QueryPage.SELECT_ICON_ISV));

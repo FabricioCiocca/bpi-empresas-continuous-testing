@@ -73,14 +73,11 @@ public class NexbiStepDef {
             condicion = false;
             for (int i = 0; i < cantScroll; i++) {
                 if (i > 0) {
-                    Thread.sleep(2000);
                     theActorInTheSpotlight().attemptsTo(Scroll.to(QueryPage.TABLE_PUNTOSERVICIO_RECORRIDO.of(String.valueOf(listaPuntoServicio.size()-3)).called(String.valueOf(listaPuntoServicio.size()-3))));
                 }
-                Thread.sleep(2000);
                 listaPuntoServicio = NexbiQuestions.listaPuntoServicio().answeredBy(theActorInTheSpotlight());
             }
 
-            Thread.sleep(2000);
             numeroPuntoServicio = TextContent.of(QueryPage.PUNTO_SERVICIO.of(String.valueOf(1)).called(String.valueOf(1))).answeredBy(theActorInTheSpotlight());
 
             for (int i = 0; i < numeroPuntoServicioArrays.size() ; i++) {
@@ -90,10 +87,8 @@ public class NexbiStepDef {
                             theActorInTheSpotlight().attemptsTo(ConsultaPorCodigo.withData(codigoUnico));
                             for (int h = 0; h < cantScroll; h++) {
                                 if (h > 0) {
-                                    Thread.sleep(2000);
                                     theActorInTheSpotlight().attemptsTo(Scroll.to(QueryPage.TABLE_PUNTOSERVICIO_RECORRIDO.of(String.valueOf(listaPuntoServicio.size()-3)).called(String.valueOf(listaPuntoServicio.size()-3))));
                                 }
-                                Thread.sleep(2000);
                                 listaPuntoServicio = NexbiQuestions.listaPuntoServicio().answeredBy(theActorInTheSpotlight());
                             }
                         }
@@ -193,14 +188,11 @@ public class NexbiStepDef {
             condicion = false;
             for (int i = 0; i < cantScroll; i++) {
                 if (i > 0) {
-                    Thread.sleep(2000);
                     theActorInTheSpotlight().attemptsTo(Scroll.to(QueryPage.TABLE_PUNTOSERVICIO_RECORRIDO.of(String.valueOf(listaPuntoServicio.size()-3)).called(String.valueOf(listaPuntoServicio.size()-3))));
                 }
-                Thread.sleep(2000);
                 listaPuntoServicio = NexbiQuestions.listaPuntoServicio().answeredBy(theActorInTheSpotlight());
             }
 
-            Thread.sleep(2000);
             numeroPuntoServicio = TextContent.of(QueryPage.PUNTO_SERVICIO.of(String.valueOf(1)).called(String.valueOf(1))).answeredBy(theActorInTheSpotlight());
 
             for (int i = 0; i < numeroPuntoServicioArrays.size() ; i++) {
@@ -210,10 +202,8 @@ public class NexbiStepDef {
                             theActorInTheSpotlight().attemptsTo(ConsultaPorCodigo.withData(codigoUnico));
                             for (int h = 0; h < cantScroll; h++) {
                                 if (h > 0) {
-                                    Thread.sleep(2000);
                                     theActorInTheSpotlight().attemptsTo(Scroll.to(QueryPage.TABLE_PUNTOSERVICIO_RECORRIDO.of(String.valueOf(listaPuntoServicio.size()-3)).called(String.valueOf(listaPuntoServicio.size()-3))));
                                 }
-                                Thread.sleep(2000);
                                 listaPuntoServicio = NexbiQuestions.listaPuntoServicio().answeredBy(theActorInTheSpotlight());
                             }
                         }

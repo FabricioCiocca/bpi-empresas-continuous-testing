@@ -32,7 +32,6 @@ public class DetalleEstadoPagoSinDataFC implements Task {
     @SneakyThrows
     @Override
     public <T extends Actor> void performAs(T actor) {
-        Thread.sleep(2000);
         Target DETALLE_NUMERO_SOLICITUD_PROCESS = Target.the("Numero de Solicitud").located(By.xpath("//ibk-card-description[@data-test='lblRequestNumberValue']"));
         LoginStepDefinitions.pagosServiciosData.setNroSolicitudProcess(String.valueOf(DETALLE_NUMERO_SOLICITUD_PROCESS.resolveFor(actor).getText()));
         Target FECHA_HORA_PROCESS = Target.the("Fecha y hora de envío").located(By.xpath("//ibk-card-description[@data-test='lblDateSendValue']"));
@@ -42,16 +41,12 @@ public class DetalleEstadoPagoSinDataFC implements Task {
         LoginStepDefinitions.pagosServiciosData.setNombreusuario(dniUsuario);
         LoginStepDefinitions.pagosServiciosData.setDatosCargoDetalle(tipoCuenta + " " + cuentaOrigen);
         String[] fechaHoraAux = LoginStepDefinitions.pagosServiciosData.getFechaHora().split("-"); //DIVIDIMOS HORA
-        Thread.sleep(2000);
         actor.attemptsTo(WaitUntil.the(LoginPage.REVISA_DETALLE_ESTADO, isVisible()).forNoMoreThan(4).seconds(), Click.on(LoginPage.REVISA_DETALLE_ESTADO));
         Target DETALLE_ESTADO_SOLICITUD = Target.the("Estado de Servicio - Detalle").located(By.xpath("(//div[@data-test='txtEstado'])"));
         LoginStepDefinitions.pagosServiciosData.setEstadoSolicitudDetalle(String.valueOf(DETALLE_ESTADO_SOLICITUD.resolveFor(actor).getText()));
-        Thread.sleep(2000);
         if (LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle().equals("En proceso")) {
             theActorInTheSpotlight().attemptsTo(WaitUntil.the(LoginPage.REGRESAR_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.REGRESAR_DETALLE_ESTADO));
-            Thread.sleep(2000);
             theActorInTheSpotlight().attemptsTo(WaitUntil.the(LoginPage.REVISA_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.REVISA_DETALLE_ESTADO));
-            Thread.sleep(2000);
             Target DETALLE_ESTADO_SOLICITUD2 = Target.the("Estado de Servicio - Detalle").located(By.xpath("(//div[@data-test='txtEstado'])"));
             LoginStepDefinitions.pagosServiciosData.setEstadoSolicitudDetalle(String.valueOf(DETALLE_ESTADO_SOLICITUD2.resolveFor(actor).getText()));
             System.out.println("confirmacion - Estado 2: " + LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle());

@@ -41,7 +41,6 @@ public class ValidarSaldoFC implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        Thread.sleep(2000);
         String[] saldoInicial = LoginStepDefinitions.pagosServiciosData.getSaldoInicial().trim().split(" ");
         double mil = 0;
         if (Double.parseDouble(LoginStepDefinitions.pagosServiciosData.getmontoTipoCambio()) > 0) {
@@ -62,13 +61,9 @@ public class ValidarSaldoFC implements Task {
         } else {
             LoginStepDefinitions.pagosServiciosData.setsaldoFinal(saldoInicial[0] + " " + LoginStepDefinitions.pagosServiciosData.getsaldoFinal());
         }
-        Thread.sleep(2000);
         actor.attemptsTo(WaitUntil.the(LoginPage.MENU_CONSULTAS, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.MENU_CONSULTAS));
-        Thread.sleep(2500);
         actor.attemptsTo(WaitUntil.the(LoginPage.MENU_SALDOS, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.MENU_SALDOS));
-        Thread.sleep(2500);
         actor.attemptsTo(WaitUntil.the(LoginPage.INP_BUSCAR_CUENTA, isVisible()).forNoMoreThan(150).seconds(), Enter.theValue(cuentaOrigen).into(LoginPage.INP_BUSCAR_CUENTA));
-        Thread.sleep(2000);
         actor.attemptsTo(WaitUntil.the(LoginPage.BTN_BUSCAR_CUENTA, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.BTN_BUSCAR_CUENTA));
         theActorInTheSpotlight().should(seeThat(SaldoDisponibleQuestions.saldoEmpresaTotal(), equalTo(LoginStepDefinitions.pagosServiciosData.getsaldoFinal())));
         String[] tipoCuentaAux = tipoCuenta.split("\\s+");
@@ -83,7 +78,6 @@ public class ValidarSaldoFC implements Task {
             theActorInTheSpotlight().should(seeThat(SaldoDisponibleQuestions.saldoTipoMoneda(), equalTo("$")));
         }
 
-        Thread.sleep(2000);
         theActorInTheSpotlight().should(seeThat(SaldoDisponibleQuestions.saldoNumeroCuenta(), containsString(cuentaOrigen)));
         theActorInTheSpotlight().should(seeThat(SaldoDisponibleQuestions.saldoDisponibleLinea(), equalTo(LoginStepDefinitions.pagosServiciosData.getsaldoFinal())));
 
@@ -92,7 +86,6 @@ public class ValidarSaldoFC implements Task {
         } else {
             theActorInTheSpotlight().should(seeThat(SaldoDisponibleQuestions.saldoTotalDolaresFinal(), equalTo(LoginStepDefinitions.pagosServiciosData.getsaldoFinal())));
         }
-        Thread.sleep(2000);
         actor.attemptsTo(WaitUntil.the(LoginPage.INFO_CUENTA_FILA, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.INFO_CUENTA_FILA));
         if (tipoCuentaAux[0].equals("Corriente")) {
             theActorInTheSpotlight().should(seeThat(SaldoDisponibleQuestions.saldoTipoDeCuenta(), equalTo("Cuenta " + LoginStepDefinitions.pagosServiciosData.getTipoDeCuenta())));

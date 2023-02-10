@@ -26,12 +26,8 @@ public class ValidacionesSD {
         theActorInTheSpotlight().attemptsTo(
                 ValidarNuevoSaldoPendiente.withData(LoginStepDefinitions.pagosServiciosData.getMonto(), LoginStepDefinitions.pagosServiciosData.getCuentaOrigen(), LoginStepDefinitions.pagosServiciosData.getTipoDeCuenta()));
 
-        Thread.sleep(1000);
-
         theActorInTheSpotlight().attemptsTo(
                 ValidarMovimientoPendiente.withData(LoginStepDefinitions.pagosServiciosData.getMonto(), LoginStepDefinitions.pagosServiciosData.getEmpresa()));
-
-        Thread.sleep(3000);
 
     }
 

@@ -30,8 +30,6 @@ public class AutorizacionPendienteSD {
     @And("^se autoriza el pago a Firma Conjunta - Pendiente (.*)$")
     public void SeAutorizaElPagoAFirmaConjuntaPendiente(String user) throws InterruptedException, FindFailed {
 
-        Thread.sleep(3000);
-
         theActorInTheSpotlight().attemptsTo(
                 new CerrarSesionPendiente());
 
@@ -42,8 +40,6 @@ public class AutorizacionPendienteSD {
         String docusuario = usuario.getDocUser();
 
         String password = usuario.getPassword();
-
-        Thread.sleep(3000);
 
         theActorInTheSpotlight().attemptsTo(
                 AutenticarNuevoBpi.withData(docusuario, password));
@@ -71,8 +67,6 @@ public class AutorizacionPendienteSD {
     @And("^se introduce la contraseña para autorizar el pago a Firma Conjunta - Pendiente (.*); (.*)$")
     public void seIntroduceLaContraseñaParaAutorizarElPagoAFirmaConjuntaPendiente(String user, String passwordErroneo)throws InterruptedException {
 
-        Thread.sleep(3000);
-
         theActorInTheSpotlight().attemptsTo(
                 new CerrarSesionPendiente());
 
@@ -83,8 +77,6 @@ public class AutorizacionPendienteSD {
         String docusuario = usuario.getDocUser();
 
         String password = usuario.getPassword();
-
-        Thread.sleep(3000);
 
         theActorInTheSpotlight().attemptsTo(
                 AutenticarNuevoBpi.withData(docusuario, password));

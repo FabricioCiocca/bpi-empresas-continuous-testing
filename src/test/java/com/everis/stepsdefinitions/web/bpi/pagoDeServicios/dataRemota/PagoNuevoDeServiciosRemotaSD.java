@@ -22,8 +22,6 @@ public class PagoNuevoDeServiciosRemotaSD {
     @And("^intenta realizar un nuevo pago de tipo Pagos - De servicios - A sola firma - Remota (.*), (.*), (.*), (.*)")
     public void realizaNuevoPagoServicioRemotaASolaFirma(String tipoCuenta, String cuenta, String empresa, String servicio) throws InterruptedException {
 
-        Thread.sleep(2000);
-
         theActorInTheSpotlight().attemptsTo(
                 SeleccionCtaEmpresaServicioPendiente.withData(cuenta, empresa, servicio));
 
@@ -31,8 +29,6 @@ public class PagoNuevoDeServiciosRemotaSD {
 
     @And("^intenta realizar un nuevo pago de servicios con la misma cuenta al mismo servicio - A sola firma - Remota")
     public void realizaNuevoPagoServiciosMismaCuentaMismoServicioRemotaASolaFirma() throws InterruptedException {
-
-        Thread.sleep(2000);
 
         theActorInTheSpotlight().attemptsTo(
                 SeleccionCtaEmpresaServicioPendiente.withData(LoginStepDefinitions.pagosServiciosData.getCuentaOrigen(), LoginStepDefinitions.pagosServiciosData.getEmpresa(), LoginStepDefinitions.pagosServiciosData.getServicio()));
@@ -42,8 +38,6 @@ public class PagoNuevoDeServiciosRemotaSD {
     @And("^intenta realizar un nuevo pago de servicios con diferente cuenta a diferente empresa - A sola firma - Remota (.*), (.*), (.*), (.*)")
     public void realizaNuevoPagoServiciosDiferenteCuentaDiferenteEmpresaRemotaASolaFirma(String tipoCuenta, String cuenta, String empresa, String servicio) throws InterruptedException {
 
-        Thread.sleep(2000);
-
         theActorInTheSpotlight().attemptsTo(
                 SeleccionCtaEmpresaServicioPendiente.withData(cuenta, empresa, servicio));
 
@@ -51,8 +45,6 @@ public class PagoNuevoDeServiciosRemotaSD {
 
     @And("^intenta realizar un nuevo pago de servicios con diferente cuenta a diferente servicio - A sola firma - Remota (.*), (.*), (.*)")
     public void realizaNuevoPagoServiciosDiferenteCuentaDiferenteServicioRemotaASolaFirma(String tipoCuenta, String cuenta, String servicio) throws InterruptedException {
-
-        Thread.sleep(2000);
 
         theActorInTheSpotlight().attemptsTo(
                 SeleccionCtaEmpresaServicioPendiente.withData(cuenta, LoginStepDefinitions.pagosServiciosData.getEmpresa(), servicio));
@@ -62,8 +54,6 @@ public class PagoNuevoDeServiciosRemotaSD {
     @And("^intenta realizar un nuevo pago de servicios con la misma cuenta a diferente servicio - A sola firma - Remota (.*)")
     public void realizaNuevoPagoServiciosMismaCuentaDiferenteServicioRemotaASolaFirma(String servicio) throws InterruptedException {
 
-        Thread.sleep(2000);
-
         theActorInTheSpotlight().attemptsTo(
                 SeleccionCtaEmpresaServicioPendiente.withData(LoginStepDefinitions.pagosServiciosData.getCuentaOrigen(), LoginStepDefinitions.pagosServiciosData.getEmpresa(), servicio));
 
@@ -71,8 +61,6 @@ public class PagoNuevoDeServiciosRemotaSD {
 
     @And("^intenta realizar un nuevo pago de servicios con diferente cuenta al mismo servicio - A sola firma - Remota (.*), (.*)")
     public void realizaNuevoPagoServiciosDiferenteCuentaMismoServicioRemotaASolaFirma(String tipoCuenta, String cuenta) throws InterruptedException {
-
-        Thread.sleep(2000);
 
         theActorInTheSpotlight().attemptsTo(
                 SeleccionCtaEmpresaServicioPendiente.withData(cuenta, LoginStepDefinitions.pagosServiciosData.getEmpresa(), LoginStepDefinitions.pagosServiciosData.getServicio()));

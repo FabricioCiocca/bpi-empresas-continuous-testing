@@ -36,41 +36,27 @@ public class SeleccionCtaEmpresaServicioPendiente implements Task {
     @Step("{0} {0} Ingresamos datos de Empresa")
     public <T extends Actor> void performAs(T actor) {
 
-        Thread.sleep(3000);
-
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.BTN_NUEVO_PAGO, isClickable()).forNoMoreThan(150).seconds(),
                 Click.on(LoginPage.BTN_NUEVO_PAGO));
-
-        Thread.sleep(2000);
 
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.INP_CHOOSE_ACCOUNT, isClickable()).forNoMoreThan(150).seconds(),
                 Click.on(LoginPage.INP_CHOOSE_ACCOUNT));
 
-        Thread.sleep(1000);
-
         Serenity.getDriver().findElement(By.xpath("//div[contains(text(),'" + cuenta + "')]")).click();
-
-        Thread.sleep(3000);
 
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.INP_TYPE_COMPANY, isVisible()).forNoMoreThan(150).seconds(),
                 Enter.theValue(empresa).into(LoginPage.INP_TYPE_COMPANY));
 
-        Thread.sleep(3000);
-
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.INP_CHOOSE_COMPANY, isVisible()).forNoMoreThan(150).seconds(),
                 Click.on(LoginPage.INP_CHOOSE_COMPANY));
 
-        Thread.sleep(1500);
-
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.CMB_CHOOSE_SERVICE, isVisible()).forNoMoreThan(150).seconds(),
                 Click.on(LoginPage.CMB_CHOOSE_SERVICE));
-
-        Thread.sleep(2000);
 
         Serenity.getDriver().findElement(By.xpath("//span[contains(text(),'" + servicio + "') and @class='mat-option-text']")).click();
 

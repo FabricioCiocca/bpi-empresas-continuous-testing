@@ -23,29 +23,19 @@ public class MenuBloqueosEnviadasPorMiP implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        Thread.sleep(3000);
-
         actor.attemptsTo(
                 (WaitUntil.the(LoginPage.MENU_AUTORIZACIONES, isVisible()).forNoMoreThan(150).seconds()),
                 Click.on(LoginPage.MENU_AUTORIZACIONES));
-
-        Thread.sleep(2000);
 
         actor.attemptsTo(
                 (WaitUntil.the(LoginPage.INP_TIPO_SOLICITUD, isVisible()).forNoMoreThan(150).seconds()),
                 Click.on(LoginPage.INP_TIPO_SOLICITUD));
 
-        Thread.sleep(2000);
-
         Serenity.getDriver().findElement(By.xpath("//span[contains(text(),'Pago de servicios')]")).click();
-
-        Thread.sleep(2000);
 
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.BTN_ENVIADAS, isVisible()).forNoMoreThan(150).seconds(),
                 Click.on(LoginPage.BTN_ENVIADAS));
-
-        Thread.sleep(2000);
 
         LoginStepDefinitions.pagosServiciosData.setcodigo("");
 
@@ -65,29 +55,20 @@ public class MenuBloqueosEnviadasPorMiP implements Task {
 
         System.out.println("conto : " + cont );
 
-        Thread.sleep(2000);
-
         Serenity.getDriver().findElement(By.xpath("(//*[@data-test='ckhSelectRequest'])[" + cont + "]")).click();
-
-        Thread.sleep(2000);
 
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.BTN_BLOQUEAR_P, isVisible()).forNoMoreThan(150).seconds(),
                 Click.on(LoginPage.BTN_BLOQUEAR_P));
 
-        Thread.sleep(2000);
-
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.INP_CONTRASENA, isVisible()).forNoMoreThan(150).seconds(),
                 Enter.theValue(LoginStepDefinitions.pagosServiciosData.getPassword()).into(LoginPage.INP_CONTRASENA));
-
-        Thread.sleep(2000);
 
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.INP_TOKEN, isVisible()).forNoMoreThan(150).seconds(),
                 Enter.theValue("111111").into(LoginPage.INP_TOKEN));
 
-        Thread.sleep(2000);
 
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.BTN_FINALIZAR_PENDIENTE, isVisible()).forNoMoreThan(150).seconds(),

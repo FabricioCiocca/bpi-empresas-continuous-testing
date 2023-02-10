@@ -25,7 +25,6 @@ public class PagoDeServiciosPendienteSDAntiguo {
     @When("^intenta realizar un pago (.*) de tipo Pagos - De servicios (.*), (.*), (.*), (.*), (.*)")
     public void realizaPagoServicioPendiente(String tipoPago, String tipoCuenta, String cuenta, String empresa, String servicio, String dniPagador) throws InterruptedException {
        // theActorInTheSpotlight().attemptsTo(new MenuBotonEntendido());
-        Thread.sleep(1000);
         theActorInTheSpotlight().attemptsTo(
                 new MenuPagoServicios());
 

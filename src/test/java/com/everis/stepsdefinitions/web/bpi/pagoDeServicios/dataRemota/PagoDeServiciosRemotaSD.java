@@ -29,8 +29,6 @@ public class PagoDeServiciosRemotaSD {
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
 
-        Thread.sleep(1000);
-
         theActorInTheSpotlight().attemptsTo(
                 new MenuPagoServicios());
 
@@ -70,8 +68,6 @@ public class PagoDeServiciosRemotaSD {
 
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
-
-        Thread.sleep(1000);
 
         theActorInTheSpotlight().attemptsTo(
                 new MenuPagoServicios());
@@ -115,8 +111,6 @@ public class PagoDeServiciosRemotaSD {
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
 
-        Thread.sleep(1000);
-
         theActorInTheSpotlight().attemptsTo(
                 new MenuPagoServicios());
 
@@ -159,8 +153,6 @@ public class PagoDeServiciosRemotaSD {
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
 
-        Thread.sleep(1000);
-
         theActorInTheSpotlight().attemptsTo(
                 new MenuPagoServicios());
 
@@ -179,8 +171,6 @@ public class PagoDeServiciosRemotaSD {
 
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
-
-        Thread.sleep(1000);
 
         theActorInTheSpotlight().attemptsTo(
                 new MenuPagoServicios());
@@ -224,8 +214,6 @@ public class PagoDeServiciosRemotaSD {
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
 
-        Thread.sleep(1000);
-
         theActorInTheSpotlight().attemptsTo(
                 new MenuPagoServicios());
 
@@ -265,8 +253,6 @@ public class PagoDeServiciosRemotaSD {
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
 
-        Thread.sleep(1000);
-
         theActorInTheSpotlight().attemptsTo(
                 new MenuPagoServicios());
 
@@ -305,8 +291,6 @@ public class PagoDeServiciosRemotaSD {
 
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
-
-        Thread.sleep(1000);
 
         theActorInTheSpotlight().attemptsTo(
                 new MenuPagoServicios());
@@ -351,8 +335,6 @@ public class PagoDeServiciosRemotaSD {
 
         theActorInTheSpotlight().attemptsTo(
                 new MenuBotonEntendido());
-
-        Thread.sleep(1000);
 
         theActorInTheSpotlight().attemptsTo(
                 new MenuPagoServicios());

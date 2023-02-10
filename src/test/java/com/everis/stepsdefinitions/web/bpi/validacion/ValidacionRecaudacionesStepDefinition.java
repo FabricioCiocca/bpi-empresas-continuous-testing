@@ -28,13 +28,11 @@ public class ValidacionRecaudacionesStepDefinition {
 
     @And("^valido recaudaciones (.*), (.*)$")
     public void validarRecaudaciones(String Service, String buscarcod) throws InterruptedException {
-        Thread.sleep(3000);
         theActorInTheSpotlight().attemptsTo(new CerrarSesionPendiente());
         String ambiente = LoginStepDefinitions.pagosServiciosData.getAmbiente();
         Empresa company = Do.getEmpresaPorAmbiente(LoginStepDefinitions.pagosServiciosData.getEmpresa(), ambiente);
         String docempresa = company.getDocEmpresa();
         String passwordEmpresa = company.getPasswordEmpresa();
-        Thread.sleep(3000);
         theActorInTheSpotlight().attemptsTo(AutenticarBpi.withData(docempresa, passwordEmpresa));
       //  theActorInTheSpotlight().attemptsTo(new MenuBotonEntendido());
         theActorInTheSpotlight().attemptsTo(ValidarRecaudaciones.withData(Service, buscarcod));

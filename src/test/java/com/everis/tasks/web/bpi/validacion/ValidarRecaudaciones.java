@@ -33,21 +33,15 @@ public class ValidarRecaudaciones implements Task {
     @SneakyThrows
     @Override
     public <T extends Actor> void performAs(T actor) {
-        Thread.sleep(20000);
         actor.attemptsTo(WaitUntil.the(LoginPage.MENU_CONSULTAS, isVisible()).forNoMoreThan(50).seconds(),
                 Click.on(LoginPage.MENU_CONSULTAS));
-        Thread.sleep(5000);
         actor.attemptsTo(WaitUntil.the(LoginPage.RECAUDACIONES, isVisible()).forNoMoreThan(50).seconds(),
                 Click.on(LoginPage.RECAUDACIONES));
-        Thread.sleep(5000);
         actor.attemptsTo(WaitUntil.the(LoginPage.CHOOSE_SERVICE, isVisible()).forNoMoreThan(50).seconds(),
                 Click.on(LoginPage.CHOOSE_SERVICE));
-        Thread.sleep(5000);
         Serenity.getDriver().findElement(By.xpath("//mat-option[@role='option']//span[text()='" + service + "']")).click();
-        Thread.sleep(5000);
         actor.attemptsTo(WaitUntil.the(LoginPage.CHOOSE_COD_DEUDOR, isVisible()).forNoMoreThan(50).seconds(),
                 Click.on(LoginPage.CHOOSE_COD_DEUDOR));
-        Thread.sleep(5000);
         Serenity.getDriver().findElement(By.xpath("//mat-option[@role='option']//span[text()='" + buscarcod + "']")).click();
         if (buscarcod.equalsIgnoreCase("Código de deudor")) {
             actor.attemptsTo(WaitUntil.the(LoginPage.INP_BUSCAR_COD_DEUDOR, isVisible()).forNoMoreThan(50).seconds(),
@@ -57,10 +51,8 @@ public class ValidarRecaudaciones implements Task {
 
         }else{
             actor.attemptsTo(WaitUntil.the(LoginPage.BTN_SEARCH, isVisible()).forNoMoreThan(50).seconds(), Click.on(LoginPage.BTN_SEARCH));
-            Thread.sleep(5000);
             JavascriptExecutor js = (JavascriptExecutor) Serenity.getDriver();
             js.executeScript("arguments[0].scrollIntoView();", Serenity.getDriver().findElement(By.xpath("//div[@data-test='lnkSeePay']//span[text()='Ver pagos']")));
-            Thread.sleep(5000);
             actor.attemptsTo(WaitUntil.the(LoginPage.VER_PAGO, isVisible()).forNoMoreThan(50).seconds(), Click.on(LoginPage.VER_PAGO));
 
         }
@@ -86,7 +78,6 @@ public class ValidarRecaudaciones implements Task {
         LoginStepDefinitions.pagosServiciosData.setNumeroOperacion(String.valueOf(Numero_Operación.resolveFor(actor).getText()));
 //        Target DETAIL = Target.the("Detalle de Recaudación").located(By.xpath("(//*[@ng-reflect-key='detail']//ibk-icon)["+cont+"]"));
 //        LoginStepDefinitions.pagosServiciosData.setDetallerecaudacion(String.valueOf(DETAIL.resolveFor(actor).getText()));
-        Thread.sleep(2000);
         Serenity.getDriver().findElement(By.xpath("(//*[@ng-reflect-key='detail']//ibk-icon)[" + cont + "]")).click();
 
         //       Click.on(LoginStepDefinitions.pagosServiciosData.getDetallerecaudacion());

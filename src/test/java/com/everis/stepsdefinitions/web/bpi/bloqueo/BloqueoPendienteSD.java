@@ -31,8 +31,6 @@ public class BloqueoPendienteSD {
     @And("^se bloquea el pago a firma conjunta - Pendiente (.*)$")
     public void SeBloqueaElPagoAFirmaConjuntaPendiente(String user) throws InterruptedException, FindFailed {
 
-        Thread.sleep(3000);
-
         theActorInTheSpotlight().attemptsTo(
                 new CerrarSesionPendiente());
 
@@ -43,8 +41,6 @@ public class BloqueoPendienteSD {
         String docusuario = usuario.getDocUser();
 
         String password = usuario.getPassword();
-
-        Thread.sleep(3000);
 
         theActorInTheSpotlight().attemptsTo(
                 AutenticarNuevoBpi.withData(docusuario, password));
@@ -68,8 +64,6 @@ public class BloqueoPendienteSD {
     @And("^bloquea el pago a fima conjunta - Pendiente")
     public void BloqueaElPagoAFirmaConjuntaPendiente() throws InterruptedException, FindFailed {
 
-        Thread.sleep(3000);
-
         theActorInTheSpotlight().attemptsTo(
                 new MenuBloqueosEnviadasPorMiP());
 
@@ -77,8 +71,6 @@ public class BloqueoPendienteSD {
 
     @And("^se introduce la contraseña para bloquear el pago a Firma Conjunta - Pendiente (.*); (.*)$")
     public void seIntroduceLaContraseñaParaBloquearElPagoAFirmaConjuntaPendiente(String user, String passwordErroneo)throws InterruptedException {
-
-        Thread.sleep(3000);
 
         theActorInTheSpotlight().attemptsTo(
                 new CerrarSesionPendiente());
@@ -90,8 +82,6 @@ public class BloqueoPendienteSD {
         String docusuario = usuario.getDocUser();
 
         String password = usuario.getPassword();
-
-        Thread.sleep(3000);
 
         theActorInTheSpotlight().attemptsTo(
                 AutenticarNuevoBpi.withData(docusuario, password));

@@ -23,29 +23,19 @@ public class MenuAutorizacionesPendienteFirmaP implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        Thread.sleep(4000);
-
         actor.attemptsTo(
                 (WaitUntil.the(LoginPage.MENU_AUTORIZACIONES, isVisible()).forNoMoreThan(150).seconds()),
                 Click.on(LoginPage.MENU_AUTORIZACIONES));
-
-        Thread.sleep(5000);
 
         actor.attemptsTo(
                 (WaitUntil.the(LoginPage.INP_TIPO_SOLICITUD, isVisible()).forNoMoreThan(150).seconds()),
                 Click.on(LoginPage.INP_TIPO_SOLICITUD));
 
-        Thread.sleep(3000);
-
         Serenity.getDriver().findElement(By.xpath("//span[contains(text(),'Pago de servicios')]")).click();
-
-        Thread.sleep(2000);
 
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.BTN_PENDIENTE_FIRMA, isVisible()).forNoMoreThan(150).seconds(),
                 Click.on(LoginPage.BTN_PENDIENTE_FIRMA));
-
-        Thread.sleep(2000);
 
         LoginStepDefinitions.pagosServiciosData.setcodigo("");
 
@@ -66,37 +56,26 @@ public class MenuAutorizacionesPendienteFirmaP implements Task {
 
         System.out.println("conto : " + cont );
 
-        Thread.sleep(2000);
-
         Serenity.getDriver().findElement(By.xpath("(//*[@data-test='ckhSelectRequest'])[" + cont + "]")).click();
-
-        Thread.sleep(2000);
 
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.BTN_AUTORIZAR_P, isVisible()).forNoMoreThan(150).seconds(),
                 Click.on(LoginPage.BTN_AUTORIZAR_P));
 
-        Thread.sleep(2000);
-
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.INP_CONTRASENA, isVisible()).forNoMoreThan(150).seconds(),
                 Enter.theValue(LoginStepDefinitions.pagosServiciosData.getPassword()).into(LoginPage.INP_CONTRASENA));
-
-        Thread.sleep(2000);
 
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.INP_TOKEN, isVisible()).forNoMoreThan(150).seconds(),
                 Enter.theValue("111111").into(LoginPage.INP_TOKEN));
 
-        Thread.sleep(2000);
 
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.BTN_FINALIZAR_PENDIENTE, isVisible()).forNoMoreThan(150).seconds(),
                 Click.on(LoginPage.BTN_FINALIZAR_PENDIENTE));
 
         if(LoginStepDefinitions.pagosServiciosData.getcredencialIncorrecto().equals("NO")) {
-
-            Thread.sleep(2000);
 
             Target FECHA_HORA_PROCESS = Target.the("Fecha y hora de envío").located(By.xpath("//*[@data-test='lblDateValue']"));
             LoginStepDefinitions.pagosServiciosData.setFechaHora(String.valueOf(FECHA_HORA_PROCESS.resolveFor(actor).getText()));

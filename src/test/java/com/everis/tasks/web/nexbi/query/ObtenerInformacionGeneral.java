@@ -35,7 +35,6 @@ public class ObtenerInformacionGeneral implements Task {
     @SneakyThrows
     @Override
     public <T extends Actor> void performAs(T actor) {
-        Thread.sleep(3500);
         actor.attemptsTo(
                 Click.on(QueryPage.TABLE_PUNTOSERVICIO_RECORRIDO.of(String.valueOf(i)).called(String.valueOf(i))));
 

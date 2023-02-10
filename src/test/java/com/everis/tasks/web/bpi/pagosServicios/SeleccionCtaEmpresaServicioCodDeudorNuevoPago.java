@@ -20,17 +20,11 @@ public class SeleccionCtaEmpresaServicioCodDeudorNuevoPago implements Task {
     @SneakyThrows
     @Override
     public <T extends Actor> void performAs(T actor) {
-        Thread.sleep(3000);
         actor.attemptsTo(WaitUntil.the(LoginPage.INP_CHOOSE_ACCOUNT, isClickable()).forNoMoreThan(150).seconds(), Click.on(LoginPage.INP_CHOOSE_ACCOUNT));
-        Thread.sleep(1000);
         Serenity.getDriver().findElement(By.xpath("//div[contains(text(),'" + LoginStepDefinitions.pagosServiciosData.getCuentaOrigen2SinData() + "')]")).click();
-        Thread.sleep(3000);
         actor.attemptsTo(WaitUntil.the(LoginPage.INP_TYPE_COMPANY, isVisible()).forNoMoreThan(150).seconds(), Enter.theValue(LoginStepDefinitions.pagosServiciosData.getEmpresa()).into(LoginPage.INP_TYPE_COMPANY));
-        Thread.sleep(1500);
         actor.attemptsTo(WaitUntil.the(LoginPage.INP_CHOOSE_COMPANY, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.INP_CHOOSE_COMPANY));
-        Thread.sleep(1500);
         actor.attemptsTo(WaitUntil.the(LoginPage.CMB_CHOOSE_SERVICE, isVisible()).forNoMoreThan(150).seconds(), Click.on(LoginPage.CMB_CHOOSE_SERVICE));
-        Thread.sleep(2000);
         Serenity.getDriver().findElement(By.xpath("//span[contains(text(),'" + LoginStepDefinitions.pagosServiciosData.getServicio() + "') and @class='mat-option-text']")).click();
         actor.attemptsTo(WaitUntil.the(LoginPage.INP_CODDEUDOR, isVisible()).forNoMoreThan(150).seconds(), Enter.theValue(LoginStepDefinitions.pagosServiciosData.getDniPagador()).into(LoginPage.INP_CODDEUDOR));
     }

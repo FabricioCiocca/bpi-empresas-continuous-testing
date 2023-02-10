@@ -37,7 +37,6 @@ public class ObtenerDetalleUsuario2Nuevo implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        Thread.sleep(5000);
         actor.attemptsTo(
                 WaitUntil.the(QueryPage.BTN_ACTIVO, isVisible()).forNoMoreThan(30).seconds(),
                 Click.on(QueryPage.BTN_ACTIVO),
@@ -86,7 +85,6 @@ public class ObtenerDetalleUsuario2Nuevo implements Task {
                 cantUsuario++;
             }
 
-            Thread.sleep(5000);
             actor.attemptsTo(
                     WaitUntil.the(QueryPage.BTN_REGRESAR, isVisible()).forNoMoreThan(40).seconds(),
                     Click.on(QueryPage.BTN_REGRESAR),

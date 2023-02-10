@@ -36,7 +36,6 @@ public class ObtenerMsjSinUsuario implements Task {
     @SneakyThrows
     @Override
     public <T extends Actor> void performAs(T actor) {
-        Thread.sleep(5000);
         actor.attemptsTo(
                 WaitUntil.the(QueryPage.MENU_USUARIOS, isVisible()).forNoMoreThan(30).seconds(),
                 Click.on(QueryPage.MENU_USUARIOS));
@@ -44,7 +43,6 @@ public class ObtenerMsjSinUsuario implements Task {
         /*Obitene el mensaje de cuantos usuarios existen*/
         String mensajeUsuarios = NexbiQuestions.sinUsuario().answeredBy(theActorInTheSpotlight());
 
-        Thread.sleep(1500);
         boolean isEnabled = Serenity.sessionVariableCalled("checkBoxTipoAcceso");
         if (!isEnabled) {
             tipoAccesoArrays[i-1]= "Stock";
@@ -52,7 +50,6 @@ public class ObtenerMsjSinUsuario implements Task {
             tipoAccesoArrays[i-1]= "Nuevo";
         }
 
-        Thread.sleep(2000);
         actor.attemptsTo(
                 WaitUntil.the(QueryPage.SELECT_ICON_ISV, isVisible()).forNoMoreThan(20).seconds(),
                 Click.on(QueryPage.SELECT_ICON_ISV));

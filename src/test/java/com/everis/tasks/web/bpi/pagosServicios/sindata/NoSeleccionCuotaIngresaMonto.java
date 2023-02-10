@@ -17,7 +17,6 @@ public class NoSeleccionCuotaIngresaMonto implements Task {
     @SneakyThrows
     @Override
     public <T extends Actor> void performAs(T actor) {
-        Thread.sleep(1500);
         Target SIMBOLO_MONTO = Target.the("Simbolo").located(By.xpath("(//span[@class='mr-1'])[2]"));
         Target modoPago = Target.the("Modo Pago").located(By.xpath("(//div[@class='mat-select-value']/span)[4]"));
         actor.attemptsTo(WaitUntil.the(LoginPage.INP_DESCRIPCION, isVisible()).forNoMoreThan(150).seconds(), Enter.theValue(LoginStepDefinitions.pagosServiciosData.getDescripcion()).into(LoginPage.INP_DESCRIPCION));

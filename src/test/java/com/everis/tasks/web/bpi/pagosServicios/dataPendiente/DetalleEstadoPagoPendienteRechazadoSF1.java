@@ -43,8 +43,6 @@ public class DetalleEstadoPagoPendienteRechazadoSF1 implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        Thread.sleep(2000);
-
         LoginStepDefinitions.pagosServiciosData.setNombreusuario(dniUsuario);
 
         LoginStepDefinitions.pagosServiciosData.setDatosCargoDetalle(tipoCuenta + " " + cuentaOrigen);
@@ -66,8 +64,6 @@ public class DetalleEstadoPagoPendienteRechazadoSF1 implements Task {
 
         System.out.println("confirmacion - monto: " + LoginStepDefinitions.pagosServiciosData.getMontoProcess());
 
-        Thread.sleep(2000);
-
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.REVISA_DETALLE_ESTADO, isVisible()).forNoMoreThan(4).seconds(),
                 Click.on(LoginPage.REVISA_DETALLE_ESTADO));
@@ -83,8 +79,6 @@ public class DetalleEstadoPagoPendienteRechazadoSF1 implements Task {
 
         System.out.println("detalle - estado 1: " + LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle());
 
-        Thread.sleep(2000);
-
         if (LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle().equals("En proceso")) {
 
             while (!LoginStepDefinitions.pagosServiciosData.getEstadoSolicitudDetalle().substring(0,9).trim().equals("Rechazada")) {
@@ -95,13 +89,9 @@ public class DetalleEstadoPagoPendienteRechazadoSF1 implements Task {
                         WaitUntil.the(LoginPage.REGRESAR_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(),
                         Click.on(LoginPage.REGRESAR_DETALLE_ESTADO));
 
-                Thread.sleep(2000);
-
                 theActorInTheSpotlight().attemptsTo(
                         WaitUntil.the(LoginPage.REVISA_DETALLE_ESTADO, isVisible()).forNoMoreThan(150).seconds(),
                         Click.on(LoginPage.REVISA_DETALLE_ESTADO));
-
-                Thread.sleep(2000);
 
                 Target DETALLE_ESTADO_SOLICITUD2 = Target.the("Estado de Servicio - Detalle").located(By.xpath("(//div[@data-test='txtEstado'])"));
                 LoginStepDefinitions.pagosServiciosData.setEstadoSolicitudDetalle(String.valueOf(DETALLE_ESTADO_SOLICITUD2.resolveFor(actor).getText()));

@@ -30,8 +30,6 @@ public class ValidacionNoVisualizacionSD {
     @And("^se valida que no se visualice el pago a firma conjunta (.*)$")
     public void SeValidaQueNoSeVisualiceElPagoAFirmaConjunta(String user) throws InterruptedException, FindFailed {
 
-        Thread.sleep(3000);
-
         theActorInTheSpotlight().attemptsTo(
                 new CerrarSesionPendiente());
 
@@ -44,8 +42,6 @@ public class ValidacionNoVisualizacionSD {
         String password = usuario.getPassword();
 
         System.out.println(user + docusuario);
-
-        Thread.sleep(3000);
 
         theActorInTheSpotlight().attemptsTo(
                 AutenticarNuevoBpi.withData(docusuario, password));

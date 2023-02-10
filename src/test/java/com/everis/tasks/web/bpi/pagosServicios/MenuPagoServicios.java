@@ -16,7 +16,6 @@ public class MenuPagoServicios implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-      Thread.sleep(20000);
         actor.attemptsTo(WaitUntil.the(LoginPage.MENU_PAGOS_Y_TRANSFERENCIAS, isVisible()).forNoMoreThan(50).seconds(),
                 Click.on(LoginPage.MENU_PAGOS_Y_TRANSFERENCIAS));
 

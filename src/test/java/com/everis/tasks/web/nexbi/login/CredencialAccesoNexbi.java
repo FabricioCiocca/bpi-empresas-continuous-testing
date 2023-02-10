@@ -50,7 +50,6 @@ public class CredencialAccesoNexbi implements Task {
                 WaitUntil.the(LoginPage.BTN_INGRESAR, isVisible()).forNoMoreThan(40).seconds(),
                 Click.on(LoginPage.BTN_INGRESAR));
 
-        Thread.sleep(3000);
         Set<String> currentHandle = BrowseTheWeb.as(actor).getDriver().getWindowHandles();
         List<String> handles = new ArrayList<>(currentHandle);
 
@@ -67,7 +66,6 @@ public class CredencialAccesoNexbi implements Task {
 
         if (ambiente.trim().equals("DEV")) {
             Screen s = new Screen();
-            Thread.sleep(25000);
             s.click(EnvironmentSpecificConfiguration.from(environmentVariables).getProperty("ruta.imagcredencial"));
         }
     }

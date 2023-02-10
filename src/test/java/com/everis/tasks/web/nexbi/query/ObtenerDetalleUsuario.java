@@ -35,7 +35,6 @@ public class ObtenerDetalleUsuario implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        Thread.sleep(10000);
         actor.attemptsTo(
                 WaitUntil.the(QueryPage.MENU_USUARIOS, isVisible()).forNoMoreThan(30).seconds(),
                 Click.on(QueryPage.MENU_USUARIOS),
@@ -79,7 +78,6 @@ public class ObtenerDetalleUsuario implements Task {
                 cantUsuario++;
             }
 
-            Thread.sleep(5000);
             actor.attemptsTo(
                     WaitUntil.the(QueryPage.BTN_REGRESAR, isVisible()).forNoMoreThan(40).seconds(),
                     Click.on(QueryPage.BTN_REGRESAR),
@@ -87,7 +85,6 @@ public class ObtenerDetalleUsuario implements Task {
                     Click.on(QueryPage.BTN_ACTIVO));
         }
 
-        Thread.sleep(2000);
         actor.attemptsTo(
                 WaitUntil.the(QueryPage.SELECT_ICON_ISV, isVisible()).forNoMoreThan(20).seconds(),
                 Click.on(QueryPage.SELECT_ICON_ISV));

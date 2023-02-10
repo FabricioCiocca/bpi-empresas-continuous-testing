@@ -36,7 +36,6 @@ public class ObtenerInformacionGeneralSinUsuarios implements Task {
     @SneakyThrows
     @Override
     public <T extends Actor> void performAs(T actor) {
-        Thread.sleep(10000);
         actor.attemptsTo(
                 Click.on(QueryPage.TABLE_PUNTOSERVICIO_SIN_USUARIOS));
 

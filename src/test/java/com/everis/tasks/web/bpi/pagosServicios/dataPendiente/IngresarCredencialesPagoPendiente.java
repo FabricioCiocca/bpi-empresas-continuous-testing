@@ -31,25 +31,17 @@ public class IngresarCredencialesPagoPendiente implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        Thread.sleep(2000);
-
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.INP_CONTRASENA, isVisible()).forNoMoreThan(150).seconds(),
                 Enter.theValue(contrasena).into(LoginPage.INP_CONTRASENA));
-
-        Thread.sleep(1500);
 
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.INP_TOKEN, isVisible()).forNoMoreThan(150).seconds(),
                 Enter.theValue(token).into(LoginPage.INP_TOKEN));
 
-        Thread.sleep(1500);
-
         actor.attemptsTo(
                 WaitUntil.the(LoginPage.BTN_FINALIZAR, isVisible()).forNoMoreThan(150).seconds(),
                 Click.on(LoginPage.BTN_FINALIZAR));
-
-        Thread.sleep(4000);
 
 
     }
